@@ -1,4 +1,4 @@
-# How to Translate Coin
+# How to Translate Yishu
 ## Basics
 
 * You'll need to know your language's code (ex. en = English).
