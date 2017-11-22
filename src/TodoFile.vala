@@ -18,7 +18,7 @@
 */
 using Gee;
 
-namespace Td {
+namespace Yishu {
 	public class TodoFile : GLib.Object {
 
 		private string path;

@@ -18,8 +18,8 @@
 */
 using Gtk;
 
-namespace Td {
-	public class TodoWindow : Gtk.Window {
+namespace Yishu {
+	public class MainWindow : Gtk.Window {
 
 		public Gtk.Box info_bar_box;
 		public Gtk.HeaderBar toolbar;
@@ -42,7 +42,6 @@ namespace Td {
 			var swin = new ScrolledWindow(null, null);
 
 			welcome = new Granite.Widgets.Welcome("No Todo.txt File Open", _("Open a todo.txt file to start adding tasks"));
-			welcome.append("appointment-new", _("Add task"), _("Start a new todo.txt file by adding a task"));
 			welcome.append("document-open", _("Open file"), _("Use an existing todo.txt file"));
 			welcome.append("help-contents", _("What is a todo.txt file?"), _("Learn more about todo.txt files"));
 
@@ -93,7 +92,6 @@ namespace Td {
 			tv.append_column(col);
 
 			cell_renderer_toggle = new CellRendererToggle();
-			cell_renderer_toggle.activatable = true;
 			col = new TreeViewColumn.with_attributes(_("Done"), cell_renderer_toggle, "active", Columns.DONE);
 			col.set_sort_column_id(Columns.DONE);
 			col.resizable = true;

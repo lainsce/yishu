@@ -17,9 +17,9 @@
 * Boston, MA 02110-1301 USA
 */
 using Gtk;
-using Td;
+using Yishu;
 
-namespace Td {
+namespace Yishu {
 
 	public class Task : GLib.Object {
 

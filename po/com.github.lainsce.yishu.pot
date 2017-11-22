@@ -1,0 +1,100 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.lainsce.yishu\n"
+"POT-Creation-Date: 2017-11-22 01:20-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/Application.vala:211
+msgid "Edit task"
+msgstr ""
+
+#: src/Application.vala:212
+msgid "Delete task"
+msgstr ""
+
+#: src/Application.vala:213
+msgid "Toggle done"
+msgstr ""
+
+#: src/Application.vala:217 src/TaskDialog.vala:48 src/MainWindow.vala:83
+msgid "Priority"
+msgstr ""
+
+#: src/Application.vala:220
+msgid "None"
+msgstr ""
+
+#: src/Application.vala:305
+msgid "Select your todo.txt file"
+msgstr ""
+
+#: src/Application.vala:475
+msgid "The task has been deleted"
+msgstr ""
+
+#: src/Application.vala:550
+msgid "The todo.txt file has been modified and been re-read"
+msgstr ""
+
+#: src/Task.vala:239
+msgid "Today"
+msgstr ""
+
+#: src/Task.vala:242
+msgid "Yesterday"
+msgstr ""
+
+#: src/Task.vala:245
+msgid "days ago"
+msgstr ""
+
+#: src/TaskDialog.vala:37
+msgid "New Task"
+msgstr ""
+
+#: src/TaskDialog.vala:47 src/MainWindow.vala:88
+msgid "Task"
+msgstr ""
+
+#: src/TaskDialog.vala:86
+msgid "Cancel"
+msgstr ""
+
+#: src/MainWindow.vala:44
+msgid "Open a todo.txt file to start adding tasks"
+msgstr ""
+
+#: src/MainWindow.vala:45
+msgid "Open file"
+msgstr ""
+
+#: src/MainWindow.vala:45
+msgid "Use an existing todo.txt file"
+msgstr ""
+
+#: src/MainWindow.vala:46
+msgid "What is a todo.txt file?"
+msgstr ""
+
+#: src/MainWindow.vala:46
+msgid "Learn more about todo.txt files"
+msgstr ""
+
+#: src/MainWindow.vala:57
+msgid "Open…"
+msgstr ""
+
+#: src/MainWindow.vala:61
+msgid "Add task…"
+msgstr ""
+
+#: src/MainWindow.vala:95
+msgid "Done"
+msgstr ""

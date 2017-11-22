@@ -17,9 +17,9 @@
 * Boston, MA 02110-1301 USA
 */
 using Gtk;
-using Td;
+using Yishu;
 
-namespace Td {
+namespace Yishu {
 
 	/* Symbolic names for the columns in the
 	   data model (ListStore)
@@ -41,21 +41,16 @@ namespace Td {
 		public GLib.Settings settings;
 
 		/* File stuff */
-		private File file;
 		private TodoFile todo_file;
 
 		/* Widgets */
-		private TodoWindow window;
+		private MainWindow window;
 		private Gtk.Menu popup_menu;
 
 		/* Models and Lists */
 		private Gtk.ListStore tasks_list_store;
 		private TreeModelFilter tasks_model_filter;
 		private TreeModelSort tasks_model_sort;
-
-		/* Variables, Parameters and stuff */
-		private string project_filter;
-		private string context_filter;
 
 		private Task trashed_task;
 
@@ -67,7 +62,7 @@ namespace Td {
 		construct {
 			/* Set up the app */
       application_id = "com.github.lainsce.yishu";
-      program_name = "Palaura";
+      program_name = "Yishu";
       app_launcher = "com.github.lainsce.yishu.desktop";
       exec_name = "com.github.lainsce.yishu";
 
@@ -104,7 +99,7 @@ namespace Td {
 		public override void activate(){
 
 			/* Create & setup the application window */
-			window = new TodoWindow();
+			window = new MainWindow();
 
 			/* On window resize save current size for next time */
 			window.configure_event.connect ( () => {
@@ -163,16 +158,9 @@ namespace Td {
 			window.welcome.activated.connect((index) => {
 				switch (index){
 					case 0:
-						add_task();
-						settings.set_string("todo-txt-file-path", file.get_path());
-						// There are better ways to do this ;)
-						this.activate();
+						select_file();
 						break;
 					case 1:
-						select_file();
-						// start over
-						break;
-					case 2:
 						Granite.Services.System.open_uri("http://todotxt.com");
 						break;
 				}
@@ -188,7 +176,7 @@ namespace Td {
 				task.to_model(tasks_list_store, null);
 				todo_file.lines[task.linenr - 1] = task.to_string();
 				todo_file.write_file();
-				tasks_model_filter.refilter();
+				toggle_show_completed();
 			});
 
 			if (read_file(null)){
@@ -289,10 +277,8 @@ namespace Td {
 		 * setup_model
 		 */
 		private void setup_model(){
-
 			tasks_model_filter = new TreeModelFilter(tasks_list_store, null);
 			tasks_model_sort = new Gtk.TreeModelSort.with_model(tasks_model_filter);
-			/* Custom sort func to sort "No priority" (empty string) after(!) any other priority */
 			tasks_model_sort.set_sort_func( Columns.PRIORITY, (model, iter_a, iter_b) => {
 				string prio_a;
 				string prio_b;
@@ -319,8 +305,8 @@ namespace Td {
 				_("Select your todo.txt file"),
 				this.window,
 				Gtk.FileChooserAction.OPEN,
-				Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
-				Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT
+				"_Cancel", Gtk.ResponseType.CANCEL,
+				"_Open", Gtk.ResponseType.ACCEPT
 			);
 
 			Gtk.FileFilter filter = new FileFilter();
@@ -366,7 +352,7 @@ namespace Td {
 		}
 
 		private TaskDialog add_edit_dialog () {
-			var dialog = new TaskDialog();
+			var dialog = new TaskDialog(window);
 
 			return dialog;
 		}
@@ -483,7 +469,7 @@ namespace Td {
 				todo_file.lines.remove_at (task.linenr -1);
 				todo_file.write_file ();
 
-				var info_bar = new Gtk.InfoBar.with_buttons(Gtk.Stock.UNDO, Gtk.ResponseType.ACCEPT);
+				var info_bar = new Gtk.InfoBar.with_buttons("_Undo", Gtk.ResponseType.ACCEPT);
 				info_bar.set_message_type(Gtk.MessageType.INFO);
 				var content = info_bar.get_content_area();
 				content.add(new Label(_("The task has been deleted")));
@@ -558,7 +544,7 @@ namespace Td {
 			todo_file.monitor.changed.connect( (file, other_file, event) => {
 
 				if (event == FileMonitorEvent.CHANGES_DONE_HINT){
-					var info_bar = new Gtk.InfoBar.with_buttons(Gtk.Stock.OK, Gtk.ResponseType.ACCEPT);
+					var info_bar = new Gtk.InfoBar.with_buttons("_OK", Gtk.ResponseType.ACCEPT);
 					info_bar.set_message_type(Gtk.MessageType.WARNING);
 					var content = info_bar.get_content_area();
 					content.add(new Label(_("The todo.txt file has been modified and been re-read")));

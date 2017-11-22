@@ -1,7 +1,6 @@
 src/Application.vala
 src/Task.vala
 src/TaskDialog.vala
-src/Todo.vala
 src/TodoFile.vala
 src/MainWindow.vala
 src/Constants/AppSettings.vala
