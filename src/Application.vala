@@ -1,0 +1,599 @@
+/*
+ * todo.vala
+ *
+ * Main application code
+ *
+ * @package todo
+ *
+ */
+using Gtk;
+using Td;
+
+namespace Td {
+
+	/* Symbolic names for the columns in the
+	   data model (ListStore)
+	*/
+	enum Columns {
+		PRIORITY,
+		MARKUP,
+		TASK_OBJECT,
+		VISIBLE,
+		DONE,
+		LINE_NR
+	}
+
+	/* Extend Granite.Application */
+
+	public class Todo : Granite.Application {
+
+		/* All user editable stuff is in GLib.Settings (use dconf-editor to inspect) */
+		public GLib.Settings settings;
+
+		/* File stuff */
+		private File file;
+		private TodoFile todo_file;
+
+		/* Widgets */
+		private TodoWindow window;
+		private Gtk.Menu popup_menu;
+
+		/* Models and Lists */
+		private Gtk.ListStore tasks_list_store;
+		private TreeModelFilter tasks_model_filter;
+		private TreeModelSort tasks_model_sort;
+
+		/* Variables, Parameters and stuff */
+		private string project_filter;
+		private string context_filter;
+
+		private Task trashed_task;
+
+		private int window_width;
+		private int window_height;
+
+		private string current_filename = null;
+
+		construct {
+			/* Set up the app */
+      application_id = "com.github.lainsce.yishu";
+      program_name = "Palaura";
+      app_launcher = "com.github.lainsce.yishu.desktop";
+      exec_name = "com.github.lainsce.yishu";
+
+      var quit_action = new SimpleAction ("quit", null);
+      add_action (quit_action);
+      add_accelerator ("<Control>q", "app.quit", null);
+      quit_action.activate.connect (() => {
+          if (window != null) {
+              window.destroy ();
+          }
+      });
+
+		 	trashed_task = null;
+		}
+
+		public Todo() {
+			ApplicationFlags flags = ApplicationFlags.HANDLES_OPEN;
+			set_flags(flags);
+
+		 	/* Setup / connect to GSettings */
+			settings = new GLib.Settings("com.github.lainsce.yishu");
+			settings.changed["todo-txt-file-path"].connect( () => {
+				read_file(null);
+			});
+			settings.changed["show-completed"].connect( toggle_show_completed);
+		}
+
+
+		/**
+		 * activate
+		 *
+		 * Application startup
+		 */
+		public override void activate(){
+
+			/* Create & setup the application window */
+			window = new TodoWindow();
+
+			/* On window resize save current size for next time */
+			window.configure_event.connect ( () => {
+				window.get_size(out window_width, out window_height);
+				return false;
+			});
+
+			window.resize(
+				settings.get_int("saved-state-width"),
+				settings.get_int("saved-state-height")
+			);
+
+			/* Create and setup the data model, which
+			 * stores the tasks*/
+			tasks_list_store = new Gtk.ListStore (6, typeof (string), typeof(string), typeof(GLib.Object), typeof(bool), typeof(bool), typeof(int));
+			setup_model();
+			// connect model and tree_view
+			window.tree_view.set_model(tasks_model_sort);
+
+			/* Setup menus, shortcuts and actions */
+			setup_menus();
+
+			/* Connect signals.
+			 * All Callbacks are here in todo.vala - on application level. */
+
+			/* On add button clicked, show add task dialog */
+			window.open_button.clicked.connect(open_file);
+			window.add_button.clicked.connect(add_task);
+
+			/* Detect right click on tree view columns and show popup context menu (edit/ delete) */
+			window.tree_view.button_press_event.connect( (tv, event) => {
+				if ((event.button == 3) && (event.type == Gdk.EventType.BUTTON_PRESS)){	// 3 = Right mouse button
+					TreePath path;
+					TreeIter iter;
+					TreeViewColumn column;
+					int cell_x;
+					int cell_y;
+					Task task;
+					if (window.tree_view.get_path_at_pos((int)event.x, (int)event.y, out path, out column, out cell_x, out cell_y)){
+						tasks_model_sort.get_iter_from_string(out iter,path.to_string());
+						tasks_model_sort.get(iter, Columns.TASK_OBJECT, out task, -1);
+
+						popup_menu.popup(null, null, null, event.button, event.time);
+					}
+				}
+				return false;
+			});
+			window.tree_view.row_activated.connect(edit_task);
+
+			window.destroy.connect( () => {
+				settings.set_int("saved-state-width", window_width);
+				settings.set_int("saved-state-height", window_height);
+				Gtk.main_quit();
+			});
+
+			window.welcome.activated.connect((index) => {
+				switch (index){
+					case 0:
+						add_task();
+						settings.set_string("todo-txt-file-path", file.get_path());
+						// There are better ways to do this ;)
+						this.activate();
+						break;
+					case 1:
+						select_file();
+						// start over
+						break;
+					case 2:
+						Granite.Services.System.open_uri("http://todotxt.com");
+						break;
+				}
+			});
+
+			window.cell_renderer_toggle.toggled.connect( (toggle, path) => {
+				Task task;
+				TreeIter iter;
+				TreePath tree_path = new Gtk.TreePath.from_string(path);
+				tasks_model_sort.get_iter(out iter, tree_path);
+				tasks_model_sort.get(iter, Columns.TASK_OBJECT, out task, -1);
+				task.done = (task.done ? false : true);
+				task.to_model(tasks_list_store, null);
+				todo_file.lines[task.linenr - 1] = task.to_string();
+				todo_file.write_file();
+				tasks_model_filter.refilter();
+			});
+
+			if (read_file(null)){
+				window.welcome.hide();
+				window.tree_view.show();
+			}
+			else {
+				window.welcome.show();
+				window.tree_view.hide();
+			}
+			tasks_model_filter.refilter();
+		}
+
+		protected override void open (File[] files, string hint){
+			activate();
+			foreach (File file in files){
+				print ("Opening file: %s\n", file.get_path());
+				read_file(file.get_path());
+			}
+		}
+
+		private void toggle_show_completed(){
+			tasks_model_filter.refilter();
+			update_global_tags();
+		}
+
+		private void setup_menus () {
+			popup_menu = new Gtk.Menu();
+			var accel_group_popup = new Gtk.AccelGroup();
+			window.add_accel_group(accel_group_popup);
+			popup_menu.set_accel_group(accel_group_popup);
+			var edit_task_menu_item = new Gtk.MenuItem.with_label(_("Edit task"));
+			var delete_task_menu_item = new Gtk.MenuItem.with_label(_("Delete task"));
+			var toggle_done_menu_item = new Gtk.MenuItem.with_label(_("Toggle done"));
+
+			var priority_menu = new Gtk.Menu();
+
+			var priority_menu_item = new Gtk.MenuItem.with_label(_("Priority"));
+			priority_menu_item.set_submenu(priority_menu);
+
+			var priority_none_menu_item = new Gtk.MenuItem.with_label(_("None"));
+			priority_menu.append(priority_none_menu_item);
+			priority_none_menu_item.add_accelerator("activate", accel_group_popup, Gdk.Key.BackSpace, Gdk.ModifierType.CONTROL_MASK, Gtk.AccelFlags.VISIBLE);
+			priority_none_menu_item.activate.connect ( () => {
+				Task task = get_selected_task ();
+				if (task != null){
+					task.priority = "";
+					update_todo_file_after_task_edited (task);
+				}
+			});
+
+			for (char prio = 'A'; prio <= 'F'; prio++){
+				var priority_x_menu_item = new Gtk.MenuItem.with_label("%c".printf(prio));
+				priority_x_menu_item.add_accelerator("activate", accel_group_popup, Gdk.Key.A + (prio - 'A'), Gdk.ModifierType.CONTROL_MASK, Gtk.AccelFlags.VISIBLE);
+				priority_x_menu_item.activate.connect( (menu_item) => {
+
+					Task task = get_selected_task();
+					if (task != null){
+						task.priority = menu_item.get_label ();
+						update_todo_file_after_task_edited (task);
+					}
+				});
+				priority_menu.append(priority_x_menu_item);
+			}
+
+			edit_task_menu_item.add_accelerator("activate", accel_group_popup, Gdk.Key.F2, 0, Gtk.AccelFlags.VISIBLE);
+			delete_task_menu_item.add_accelerator("activate", accel_group_popup, Gdk.Key.Delete, 0, Gtk.AccelFlags.VISIBLE);
+			toggle_done_menu_item.add_accelerator("activate", accel_group_popup, Gdk.Key.space, 0, Gtk.AccelFlags.VISIBLE);
+			edit_task_menu_item.activate.connect(edit_task);
+			delete_task_menu_item.activate.connect(delete_task);
+			toggle_done_menu_item.activate.connect(toggle_done);
+
+			popup_menu.append(toggle_done_menu_item);
+			popup_menu.append(priority_menu_item);
+			popup_menu.append(edit_task_menu_item);
+			popup_menu.append(delete_task_menu_item);
+
+			popup_menu.show_all();
+		}
+
+		private void update_todo_file_after_task_edited (Task task){
+			if (task != null){
+				tasks_model_filter.refilter ();
+				todo_file.lines[task.linenr - 1] = task.to_string ();
+				task.to_model(tasks_list_store, task.iter);
+				todo_file.write_file();
+			}
+		}
+
+		/**
+		 * reset
+		 */
+		private void reset(){
+			tasks_list_store.clear();
+		}
+
+		/**
+		 * setup_model
+		 */
+		private void setup_model(){
+
+			tasks_model_filter = new TreeModelFilter(tasks_list_store, null);
+			tasks_model_sort = new Gtk.TreeModelSort.with_model(tasks_model_filter);
+			/* Custom sort func to sort "No priority" (empty string) after(!) any other priority */
+			tasks_model_sort.set_sort_func( Columns.PRIORITY, (model, iter_a, iter_b) => {
+				string prio_a;
+				string prio_b;
+				model.get(iter_a, Columns.PRIORITY, out prio_a, -1);
+				model.get(iter_b, Columns.PRIORITY, out prio_b, -1);
+
+				if (prio_a == "" && prio_b != ""){
+					return 1;
+				}
+				if (prio_a != "" && prio_b == ""){
+					return -1;
+				}
+				return (prio_a < prio_b ? -1 : 1);
+			});
+			tasks_model_sort.set_sort_column_id(Columns.PRIORITY, Gtk.SortType.ASCENDING);
+		}
+
+		private void open_file(){
+			select_file();
+		}
+
+		private bool select_file(){
+			var dialog = new FileChooserDialog(
+				_("Select your todo.txt file"),
+				this.window,
+				Gtk.FileChooserAction.OPEN,
+				Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
+				Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT
+			);
+
+			Gtk.FileFilter filter = new FileFilter();
+			dialog.set_filter(filter);
+			filter.add_pattern("*todo.txt");
+
+			if (dialog.run() == Gtk.ResponseType.ACCEPT){
+
+				read_file(dialog.get_filename());
+				window.welcome.hide();
+				window.tree_view.show();
+
+			}
+			dialog.destroy();
+			return true;
+		}
+
+		private void update_global_tags(){
+			bool show_completed = settings.get_boolean("show-completed");
+
+			tasks_list_store.foreach( (model, path, iter) => {
+				Task task;
+				model.get(iter, Columns.TASK_OBJECT, out task, -1);
+
+				if (!show_completed && task.done){
+					return false;
+				}
+
+				return false;
+
+			});
+		}
+
+		private Task get_selected_task(){
+			TreeIter iter;
+			TreeModel model;
+			Task task = null;
+			var sel = window.tree_view.get_selection();
+			if (sel.get_selected(out model, out iter)){
+				model.get(iter, Columns.TASK_OBJECT, out task, -1);
+			}
+			return task;
+		}
+
+		private TaskDialog add_edit_dialog () {
+			var dialog = new TaskDialog();
+
+			return dialog;
+		}
+
+		private void toggle_done () {
+			Task task = get_selected_task ();
+			if (task != null) {
+
+				task.done = !task.done;
+				task.to_model(tasks_list_store, task.iter);
+				tasks_model_filter.refilter();
+				todo_file.lines[task.linenr - 1] = task.to_string();
+				todo_file.write_file();
+
+				update_global_tags();
+			}
+		}
+
+		private void edit_task () {
+			TreeIter iter;
+			TreeModel model;
+			Task task;
+			var sel = window.tree_view.get_selection();
+			if (!sel.get_selected(out model, out iter)){
+				return;
+			}
+			model.get(iter, Columns.TASK_OBJECT, out task, -1);
+
+			if (task != null){
+
+				var dialog = add_edit_dialog();
+
+				dialog.entry.set_text(task.to_string());
+
+				dialog.show_all();
+				int response = dialog.run();
+				switch (response){
+					case Gtk.ResponseType.ACCEPT:
+						task.parse_from_string(dialog.entry.get_text());
+						task.to_model(tasks_list_store, task.iter);
+						tasks_model_filter.refilter();
+						todo_file.lines[task.linenr - 1] = task.to_string();
+						todo_file.write_file();
+						break;
+					default:
+						break;
+				}
+				update_global_tags();
+				dialog.destroy();
+
+				sel.select_iter(iter);
+			}
+		}
+
+		private void add_task (){
+
+			var dialog = add_edit_dialog();
+			dialog.show_all ();
+
+			int response = dialog.run ();
+			switch (response){
+				case Gtk.ResponseType.ACCEPT:
+
+					string str = dialog.entry.get_text();
+					Task task = new Task();
+
+					if (task.parse_from_string(str)){
+
+						Date d = Date();
+						var output = new char[100];
+						d.set_time_t(time_t(null));
+						d.strftime(output, "%Y-%m-%d");
+						task.date = (string)output;
+
+						todo_file.lines.add(task.to_string());
+
+						TreeIter iter, fiter, siter;
+
+						tasks_list_store.append(out iter);
+						task.to_model(tasks_list_store, iter);
+
+						if (todo_file.write_file()){
+							task.linenr = todo_file.n_lines;
+							task.to_model(tasks_list_store, iter);
+						}
+						else {
+							warning ("Failed to write file");
+						}
+
+						update_global_tags();
+
+						tasks_model_filter.convert_child_iter_to_iter(out fiter, iter);
+						tasks_model_sort.convert_child_iter_to_iter(out siter, fiter);
+
+						window.tree_view.get_selection().select_iter(siter);
+					}
+
+					break;
+				default:
+					break;
+			}
+			dialog.destroy();
+
+		}
+
+		private void delete_task () {
+
+			Task task = get_selected_task ();
+
+			if (task != null) {
+
+				trashed_task = task;
+
+				todo_file.lines.remove_at (task.linenr -1);
+				todo_file.write_file ();
+
+				var info_bar = new Gtk.InfoBar.with_buttons(Gtk.Stock.UNDO, Gtk.ResponseType.ACCEPT);
+				info_bar.set_message_type(Gtk.MessageType.INFO);
+				var content = info_bar.get_content_area();
+				content.add(new Label(_("The task has been deleted")));
+				info_bar.show_all();
+
+				window.info_bar_box.foreach( (child) => {
+					child.destroy();
+				});
+
+				window.info_bar_box.pack_start(info_bar, true, true, 0);
+				info_bar.response.connect( () => {
+					undelete();
+					info_bar.destroy();
+				});
+
+				update_global_tags();
+			}
+		}
+
+		private void undelete () {
+
+			if (trashed_task != null){
+				print ("Restoring task: " + trashed_task.text + " at line nr. " + "%u".printf(trashed_task.linenr));
+
+				todo_file.lines.insert(trashed_task.linenr - 1, trashed_task.to_string());
+				todo_file.write_file();
+				TreeIter iter;
+				tasks_list_store.append(out iter);
+				trashed_task.to_model(tasks_list_store, iter);
+				tasks_model_filter.refilter();
+
+				trashed_task = null;
+			}
+		}
+
+		/**
+		 * read_file
+		 */
+		public bool read_file (string? filename) {
+			reset();
+
+			if (filename != null){
+				todo_file = new TodoFile(filename);
+			}
+			else {
+				string DS = "%c".printf(GLib.Path.DIR_SEPARATOR);
+				string[] paths = {
+					settings.get_string("todo-txt-file-path"),
+					Environment.get_home_dir() + DS + "todo.txt",
+					Environment.get_home_dir() + DS + "bin" + DS + "todo.txt" + DS + "todo.txt",
+					Environment.get_home_dir() + DS + "Dropbox" + DS + "todo.txt",
+					Environment.get_home_dir() + DS + "Dropbox" + DS + "todo" + DS + "todo.txt"
+				};
+
+				todo_file = null;
+				foreach (string path in paths){
+
+					var test_file = new TodoFile(path);
+					if (test_file.exists()){
+						todo_file = test_file;
+						break;
+					}
+				}
+			}
+
+			if (todo_file == null){
+				return false;
+			}
+
+			this.current_filename = filename;
+
+			todo_file.monitor.changed.connect( (file, other_file, event) => {
+
+				if (event == FileMonitorEvent.CHANGES_DONE_HINT){
+					var info_bar = new Gtk.InfoBar.with_buttons(Gtk.Stock.OK, Gtk.ResponseType.ACCEPT);
+					info_bar.set_message_type(Gtk.MessageType.WARNING);
+					var content = info_bar.get_content_area();
+					content.add(new Label(_("The todo.txt file has been modified and been re-read")));
+					info_bar.show_all();
+					window.info_bar_box.foreach( (widget) => {
+						widget.destroy();
+					});
+					window.info_bar_box.pack_start(info_bar, true, true, 0);
+					info_bar.response.connect( () => {
+						info_bar.destroy();
+					});
+					read_file(null);
+				}
+			});
+
+			try {
+				int n = todo_file.read_file();
+				for (int i = 0; i < n; i++){
+					var task = new Task();
+					if (task.parse_from_string(todo_file.lines[i])){
+						TreeIter iter;
+						tasks_list_store.append(out iter);
+						task.linenr = i+1;
+						task.to_model(tasks_list_store, iter);
+					}
+				}
+				update_global_tags();
+			}
+			catch (Error e){
+				warning("%s", e.message);
+				return false;
+			}
+			return true;
+		}
+
+    static int main(string[] args){
+    	int ret;
+
+    	Gtk.init(ref args);
+
+    	var app = new Todo();
+    	ret = app.run(args);
+
+    	Gtk.main();
+    	return ret;
+    }
+	}
+}

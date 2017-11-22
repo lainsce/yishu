@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+    <id>com.github.lainsce.yishu.desktop</id>
+    <metadata_license>CC0</metadata_license>
+    <project_license>GPL-3.0+</project_license>
+    <name>Yishu</name>
+    <summary>A bespoke and simple Todo.txt client</summary>
+    <description>
+        <p>Write a to-do list that will be easy to sync with most known Todo.txt clients</p>
+        <ul>
+            <li>Quit anytime with the shortcut Ctrl + Q</li>
+            <li>Easily shareable with other Todo.txt clients on other platforms</li>
+        </ul>
+    </description>
+    <provides>
+        <binary>com.github.lainsce.yishu</binary>
+    </provides>
+    <developer_name>Lains</developer_name>
+    <url type="homepage">https://github.com/lainsce/yishu/</url>
+    <url type="bugtracker">https://github.com/lainsce/yishu/issues</url>
+    <screenshots>
+        <screenshot type="default">
+            <image>https://raw.githubusercontent.com/lainsce/yishu/master/data/shot.png</image>
+        </screenshot>
+    </screenshots>
+    <releases>
+        <release version="1.0.0" date="2017-11-24">
+            <description>
+                <p>Release: A River Crossing</p>
+                <ul>
+                    <li>First release.</li>
+                </ul>
+            </description>
+        </release>
+    </releases>
+    <custom>
+        <value key="x-appcenter-color-primary">#dee8bc</value>
+        <value key="x-appcenter-color-primary-text">#333333</value>
+    </custom>
+</component>
