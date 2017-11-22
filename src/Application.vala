@@ -35,11 +35,7 @@ namespace Yishu {
 
 	/* Extend Granite.Application */
 
-	public class Todo : Granite.Application {
-
-		/* All user editable stuff is in GLib.Settings (use dconf-editor to inspect) */
-		public GLib.Settings settings;
-
+	public class Application : Granite.Application {
 		/* File stuff */
 		private TodoFile todo_file;
 
@@ -53,10 +49,6 @@ namespace Yishu {
 		private TreeModelSort tasks_model_sort;
 
 		private Task trashed_task;
-
-		private int window_width;
-		private int window_height;
-
 		private string current_filename = null;
 
 		construct {
@@ -78,58 +70,27 @@ namespace Yishu {
 		 	trashed_task = null;
 		}
 
-		public Todo() {
+		public Application () {
 			ApplicationFlags flags = ApplicationFlags.HANDLES_OPEN;
 			set_flags(flags);
 
-		 	/* Setup / connect to GSettings */
-			settings = new GLib.Settings("com.github.lainsce.yishu");
-			settings.changed["todo-txt-file-path"].connect( () => {
-				read_file(null);
-			});
-			settings.changed["show-completed"].connect( toggle_show_completed);
+      var settings = AppSettings.get_default ();
+      if (settings.todo_txt_file_path == null) {
+        read_file(null);
+      }
+      if (!settings.show_completed) {
+        toggle_show_completed ();
+      }
 		}
 
-
-		/**
-		 * activate
-		 *
-		 * Application startup
-		 */
 		public override void activate(){
-
-			/* Create & setup the application window */
-			window = new MainWindow();
-
-			/* On window resize save current size for next time */
-			window.configure_event.connect ( () => {
-				window.get_size(out window_width, out window_height);
-				return false;
-			});
-
-			window.resize(
-				settings.get_int("saved-state-width"),
-				settings.get_int("saved-state-height")
-			);
-
-			/* Create and setup the data model, which
-			 * stores the tasks*/
+			window = new MainWindow(this);
 			tasks_list_store = new Gtk.ListStore (6, typeof (string), typeof(string), typeof(GLib.Object), typeof(bool), typeof(bool), typeof(int));
 			setup_model();
-			// connect model and tree_view
 			window.tree_view.set_model(tasks_model_sort);
-
-			/* Setup menus, shortcuts and actions */
 			setup_menus();
-
-			/* Connect signals.
-			 * All Callbacks are here in todo.vala - on application level. */
-
-			/* On add button clicked, show add task dialog */
 			window.open_button.clicked.connect(open_file);
 			window.add_button.clicked.connect(add_task);
-
-			/* Detect right click on tree view columns and show popup context menu (edit/ delete) */
 			window.tree_view.button_press_event.connect( (tv, event) => {
 				if ((event.button == 3) && (event.type == Gdk.EventType.BUTTON_PRESS)){	// 3 = Right mouse button
 					TreePath path;
@@ -148,13 +109,6 @@ namespace Yishu {
 				return false;
 			});
 			window.tree_view.row_activated.connect(edit_task);
-
-			window.destroy.connect( () => {
-				settings.set_int("saved-state-width", window_width);
-				settings.set_int("saved-state-height", window_height);
-				Gtk.main_quit();
-			});
-
 			window.welcome.activated.connect((index) => {
 				switch (index){
 					case 0:
@@ -165,7 +119,6 @@ namespace Yishu {
 						break;
 				}
 			});
-
 			window.cell_renderer_toggle.toggled.connect( (toggle, path) => {
 				Task task;
 				TreeIter iter;
@@ -178,7 +131,6 @@ namespace Yishu {
 				todo_file.write_file();
 				toggle_show_completed();
 			});
-
 			if (read_file(null)){
 				window.welcome.hide();
 				window.tree_view.show();
@@ -193,7 +145,7 @@ namespace Yishu {
 		protected override void open (File[] files, string hint){
 			activate();
 			foreach (File file in files){
-				print ("Opening file: %s\n", file.get_path());
+				debug ("Opening file: %s\n", file.get_path());
 				read_file(file.get_path());
 			}
 		}
@@ -325,7 +277,8 @@ namespace Yishu {
 		}
 
 		private void update_global_tags(){
-			bool show_completed = settings.get_boolean("show-completed");
+      var settings = AppSettings.get_default ();
+			bool show_completed = settings.show_completed;
 
 			tasks_list_store.foreach( (model, path, iter) => {
 				Task task;
@@ -459,13 +412,9 @@ namespace Yishu {
 		}
 
 		private void delete_task () {
-
 			Task task = get_selected_task ();
-
 			if (task != null) {
-
 				trashed_task = task;
-
 				todo_file.lines.remove_at (task.linenr -1);
 				todo_file.write_file ();
 
@@ -492,7 +441,7 @@ namespace Yishu {
 		private void undelete () {
 
 			if (trashed_task != null){
-				print ("Restoring task: " + trashed_task.text + " at line nr. " + "%u".printf(trashed_task.linenr));
+				debug ("Restoring task: " + trashed_task.text + " at line nr. " + "%u".printf(trashed_task.linenr));
 
 				todo_file.lines.insert(trashed_task.linenr - 1, trashed_task.to_string());
 				todo_file.write_file();
@@ -510,6 +459,7 @@ namespace Yishu {
 		 */
 		public bool read_file (string? filename) {
 			reset();
+      var settings = AppSettings.get_default ();
 
 			if (filename != null){
 				todo_file = new TodoFile(filename);
@@ -517,7 +467,7 @@ namespace Yishu {
 			else {
 				string DS = "%c".printf(GLib.Path.DIR_SEPARATOR);
 				string[] paths = {
-					settings.get_string("todo-txt-file-path"),
+					settings.todo_txt_file_path,
 					Environment.get_home_dir() + DS + "todo.txt",
 					Environment.get_home_dir() + DS + "bin" + DS + "todo.txt" + DS + "todo.txt",
 					Environment.get_home_dir() + DS + "Dropbox" + DS + "todo.txt",
@@ -580,16 +530,12 @@ namespace Yishu {
 			return true;
 		}
 
-    static int main(string[] args){
-    	int ret;
+    public static int main(string[] args){
+      Intl.setlocale (LocaleCategory.ALL, "");
+      Intl.textdomain (Build.GETTEXT_PACKAGE);
 
-    	Gtk.init(ref args);
-
-    	var app = new Todo();
-    	ret = app.run(args);
-
-    	Gtk.main();
-    	return ret;
+    	var app = new Yishu.Application();
+    	return app.run(args);
     }
 	}
 }

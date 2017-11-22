@@ -29,12 +29,29 @@ namespace Yishu {
 		public Gtk.TreeView tree_view;
 		public Gtk.CellRendererToggle cell_renderer_toggle;
 
+    public MainWindow (Gtk.Application application) {
+        GLib.Object (application: application,
+                    icon_name: "com.github.lainsce.yishu",
+                    height_request: 600,
+                    width_request: 600,
+                    title: _("Yishu")
+        );
+    }
+
 		construct {
       var provider = new Gtk.CssProvider ();
       provider.load_from_resource ("/com/github/lainsce/yishu/stylesheet.css");
       Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
-			title = "Yishu";
+      var settings = AppSettings.get_default ();
+      int x = settings.window_x;
+      int y = settings.window_y;
+
+      if (x != -1 && y != -1) {
+          move (x, y);
+      }
+
+			resize (settings.saved_state_width, settings.saved_state_height);
 
 			/* Layout and containers */
 			var vbox = new Box(Gtk.Orientation.VERTICAL, 0);
@@ -75,6 +92,20 @@ namespace Yishu {
 
 			show_all();
 		}
+
+    public override bool delete_event (Gdk.EventAny event) {
+        int x, y;
+        int w, h;
+        get_position (out x, out y);
+        get_size(out w, out h);
+
+        var settings = AppSettings.get_default ();
+        settings.window_x = x;
+        settings.window_y = y;
+        settings.saved_state_width = w;
+        settings.saved_state_height = h;
+        return false;
+    }
 
 		private TreeView setup_tree_view(){
 			TreeView tv = new TreeView();

@@ -14,10 +14,11 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-namespace Coin {
+namespace Yishu {
     public class AppSettings : Granite.Services.Settings {
+        public int window_x { get; set; }
+        public int window_y { get; set; }
         public bool show_completed { get; set; }
-        public bool show_statusbar { get; set; }
         public int saved_state_width { get; set; }
         public int saved_state_height { get; set; }
         public string todo_txt_file_path { get; set; }
@@ -32,7 +33,7 @@ namespace Coin {
         }
 
         private AppSettings () {
-            base ("com.github.lainsce.coin");
+            base ("com.github.lainsce.yishu");
         }
     }
 }

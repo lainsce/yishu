@@ -10,14 +10,11 @@
 			<summary>Show statusbar</summary>
 			<description>Whether to show the statusbar</description>
 		</key>
-
 		<key type="s" name="todo-txt-file-path">
-
 			<default>""</default>
 			<summary>todotxt file path</summary>
 			<description>Path to the todotxt file to use</description>
 		</key>
-
 		<key type="i" name="saved-state-width">
 			<default>600</default>
 			<summary>Saved state width</summary>
@@ -27,6 +24,16 @@
 			<default>800</default>
 			<summary>Saved state height</summary>
 			<description>The size of the window is stored here when the application is closed to restore it on restart</description>
+		</key>
+    <key name="window-x" type="i">
+			<default>-1</default>
+			<summary>Window position</summary>
+			<description>The x axis of window position</description>
+		</key>
+		<key name="window-y" type="i">
+			<default>-1</default>
+			<summary>Window position</summary>
+			<description>The y axis of window position</description>
 		</key>
 	</schema>
 </schemalist>
