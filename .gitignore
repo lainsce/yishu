@@ -1,0 +1,13 @@
+*.c
+*.o
+build/
+~*
+*~
+debian/com.github.lainsce.yishu.debhelper.log
+debian/com.github.lainsce.yishu.substvars
+debian/com.github.lainsce.yishu/
+debian/debhelper-build-stamp
+debian/files
+obj-x86_64-linux-gnu/
+.vscode
+todo.txt
