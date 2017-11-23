@@ -22,6 +22,18 @@
   <defs
      id="defs4">
     <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4166">
+      <stop
+         style="stop-color:#fafafa;stop-opacity:1"
+         offset="0"
+         id="stop4168" />
+      <stop
+         style="stop-color:#d1ff82;stop-opacity:1"
+         offset="1"
+         id="stop4170" />
+    </linearGradient>
+    <linearGradient
        id="linearGradient4007">
       <stop
          style="stop-color:#d1ff82;stop-opacity:1"
@@ -150,6 +162,15 @@
          stdDeviation="1.074185"
          id="feGaussianBlur4005" />
     </filter>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4166"
+       id="linearGradient4172"
+       x1="15.69499"
+       y1="1020.3622"
+       x2="15.71402"
+       y2="1052.3622"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -159,8 +180,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="22.627417"
-     inkscape:cx="9.8948948"
-     inkscape:cy="15.243053"
+     inkscape:cx="3.7298076"
+     inkscape:cy="14.8895"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -209,21 +230,21 @@
        rx="60.5"
        ry="3.25" />
     <rect
-       style="fill:url(#radialGradient3886);fill-opacity:1;stroke:#206b00;stroke-width:1;stroke-opacity:0.53333291"
+       style="fill:url(#radialGradient3886);fill-opacity:1;stroke:#206b00;stroke-width:1;stroke-opacity:0.53333285"
        id="rect3804"
        width="24"
        height="24"
        x="4.5"
        y="1023.8622"
-       rx="0.26458988"
-       ry="0.231719" />
+       rx="0.70653051"
+       ry="0.76201952" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#fafafa;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 7.7008862,1036.7413 6.3044848,6.195 12.230703,-12.8666"
        id="path4168"
        inkscape:connector-curvature="0" />
     <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:#d1ff82;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.53333285"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:url(#linearGradient4172);stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.53333285"
        id="rect4168"
        width="22"
        height="22"

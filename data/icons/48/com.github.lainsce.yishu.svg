@@ -15,12 +15,24 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   inkscape:export-filename="/media/share/share/Projekte/todo/data/todo.png"
+   inkscape:export-filename="/home/lains/Projects/yishu/data/icon.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90"
    sodipodi:docname="com.github.lainsce.yishu.svg">
   <defs
      id="defs4">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4166">
+      <stop
+         style="stop-color:#fafafa;stop-opacity:1"
+         offset="0"
+         id="stop4168" />
+      <stop
+         style="stop-color:#d1ff82;stop-opacity:1"
+         offset="1"
+         id="stop4170" />
+    </linearGradient>
     <linearGradient
        id="linearGradient4007">
       <stop
@@ -150,6 +162,15 @@
          stdDeviation="1.074185"
          id="feGaussianBlur4005" />
     </filter>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4166"
+       id="linearGradient4172"
+       x1="24.053417"
+       y1="1004.3622"
+       x2="23.932919"
+       y2="1052.3622"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -159,8 +180,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="16.770833"
-     inkscape:cx="10.327975"
-     inkscape:cy="24.296351"
+     inkscape:cx="18.893948"
+     inkscape:cy="23.342313"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -215,15 +236,25 @@
        height="36"
        x="6.5"
        y="1010.8622"
-       rx="0.26458991"
-       ry="0.23171903" />
+       rx="0.74160987"
+       ry="0.82796276" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;opacity:0.15"
+       d="m 11.436604,1031.9256 9.211658,9.5105 17.87062,-19.7527"
+       id="path4168-3"
+       inkscape:connector-curvature="0" />
+    <path
+       style="opacity:0.07;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 11.436604,1031.9256 9.211658,9.5105 17.87062,-19.7527"
+       id="path4168-3-6"
+       inkscape:connector-curvature="0" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#fafafa;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 11.436611,1030.9256 9.211565,9.5105 17.870441,-19.7527"
        id="path4168"
        inkscape:connector-curvature="0" />
     <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:#d1ff82;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.53333285"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:url(#linearGradient4172);stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.53333285"
        id="rect4168"
        width="34"
        height="34"

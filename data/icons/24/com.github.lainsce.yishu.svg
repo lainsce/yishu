@@ -22,6 +22,21 @@
   <defs
      id="defs4">
     <linearGradient
+       id="linearGradient4977">
+      <stop
+         id="stop4979"
+         offset="0"
+         style="stop-color:#ffffff;stop-opacity:1" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.53289473"
+         offset="0.55240691"
+         id="stop4981" />
+      <stop
+         id="stop4983"
+         offset="1"
+         style="stop-color:#d1ff82;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient
        id="linearGradient4007">
       <stop
          style="stop-color:#d1ff82;stop-opacity:1"
@@ -138,6 +153,15 @@
          operator="in"
          in="fbSourceGraphic" />
     </filter>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4977"
+       id="linearGradient4975"
+       x1="12.254824"
+       y1="1028.3622"
+       x2="12.365986"
+       y2="1052.3622"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -147,8 +171,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="22.627417"
-     inkscape:cx="-6.1013596"
-     inkscape:cy="10.293305"
+     inkscape:cx="-0.72407665"
+     inkscape:cy="9.5861982"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -195,10 +219,10 @@
        height="19"
        x="2.5"
        y="1030.8622"
-       rx="0.27928934"
-       ry="0.24459229" />
+       rx="0.67703682"
+       ry="0.64237648" />
     <path
-       style="opacity:1;fill:none;fill-opacity:1;stroke:#d1ff82;stroke-width:1;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:0.53333336"
+       style="opacity:0.52;fill:none;fill-opacity:1;stroke:url(#linearGradient4975);stroke-width:1;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:0.53333336"
        d="m 3.9211278,1031.8804 c -0.2228865,0 -0.4028864,0.1795 -0.4028864,0.4019 l 0,16.1598 c 0,0.2223 0.1799999,0.4019 0.4028864,0.4019 l 16.2040272,0 c 0.222886,0 0.402888,-0.1796 0.402888,-0.4019 l 0,-16.1598 c 0,-0.2224 -0.180002,-0.4019 -0.402888,-0.4019 l -16.2040272,0 z m 0.1413264,0.1916 c 0.013257,0 0.026458,0 0.040081,0 l 15.8412218,0 c 0.217881,0 0.392335,0.1738 0.392335,0.391 l 0,15.7983 c 0,0.2173 -0.174454,0.3912 -0.392335,0.3912 l -15.8412218,0 c -0.2178827,0 -0.3923394,-0.1739 -0.3923394,-0.3912 l 0,-15.7983 c 0,-0.2036 0.1534072,-0.371 0.3522616,-0.391 z"
        id="rect3867"
        inkscape:connector-curvature="0" />
