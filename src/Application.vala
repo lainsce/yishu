@@ -417,6 +417,7 @@ namespace Yishu {
 				trashed_task = task;
 				todo_file.lines.remove_at (task.linenr -1);
 				todo_file.write_file ();
+				tasks_list_store.remove(ref task.iter);				
 
 				var info_bar = new Gtk.InfoBar.with_buttons("_Undo", Gtk.ResponseType.ACCEPT);
 				info_bar.set_message_type(Gtk.MessageType.INFO);
