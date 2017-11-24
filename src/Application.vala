@@ -126,7 +126,7 @@ namespace Yishu {
 				tasks_model_sort.get_iter(out iter, tree_path);
 				tasks_model_sort.get(iter, Columns.TASK_OBJECT, out task, -1);
 				task.done = (task.done ? false : true);
-				task.to_model(tasks_list_store, null);
+				task.to_model(tasks_list_store, task.iter);
 				todo_file.lines[task.linenr - 1] = task.to_string();
 				todo_file.write_file();
 				toggle_show_completed();
