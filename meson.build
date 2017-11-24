@@ -1,6 +1,6 @@
 # Name our project
 project('com.github.lainsce.yishu', ['vala', 'c'],
-    version: '1.0.0'
+    version: '1.0.1'
 )
 
 # Import main lib files
@@ -53,8 +53,7 @@ executable(
     dependencies: [
         dependency('granite'),
         dependency('gobject-2.0'),
-        dependency('gtk+-3.0'),
-        dependency('libsoup-2.4')
+        dependency('gtk+-3.0')
     ],
     vala_args: [
         meson.source_root() + '/vapi/config.vapi',

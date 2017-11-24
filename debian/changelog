@@ -1,3 +1,9 @@
+com.github.lainsce.yishu (1.0.1) xenial; urgency=low
+
+  * Fixed minor thing for AppCenter review.
+
+ -- Lains <lainsce@airmail.cc>  Fri, 24 Nov 2017 19:30:00 -0300
+
 com.github.lainsce.yishu (1.0.0) xenial; urgency=low
 
   * First release.

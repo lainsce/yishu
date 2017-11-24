@@ -24,6 +24,14 @@
         </screenshot>
     </screenshots>
     <releases>
+      <release version="1.0.1" date="2017-11-24">
+          <description>
+              <p>Release: A Tree Waving in the Wind</p>
+              <ul>
+                  <li>Fixed minor things for the AppCenter review.</li>
+              </ul>
+          </description>
+      </release>
         <release version="1.0.0" date="2017-11-24">
             <description>
                 <p>Release: A River Crossing</p>
