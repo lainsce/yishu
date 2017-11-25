@@ -24,6 +24,14 @@
         </screenshot>
     </screenshots>
     <releases>
+        <release version="1.0.2" date="2017-12-01">
+            <description>
+                <p>Release: Bamboo Shoots in the Sand</p>
+                <ul>
+                    <li>Added the option to create new todo.txt files on welcome.</li>
+                </ul>
+            </description>
+        </release>
       <release version="1.0.1" date="2017-11-24">
           <description>
               <p>Release: A Tree Waving in the Wind</p>

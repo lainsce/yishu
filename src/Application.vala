@@ -111,10 +111,13 @@ namespace Yishu {
 			window.tree_view.row_activated.connect(edit_task);
 			window.welcome.activated.connect((index) => {
 				switch (index){
-					case 0:
-						select_file();
+                    case 0:
+						add_task();
 						break;
 					case 1:
+						select_file();
+						break;
+					case 2:
 						Granite.Services.System.open_uri("http://todotxt.com");
 						break;
 				}
@@ -417,7 +420,7 @@ namespace Yishu {
 				trashed_task = task;
 				todo_file.lines.remove_at (task.linenr -1);
 				todo_file.write_file ();
-				tasks_list_store.remove(ref task.iter);				
+				tasks_list_store.remove(ref task.iter);
 
 				var info_bar = new Gtk.InfoBar.with_buttons("_Undo", Gtk.ResponseType.ACCEPT);
 				info_bar.set_message_type(Gtk.MessageType.INFO);
@@ -460,7 +463,7 @@ namespace Yishu {
 		 */
 		public bool read_file (string? filename) {
 			reset();
-      var settings = AppSettings.get_default ();
+            var settings = AppSettings.get_default ();
 
 			if (filename != null){
 				todo_file = new TodoFile(filename);

@@ -1,3 +1,9 @@
+com.github.lainsce.yishu (1.0.2) xenial; urgency=low
+
+  * Add option to create new file on Welcome.
+
+ -- Lains <lainsce@airmail.cc>  Fri, 01 Dec 2017 12:30:00 -0300
+
 com.github.lainsce.yishu (1.0.1) xenial; urgency=low
 
   * Fixed minor thing for AppCenter review.
