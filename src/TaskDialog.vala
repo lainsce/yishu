@@ -83,16 +83,16 @@ namespace Yishu {
 			button.clicked.connect(on_priority_button_clicked);
 
             var task_help = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
-        task_help.halign = Gtk.Align.START;
-        task_help.hexpand = true;
-        task_help.tooltip_text = _("Adding + to a word will categorize the task.\nAdding @ to a word will specify the task's place.");
+            task_help.halign = Gtk.Align.START;
+            task_help.hexpand = true;
+            task_help.tooltip_text = _("Adding + to a word will categorize the task.\nAdding @ to a word will specify the task's place.");
 
             var close_button = add_button (_("Cancel"), Gtk.ResponseType.CLOSE);
-            this.add_button("_OK", Gtk.ResponseType.ACCEPT);
+            this.add_button((_("OK")), Gtk.ResponseType.ACCEPT);
             ((Gtk.Button) close_button).clicked.connect (() => destroy ());
 
             var main_grid = new Gtk.Grid();
-            main_grid.margin = 11;
+            main_grid.margin = 12;
             main_grid.row_spacing = 12;
             main_grid.column_spacing = 12;
             main_grid.attach (task_label, 0, 0, 1, 1);
