@@ -20,10 +20,6 @@ using Gtk;
 using Yishu;
 
 namespace Yishu {
-
-	/* Symbolic names for the columns in the
-	   data model (ListStore)
-	*/
 	enum Columns {
 		PRIORITY,
 		MARKUP,
@@ -33,17 +29,10 @@ namespace Yishu {
 		LINE_NR
 	}
 
-	/* Extend Granite.Application */
-
 	public class Application : Granite.Application {
-		/* File stuff */
 		private TodoFile todo_file;
-
-		/* Widgets */
 		private MainWindow window;
 		private Gtk.Menu popup_menu;
-
-		/* Models and Lists */
 		private Gtk.ListStore tasks_list_store;
 		private TreeModelFilter tasks_model_filter;
 		private TreeModelSort tasks_model_sort;
@@ -52,20 +41,19 @@ namespace Yishu {
 		private string current_filename = null;
 
 		construct {
-			/* Set up the app */
-      application_id = "com.github.lainsce.yishu";
-      program_name = "Yishu";
-      app_launcher = "com.github.lainsce.yishu.desktop";
-      exec_name = "com.github.lainsce.yishu";
+            application_id = "com.github.lainsce.yishu";
+            program_name = "Yishu";
+            app_launcher = "com.github.lainsce.yishu.desktop";
+            exec_name = "com.github.lainsce.yishu";
 
-      var quit_action = new SimpleAction ("quit", null);
-      add_action (quit_action);
-      add_accelerator ("<Control>q", "app.quit", null);
-      quit_action.activate.connect (() => {
-          if (window != null) {
-              window.destroy ();
-          }
-      });
+            var quit_action = new SimpleAction ("quit", null);
+            add_action (quit_action);
+            add_accelerator ("<Control>q", "app.quit", null);
+            quit_action.activate.connect (() => {
+                if (window != null) {
+                    window.destroy ();
+                }
+            });
 
 		 	trashed_task = null;
 		}
@@ -221,16 +209,10 @@ namespace Yishu {
 			}
 		}
 
-		/**
-		 * reset
-		 */
 		private void reset(){
 			tasks_list_store.clear();
 		}
 
-		/**
-		 * setup_model
-		 */
 		private void setup_model(){
 			tasks_model_filter = new TreeModelFilter(tasks_list_store, null);
 			tasks_model_sort = new Gtk.TreeModelSort.with_model(tasks_model_filter);
@@ -280,7 +262,7 @@ namespace Yishu {
 		}
 
 		private void update_global_tags(){
-      var settings = AppSettings.get_default ();
+            var settings = AppSettings.get_default ();
 			bool show_completed = settings.show_completed;
 
 			tasks_list_store.foreach( (model, path, iter) => {
@@ -364,7 +346,6 @@ namespace Yishu {
 		}
 
 		private void add_task (){
-
 			var dialog = add_edit_dialog();
 			dialog.show_all ();
 
@@ -383,6 +364,8 @@ namespace Yishu {
 						d.strftime(output, "%Y-%m-%d");
 						task.date = (string)output;
 
+                        string DS = "%c".printf(GLib.Path.DIR_SEPARATOR);
+                        read_file (Environment.get_home_dir() + DS + "todo.txt");
 						todo_file.lines.add(task.to_string());
 
 						TreeIter iter, fiter, siter;
@@ -405,6 +388,9 @@ namespace Yishu {
 
 						window.tree_view.get_selection().select_iter(siter);
 					}
+
+                    window.welcome.hide();
+    				window.tree_view.show();
 
 					break;
 				default:
@@ -443,7 +429,6 @@ namespace Yishu {
 		}
 
 		private void undelete () {
-
 			if (trashed_task != null){
 				debug ("Restoring task: " + trashed_task.text + " at line nr. " + "%u".printf(trashed_task.linenr));
 
@@ -458,9 +443,6 @@ namespace Yishu {
 			}
 		}
 
-		/**
-		 * read_file
-		 */
 		public bool read_file (string? filename) {
 			reset();
             var settings = AppSettings.get_default ();
@@ -534,12 +516,12 @@ namespace Yishu {
 			return true;
 		}
 
-    public static int main(string[] args){
-      Intl.setlocale (LocaleCategory.ALL, "");
-      Intl.textdomain (Build.GETTEXT_PACKAGE);
+        public static int main(string[] args){
+            Intl.setlocale (LocaleCategory.ALL, "");
+            Intl.textdomain (Build.GETTEXT_PACKAGE);
 
-    	var app = new Yishu.Application();
-    	return app.run(args);
-    }
+        	var app = new Yishu.Application();
+        	return app.run(args);
+        }
 	}
 }

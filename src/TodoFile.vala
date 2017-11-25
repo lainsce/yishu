@@ -20,15 +20,13 @@ using Gee;
 
 namespace Yishu {
 	public class TodoFile : GLib.Object {
-
 		private string path;
 		private GLib.File file;
 		public DataInputStream input_stream;
 		public DataOutputStream ouput_stream;
-		public ArrayList<string> lines;
+		public Gee.ArrayList<string> lines;
 		public FileMonitor monitor;
 		public int n_lines;
-
 
 		public TodoFile (string path) {
 			this.path = path;
@@ -54,7 +52,6 @@ namespace Yishu {
 		}
 
 		public int read_file(){
-
 			lines.clear();
 			n_lines = 0;
 
@@ -77,9 +74,6 @@ namespace Yishu {
 		public bool write_file(){
 			try {
 				n_lines = 0;
-
-				//monitor.cancel();
-
 				var iostream = file.replace_readwrite(null, false, FileCreateFlags.NONE);
 				var output_stream = new DataOutputStream(iostream.output_stream);
 				foreach (string line in lines){

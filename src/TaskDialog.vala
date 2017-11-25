@@ -19,11 +19,8 @@
 using Gtk;
 
 namespace Yishu {
-
 	public class TaskDialog : Gtk.Dialog {
-
 		public Gtk.Entry entry;
-
 		private Gtk.EntryCompletion completion;
 		private Gtk.ListStore list_store;
 		private Gtk.ButtonBox bbox;
@@ -42,29 +39,29 @@ namespace Yishu {
     }
 
 		construct {
-      this.set_default_response(Gtk.ResponseType.ACCEPT);
+            this.set_default_response(Gtk.ResponseType.ACCEPT);
 
-      var task_label = new Granite.HeaderLabel (_("Task"));
-      var prio_label = new Granite.HeaderLabel (_("Priority"));
+            var task_label = new Granite.HeaderLabel (_("Task"));
+            var prio_label = new Granite.HeaderLabel (_("Priority"));
 
-      entry = new Gtk.Entry();
+            entry = new Gtk.Entry();
 			entry.has_focus = true;
-      completion = new Gtk.EntryCompletion();
-      list_store = new Gtk.ListStore(1, typeof(string));
+            completion = new Gtk.EntryCompletion();
+            list_store = new Gtk.ListStore(1, typeof(string));
 			completion.set_model(list_store);
 			completion.set_text_column(0);
 			completion.match_selected.connect(on_match_selected);
 			completion.set_match_func(match_func);
 			entry.set_completion(completion);
-      entry.activate.connect( () => {
+            entry.activate.connect( () => {
 
 				this.response(Gtk.ResponseType.ACCEPT);
 
 			});
 
-      bbox = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
-      bbox.set_spacing (6);
-      var button = new Button.with_label("A");
+            bbox = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
+            bbox.set_spacing (6);
+            var button = new Button.with_label("A");
 			bbox.add(button);
 			button.clicked.connect(on_priority_button_clicked);
 			button = new Button.with_label("B");
@@ -83,19 +80,19 @@ namespace Yishu {
 			bbox.add(button);
 			button.clicked.connect(on_priority_button_clicked);
 
-      var close_button = add_button (_("Cancel"), Gtk.ResponseType.CLOSE);
-      this.add_button("_OK", Gtk.ResponseType.ACCEPT);
-      ((Gtk.Button) close_button).clicked.connect (() => destroy ());
+            var close_button = add_button (_("Cancel"), Gtk.ResponseType.CLOSE);
+            this.add_button("_OK", Gtk.ResponseType.ACCEPT);
+            ((Gtk.Button) close_button).clicked.connect (() => destroy ());
 
-      var main_grid = new Gtk.Grid();
-      main_grid.margin = 11;
-      main_grid.attach (task_label, 0, 0, 1, 1);
-      main_grid.attach (entry, 0, 1, 1, 1);
-      main_grid.attach (prio_label, 0, 2, 1, 1);
-      main_grid.attach (bbox, 0, 3, 1, 1);
+            var main_grid = new Gtk.Grid();
+            main_grid.margin = 11;
+            main_grid.attach (task_label, 0, 0, 1, 1);
+            main_grid.attach (entry, 0, 1, 1, 1);
+            main_grid.attach (prio_label, 0, 2, 1, 1);
+            main_grid.attach (bbox, 0, 3, 1, 1);
 
-      ((Gtk.Container) get_content_area ()).add (main_grid);
-      get_action_area ().margin = 6;
+            ((Gtk.Container) get_content_area ()).add (main_grid);
+            get_action_area ().margin = 6;
 		}
 
 		private void on_priority_button_clicked (Button button) {
@@ -116,7 +113,6 @@ namespace Yishu {
 		}
 
 		private bool on_match_selected(TreeModel model, TreeIter iter){
-
 			string str;
 			model.get(iter, 0, out str, -1);
 
@@ -157,7 +153,6 @@ namespace Yishu {
 		}
 
 		public bool match_func (EntryCompletion completion, string key, TreeIter iter){
-
 			try {
 				MatchInfo mi;
 

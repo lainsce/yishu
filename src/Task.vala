@@ -20,9 +20,7 @@ using Gtk;
 using Yishu;
 
 namespace Yishu {
-
 	public class Task : GLib.Object {
-
 		public string priority;
 		public string date;
 		public string completed_date;
