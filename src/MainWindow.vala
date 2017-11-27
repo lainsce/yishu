@@ -51,7 +51,14 @@ namespace Yishu {
                 move (x, y);
             }
 
-			resize (settings.saved_state_width, settings.saved_state_height);
+			//set_default_size (settings.saved_state_width, settings.saved_state_height);
+
+            if (settings.saved_state_height != -1 ||  settings.saved_state_width != -1) {
+                var rect = Gtk.Allocation ();
+                rect.height = settings.saved_state_height;
+                rect.width = settings.saved_state_width;
+                set_allocation (rect);
+            }
 
 			var vbox = new Box(Gtk.Orientation.VERTICAL, 0);
 			var stack = new Stack();
@@ -94,15 +101,15 @@ namespace Yishu {
 
         public override bool delete_event (Gdk.EventAny event) {
             int x, y;
-            int w, h;
+            Gtk.Allocation rect;
             get_position (out x, out y);
-            get_size(out w, out h);
+            get_allocation (out rect);
 
             var settings = AppSettings.get_default ();
+            settings.saved_state_width = rect.width;
+            settings.saved_state_height = rect.height;
             settings.window_x = x;
             settings.window_y = y;
-            settings.saved_state_width = w;
-            settings.saved_state_height = h;
             return false;
         }
 
