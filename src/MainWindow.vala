@@ -51,7 +51,16 @@ namespace Yishu {
                 move (x, y);
             }
 
-			resize (settings.saved_state_width, settings.saved_state_height);
+            if (Gtk.get_minor_version() < 20) {
+			    set_default_size (settings.saved_state_width, settings.saved_state_height);
+            } else {
+                if (settings.saved_state_height != -1 ||  settings.saved_state_width != -1) {
+                    var rect = Gtk.Allocation ();
+                    rect.height = settings.saved_state_height;
+                    rect.width = settings.saved_state_width;
+                    set_allocation (rect);
+                }
+            }
 
 			var vbox = new Box(Gtk.Orientation.VERTICAL, 0);
 			var stack = new Stack();
@@ -95,14 +104,26 @@ namespace Yishu {
         public override bool delete_event (Gdk.EventAny event) {
             int x, y;
             int w, h;
-            get_position (out x, out y);
-            get_size(out w, out h);
-
+            Gtk.Allocation rect;
             var settings = AppSettings.get_default ();
-            settings.window_x = x;
-            settings.window_y = y;
-            settings.saved_state_width = w;
-            settings.saved_state_height = h;
+
+            if (Gtk.get_minor_version() < 20) {
+                get_position (out x, out y);
+                get_size(out w, out h);
+
+                settings.window_x = x;
+                settings.window_y = y;
+                settings.saved_state_width = w;
+                settings.saved_state_height = h;
+            } else {
+                get_position (out x, out y);
+                get_allocation (out rect);
+
+                settings.saved_state_width = rect.width;
+                settings.saved_state_height = rect.height;
+                settings.window_x = x;
+                settings.window_y = y;
+            }
             return false;
         }
 
