@@ -1,3 +1,9 @@
+com.github.lainsce.yishu (1.0.3) xenial; urgency=low
+
+  * Add preferences to set saving path for the todo.txt file.
+
+ -- Lains <lainsce@airmail.cc>  Fri, 05 Jan 2018 15:30:00 -0300
+
 com.github.lainsce.yishu (1.0.2) xenial; urgency=low
 
   * Add option to create new file on Welcome.

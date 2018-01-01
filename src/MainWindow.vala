@@ -25,6 +25,7 @@ namespace Yishu {
 		public Gtk.Button open_button;
 		public Gtk.Button add_button;
 		public Granite.Widgets.Welcome welcome;
+		public Granite.Widgets.Welcome no_file;
 		public Gtk.TreeView tree_view;
 		public Gtk.CellRendererToggle cell_renderer_toggle;
 
@@ -67,9 +68,10 @@ namespace Yishu {
 			var swin = new ScrolledWindow(null, null);
 
 			welcome = new Granite.Widgets.Welcome("No Todo.txt File Open", _("Open a todo.txt file to start adding tasks"));
-            welcome.append("appointment-new", _("Add task"), _("Create a new todo.txt file with this task"));
-			welcome.append("document-open", _("Open file"), _("Use an existing todo.txt file"));
+      welcome.append("appointment-new", _("Add task"), _("Create a new todo.txt file with this task in your Home folder"));
 			welcome.append("help-contents", _("What is a todo.txt file?"), _("Learn more about todo.txt files"));
+
+			no_file = new Granite.Widgets.Welcome("No Todo.txt File Found", _("Add tasks to start this todo.txt file"));
 
 			/* Create toolbar */
 			toolbar = new HeaderBar();
@@ -77,16 +79,23 @@ namespace Yishu {
             toolbar.set_show_close_button (true);
             toolbar.has_subtitle = false;
             toolbar.set_title("Yishu");
-			open_button = new Gtk.Button ();
-            open_button.set_image (new Gtk.Image.from_icon_name ("document-open", Gtk.IconSize.LARGE_TOOLBAR));
-            open_button.has_tooltip = true;
-            open_button.tooltip_text = (_("Open…"));
+
 			add_button = new Gtk.Button ();
             add_button.set_image (new Gtk.Image.from_icon_name ("appointment-new", Gtk.IconSize.LARGE_TOOLBAR));
             add_button.has_tooltip = true;
             add_button.tooltip_text = (_("Add task…"));
-			toolbar.pack_start(open_button);
+
+			var menu_button = new Gtk.Button ();
+			menu_button.has_tooltip = true;
+			menu_button.image = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
+			menu_button.tooltip_text = (_("Settings"));
+			menu_button.clicked.connect (() => {
+					debug ("Prefs button pressed.");
+					var preferences_dialog = new Widgets.Preferences (this);
+					preferences_dialog.show_all ();
+			});
 			toolbar.pack_start(add_button);
+			toolbar.pack_end (menu_button);
 
 			tree_view = setup_tree_view();
 			swin.add(tree_view);

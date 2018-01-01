@@ -20,7 +20,7 @@ using Gee;
 
 namespace Yishu {
 	public class TodoFile : GLib.Object {
-		private string path;
+		public string path;
 		private GLib.File file;
 		public DataInputStream input_stream;
 		public DataOutputStream ouput_stream;

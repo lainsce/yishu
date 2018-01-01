@@ -24,6 +24,14 @@
         </screenshot>
     </screenshots>
     <releases>
+      <release version="1.0.3" date="2018-01-05">
+          <description>
+              <p>Release: Rest Easy and Calligraphy</p>
+              <ul>
+                  <li>Added a preferences dialog with a setting to where to save the todo.txt file.</li>
+              </ul>
+          </description>
+      </release>
         <release version="1.0.2" date="2017-12-01">
             <description>
                 <p>Release: Bamboo Shoots in the Sand</p>

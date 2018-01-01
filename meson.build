@@ -1,6 +1,6 @@
 # Name our project
 project('com.github.lainsce.yishu', ['vala', 'c'],
-    version: '1.0.2'
+    version: '1.0.3'
 )
 
 # Import main lib files
@@ -47,6 +47,7 @@ executable(
     'src/TaskDialog.vala',
     'src/TodoFile.vala',
     'src/MainWindow.vala',
+    'src/Preferences.vala',
     'src/Constants/AppSettings.vala',
     asresources,
     c_args: c_args,

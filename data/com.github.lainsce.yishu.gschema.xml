@@ -5,11 +5,6 @@
 			<summary>Show completed</summary>
 			<description>Whether to show completed tasks or not</description>
 		</key>
-		<key type="b" name="show-statusbar">
-			<default>false</default>
-			<summary>Show statusbar</summary>
-			<description>Whether to show the statusbar</description>
-		</key>
 		<key type="s" name="todo-txt-file-path">
 			<default>""</default>
 			<summary>todotxt file path</summary>

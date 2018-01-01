@@ -65,7 +65,12 @@ namespace Yishu {
       var settings = AppSettings.get_default ();
       if (settings.todo_txt_file_path == null) {
         read_file(null);
-      }
+      } else {
+				settings.changed.connect (() => {
+						read_file(settings.todo_txt_file_path);
+				});
+			}
+
       if (!settings.show_completed) {
         toggle_show_completed ();
       }
@@ -73,11 +78,11 @@ namespace Yishu {
 
 		public override void activate(){
 			window = new MainWindow(this);
+			var settings = AppSettings.get_default ();
 			tasks_list_store = new Gtk.ListStore (6, typeof (string), typeof(string), typeof(GLib.Object), typeof(bool), typeof(bool), typeof(int));
 			setup_model();
 			window.tree_view.set_model(tasks_model_sort);
 			setup_menus();
-			window.open_button.clicked.connect(open_file);
 			window.add_button.clicked.connect(add_task);
 			window.tree_view.button_press_event.connect( (tv, event) => {
 				if ((event.button == 3) && (event.type == Gdk.EventType.BUTTON_PRESS)){	// 3 = Right mouse button
@@ -99,13 +104,10 @@ namespace Yishu {
 			window.tree_view.row_activated.connect(edit_task);
 			window.welcome.activated.connect((index) => {
 				switch (index){
-                    case 0:
+          case 0:
 						add_task();
 						break;
 					case 1:
-						select_file();
-						break;
-					case 2:
 						Granite.Services.System.open_uri("http://todotxt.com");
 						break;
 				}
@@ -122,23 +124,14 @@ namespace Yishu {
 				todo_file.write_file();
 				toggle_show_completed();
 			});
-			if (read_file(null)){
+			if (read_file(null)) {
 				window.welcome.hide();
 				window.tree_view.show();
-			}
-			else {
+			} else {
 				window.welcome.show();
 				window.tree_view.hide();
 			}
 			tasks_model_filter.refilter();
-		}
-
-		protected override void open (File[] files, string hint){
-			activate();
-			foreach (File file in files){
-				debug ("Opening file: %s\n", file.get_path());
-				read_file(file.get_path());
-			}
 		}
 
 		private void toggle_show_completed(){
@@ -231,34 +224,6 @@ namespace Yishu {
 				return (prio_a < prio_b ? -1 : 1);
 			});
 			tasks_model_sort.set_sort_column_id(Columns.PRIORITY, Gtk.SortType.ASCENDING);
-		}
-
-		private void open_file(){
-			select_file();
-		}
-
-		private bool select_file(){
-			var dialog = new FileChooserDialog(
-				_("Select your todo.txt file"),
-				this.window,
-				Gtk.FileChooserAction.OPEN,
-				"_Cancel", Gtk.ResponseType.CANCEL,
-				"_Open", Gtk.ResponseType.ACCEPT
-			);
-
-			Gtk.FileFilter filter = new FileFilter();
-			dialog.set_filter(filter);
-			filter.add_pattern("*todo.txt");
-
-			if (dialog.run() == Gtk.ResponseType.ACCEPT){
-
-				read_file(dialog.get_filename());
-				window.welcome.hide();
-				window.tree_view.show();
-
-			}
-			dialog.destroy();
-			return true;
 		}
 
 		private void update_global_tags(){
@@ -357,15 +322,14 @@ namespace Yishu {
 					Task task = new Task();
 
 					if (task.parse_from_string(str)){
-
 						Date d = Date();
 						var output = new char[100];
 						d.set_time_t(time_t(null));
 						d.strftime(output, "%Y-%m-%d");
 						task.date = (string)output;
 
-                        string DS = "%c".printf(GLib.Path.DIR_SEPARATOR);
-                        read_file (Environment.get_home_dir() + DS + "todo.txt");
+						var settings = AppSettings.get_default ();
+            read_file (settings.todo_txt_file_path);
 						todo_file.lines.add(task.to_string());
 
 						TreeIter iter, fiter, siter;
@@ -389,7 +353,7 @@ namespace Yishu {
 						window.tree_view.get_selection().select_iter(siter);
 					}
 
-                    window.welcome.hide();
+            window.welcome.hide();
     				window.tree_view.show();
 
 					break;
@@ -445,29 +409,16 @@ namespace Yishu {
 
 		public bool read_file (string? filename) {
 			reset();
-            var settings = AppSettings.get_default ();
+      var settings = AppSettings.get_default ();
 
 			if (filename != null){
 				todo_file = new TodoFile(filename);
 			}
 			else {
-				string DS = "%c".printf(GLib.Path.DIR_SEPARATOR);
-				string[] paths = {
-					settings.todo_txt_file_path,
-					Environment.get_home_dir() + DS + "todo.txt",
-					Environment.get_home_dir() + DS + "bin" + DS + "todo.txt" + DS + "todo.txt",
-					Environment.get_home_dir() + DS + "Dropbox" + DS + "todo.txt",
-					Environment.get_home_dir() + DS + "Dropbox" + DS + "todo" + DS + "todo.txt"
-				};
-
 				todo_file = null;
-				foreach (string path in paths){
-
-					var test_file = new TodoFile(path);
-					if (test_file.exists()){
+				var test_file = new TodoFile(settings.todo_txt_file_path);
+				if (test_file.exists()){
 						todo_file = test_file;
-						break;
-					}
 				}
 			}
 
