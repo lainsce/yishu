@@ -5,6 +5,11 @@
 			<summary>Show completed</summary>
 			<description>Whether to show completed tasks or not</description>
 		</key>
+		<key type="b" name="custom-file-enable">
+			<default>false</default>
+			<summary>Enable custom files</summary>
+			<description>Whether to enable custom file places</description>
+		</key>
 		<key type="s" name="todo-txt-file-path">
 			<default>""</default>
 			<summary>todotxt file path</summary>

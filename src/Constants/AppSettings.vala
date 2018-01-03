@@ -18,9 +18,10 @@ namespace Yishu {
     public class AppSettings : Granite.Services.Settings {
         public int window_x { get; set; }
         public int window_y { get; set; }
-        public bool show_completed { get; set; }
         public int saved_state_width { get; set; }
         public int saved_state_height { get; set; }
+        public bool show_completed { get; set; }
+        public bool custom_file_enable { get; set; }
         public string todo_txt_file_path { get; set; }
 
         private static AppSettings? instance;
