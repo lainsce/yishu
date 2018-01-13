@@ -36,11 +36,11 @@ msgstr "Selecciona tu archivo todo.txt"
 
 #: src/Application.vala:475
 msgid "The task has been deleted"
-msgstr "La tarea ha sido eliminada"
+msgstr "La tarea a sido eliminada"
 
 #: src/Application.vala:550
 msgid "The todo.txt file has been modified and been re-read"
-msgstr "El archivo todo.txt se ha modificado y se ha vuelto a leer"
+msgstr "El archivo todo.txt se ha modificado y se volvera a leer"
 
 #: src/Task.vala:239
 msgid "Today"
