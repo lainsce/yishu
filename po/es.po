@@ -1,0 +1,99 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.lainsce.yishu\n"
+"POT-Creation-Date: 2017-11-22 01:20-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Alain M. <alain23@protonmail.com>\n"
+"Language-Team: Spaish <LL@li.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/Application.vala:211
+msgid "Edit task"
+msgstr "Editar tarea"
+
+#: src/Application.vala:212
+msgid "Delete task"
+msgstr "Eliminar tarea"
+
+#: src/Application.vala:213
+msgid "Toggle done"
+msgstr "Terminar"
+
+#: src/Application.vala:217 src/TaskDialog.vala:48 src/MainWindow.vala:83
+msgid "Priority"
+msgstr "Prioridad"
+
+#: src/Application.vala:220
+msgid "None"
+msgstr "Ninguna"
+
+#: src/Application.vala:305
+msgid "Select your todo.txt file"
+msgstr "Selecciona tu archivo todo.txt"
+
+#: src/Application.vala:475
+msgid "The task has been deleted"
+msgstr "La tarea ha sido eliminada"
+
+#: src/Application.vala:550
+msgid "The todo.txt file has been modified and been re-read"
+msgstr "El archivo todo.txt se ha modificado y se ha vuelto a leer"
+
+#: src/Task.vala:239
+msgid "Today"
+msgstr "Hoy"
+
+#: src/Task.vala:242
+msgid "Yesterday"
+msgstr "Ayer"
+
+#: src/Task.vala:245
+msgid "days ago"
+msgstr "dias atras"
+
+#: src/TaskDialog.vala:37
+msgid "New Task"
+msgstr "Nueva Tarea"
+
+#: src/TaskDialog.vala:47 src/MainWindow.vala:88
+msgid "Task"
+msgstr "Tarea"
+
+#: src/TaskDialog.vala:86
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: src/MainWindow.vala:44
+msgid "Open a todo.txt file to start adding tasks"
+msgstr "Abrir un archivo todo.txt para empezar a agregar tareas"
+
+#: src/MainWindow.vala:45
+msgid "Open file"
+msgstr "Abrir archivo"
+
+#: src/MainWindow.vala:45
+msgid "Use an existing todo.txt file"
+msgstr "Use un archivo todo.txt existente"
+
+#: src/MainWindow.vala:46
+msgid "What is a todo.txt file?"
+msgstr "¿Que es un archivo todo.txt?"
+
+#: src/MainWindow.vala:46
+msgid "Learn more about todo.txt files"
+msgstr "Aprenda mas acerca de los archivos todo.txt"
+
+#: src/MainWindow.vala:57
+msgid "Open…"
+msgstr "Abrir…"
+
+#: src/MainWindow.vala:61
+msgid "Add task…"
+msgstr "Agregar tarea…"
+
+#: src/MainWindow.vala:95
+msgid "Done"
+msgstr "Terminar"
