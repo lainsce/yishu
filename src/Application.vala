@@ -95,7 +95,7 @@ namespace Yishu {
 						tasks_model_sort.get_iter_from_string(out iter,path.to_string());
 						tasks_model_sort.get(iter, Columns.TASK_OBJECT, out task, -1);
 
-						popup_menu.popup_at_pointer(null);
+						popup_menu.popup(null, null, null, event.button, event.time);
 					}
 				}
 				return false;
