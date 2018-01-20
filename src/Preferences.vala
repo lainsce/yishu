@@ -22,7 +22,7 @@ namespace Yishu.Widgets {
 
         public Preferences (Gtk.Window? parent) {
             Object (
-                border_width: 0,
+                border_width: 6,
                 deletable: false,
                 resizable: false,
                 title: _("Preferences"),
@@ -118,27 +118,20 @@ namespace Yishu.Widgets {
             hbox.pack_start (chooser, false, true, 0);
 
             var main_grid = new Gtk.Grid ();
-            main_grid.margin_top = 0;
             main_grid.margin = 6;
-            main_grid.row_spacing = 12;
+            main_grid.row_spacing = 6;
             main_grid.column_spacing = 12;
             main_grid.attach (header, 0, 1, 1, 1);
             main_grid.attach (label, 0, 2, 1, 1);
-            main_grid.attach (list_place, 1, 2, 2, 1);
+            main_grid.attach (list_place, 1, 2, 3, 1);
             main_grid.attach (label_c, 0, 3, 1, 1);
-            main_grid.attach (hbox, 1, 3, 2, 1);
-            main_grid.attach (custom_help, 3, 3, 1, 1);
-
-            get_action_area ().margin = 6;
+            main_grid.attach (hbox, 1, 3, 3, 1);
+            main_grid.attach (custom_help, 4, 3, 1, 1);
 
             var content = this.get_content_area () as Gtk.Box;
             content.margin = 6;
             content.margin_top = 0;
             content.add (main_grid);
-
-            var action_area = this.get_action_area () as Gtk.Box;
-            action_area.margin = 0;
-            action_area.margin_top = 6;
 
             var close_button = this.add_button (_("Close"), Gtk.ResponseType.CLOSE);
             ((Gtk.Button) close_button).clicked.connect (() => destroy ());

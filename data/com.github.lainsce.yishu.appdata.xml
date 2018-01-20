@@ -24,6 +24,15 @@
         </screenshot>
     </screenshots>
     <releases>
+      <release version="1.0.4" date="2018-01-20">
+          <description>
+              <p>Release: Water Painting a Picture</p>
+              <ul>
+                  <li>Fixed internal GTK deprecations so the app doesn't complain about unused things.</li>
+                  <li>New icon that improves on the old one.</li>
+              </ul>
+          </description>
+      </release>
       <release version="1.0.3" date="2018-01-05">
           <description>
               <p>Release: Rest Easy and Calligraphy</p>

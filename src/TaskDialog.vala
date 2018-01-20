@@ -27,8 +27,7 @@ namespace Yishu {
 
     public TaskDialog (Gtk.Window? parent) {
         Object (
-            border_width: 0,
-            margin: 6,
+            border_width: 6,
             deletable: false,
             resizable: false,
             title: _("New Task"),
@@ -39,70 +38,70 @@ namespace Yishu {
     }
 
 		construct {
-            this.set_default_response(Gtk.ResponseType.ACCEPT);
+        this.set_default_response(Gtk.ResponseType.ACCEPT);
 
-            var task_label = new Granite.HeaderLabel (_("Task"));
-            var prio_label = new Granite.HeaderLabel (_("Priority"));
+        var task_label = new Granite.HeaderLabel (_("Task"));
+        var prio_label = new Granite.HeaderLabel (_("Priority"));
 
-            entry = new Gtk.Entry();
-			entry.has_focus = true;
-            entry.margin_left = 12;
-            completion = new Gtk.EntryCompletion();
-            list_store = new Gtk.ListStore(1, typeof(string));
-			completion.set_model(list_store);
-			completion.set_text_column(0);
-			completion.match_selected.connect(on_match_selected);
-			completion.set_match_func(match_func);
-			entry.set_completion(completion);
-            entry.activate.connect( () => {
+        entry = new Gtk.Entry();
+				entry.has_focus = true;
+				entry.margin_start = 12;
+        completion = new Gtk.EntryCompletion();
 
-				this.response(Gtk.ResponseType.ACCEPT);
+        list_store = new Gtk.ListStore(1, typeof(string));
 
-			});
+				completion.set_model(list_store);
+				completion.set_text_column(0);
+				completion.match_selected.connect(on_match_selected);
+				completion.set_match_func(match_func);
 
-            bbox = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
-            bbox.set_spacing (6);
-            bbox.margin_left = 12;
-            var button = new Button.with_label("A");
-			bbox.add(button);
-			button.clicked.connect(on_priority_button_clicked);
-			button = new Button.with_label("B");
-			bbox.add(button);
-			button.clicked.connect(on_priority_button_clicked);
-			button = new Button.with_label("C");
-			bbox.add(button);
-			button.clicked.connect(on_priority_button_clicked);
-			button = new Button.with_label("D");
-			bbox.add(button);
-			button.clicked.connect(on_priority_button_clicked);
-			button = new Button.with_label("E");
-			bbox.add(button);
-			button.clicked.connect(on_priority_button_clicked);
-			button = new Button.with_label("F");
-			bbox.add(button);
-			button.clicked.connect(on_priority_button_clicked);
+				entry.set_completion(completion);
+        entry.activate.connect( () => {
+						this.response(Gtk.ResponseType.ACCEPT);
+				});
 
-            var task_help = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
-            task_help.halign = Gtk.Align.START;
-            task_help.hexpand = true;
-            task_help.tooltip_text = _("Adding + to a word will categorize the task.\nAdding @ to a word will specify the task's place.");
+	      bbox = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
+	      bbox.set_spacing (6);
+	      bbox.margin_start = 12;
+	      var button = new Button.with_label("A");
+				bbox.add(button);
+				button.clicked.connect(on_priority_button_clicked);
+				button = new Button.with_label("B");
+				bbox.add(button);
+				button.clicked.connect(on_priority_button_clicked);
+				button = new Button.with_label("C");
+				bbox.add(button);
+				button.clicked.connect(on_priority_button_clicked);
+				button = new Button.with_label("D");
+				bbox.add(button);
+				button.clicked.connect(on_priority_button_clicked);
+				button = new Button.with_label("E");
+				bbox.add(button);
+				button.clicked.connect(on_priority_button_clicked);
+				button = new Button.with_label("F");
+				bbox.add(button);
+				button.clicked.connect(on_priority_button_clicked);
 
-            var close_button = add_button (_("Cancel"), Gtk.ResponseType.CLOSE);
-            this.add_button((_("OK")), Gtk.ResponseType.ACCEPT);
-            ((Gtk.Button) close_button).clicked.connect (() => destroy ());
+        var task_help = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
+        task_help.halign = Gtk.Align.START;
+        task_help.hexpand = true;
+        task_help.tooltip_text = _("Adding + to a word will categorize the task.\nAdding @ to a word will specify the task's place.");
 
-            var main_grid = new Gtk.Grid();
-            main_grid.margin = 12;
-            main_grid.row_spacing = 12;
-            main_grid.column_spacing = 12;
-            main_grid.attach (task_label, 0, 0, 1, 1);
-            main_grid.attach (task_help, 1, 1, 1, 1);
-            main_grid.attach (entry, 0, 1, 1, 1);
-            main_grid.attach (prio_label, 0, 2, 1, 1);
-            main_grid.attach (bbox, 0, 3, 1, 1);
+        var close_button = add_button (_("Cancel"), Gtk.ResponseType.CLOSE);
+        this.add_button((_("OK")), Gtk.ResponseType.ACCEPT);
+        ((Gtk.Button) close_button).clicked.connect (() => destroy ());
 
-            ((Gtk.Container) get_content_area ()).add (main_grid);
-            get_action_area ().margin = 6;
+        var main_grid = new Gtk.Grid();
+        main_grid.margin = 6;
+        main_grid.row_spacing = 6;
+				main_grid.column_spacing = 12;
+        main_grid.attach (task_label, 0, 0, 1, 1);
+        main_grid.attach (task_help, 1, 1, 1, 1);
+        main_grid.attach (entry, 0, 1, 1, 1);
+        main_grid.attach (prio_label, 0, 2, 1, 1);
+        main_grid.attach (bbox, 0, 3, 1, 1);
+
+        ((Gtk.Container) get_content_area ()).add (main_grid);
 		}
 
 		private void on_priority_button_clicked (Button button) {

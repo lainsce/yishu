@@ -14,7 +14,7 @@
    height="16"
    id="svg2"
    version="1.1"
-   inkscape:version="0.91 r13725"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
    inkscape:export-filename="/media/share/share/Projekte/todo/data/todo.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90"
@@ -159,6 +159,54 @@
        x2="7.5918446"
        y2="1052.3622"
        gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient4011">
+      <stop
+         id="stop4013-7"
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="0" />
+      <stop
+         id="stop4015-3"
+         style="stop-color:#ffffff;stop-opacity:0.23529412"
+         offset="0.507761" />
+      <stop
+         id="stop4017-2"
+         style="stop-color:#ffffff;stop-opacity:0.15686275"
+         offset="0.83456558" />
+      <stop
+         id="stop4019"
+         style="stop-color:#ffffff;stop-opacity:0.39215687"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient27416-1-5">
+      <stop
+         id="stop27420-2-2"
+         style="stop-color:#9bdb4d;stop-opacity:1"
+         offset="0" />
+      <stop
+         id="stop27422-3-2"
+         style="stop-color:#68b723;stop-opacity:1"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       x1="71.204407"
+       y1="6.2375584"
+       x2="71.204407"
+       y2="44.340794"
+       id="linearGradient12398-3"
+       xlink:href="#linearGradient4011"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.5135135,0,0,0.5135135,-0.19917,1034.369)" />
+    <linearGradient
+       x1="2035.1652"
+       y1="3208.0737"
+       x2="2035.1652"
+       y2="3241.9966"
+       id="linearGradient11527-6-5"
+       xlink:href="#linearGradient27416-1-5"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.8047894,0,0,0.60165743,-1604.1829,-892.6901)" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -167,9 +215,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="45.254834"
-     inkscape:cx="7.9641294"
-     inkscape:cy="7.1920629"
+     inkscape:zoom="22.627417"
+     inkscape:cx="28.931931"
+     inkscape:cy="2.1825927"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -186,11 +234,13 @@
     <sodipodi:guide
        orientation="0,1"
        position="24.25,33.75"
-       id="guide4025" />
+       id="guide4025"
+       inkscape:locked="false" />
     <sodipodi:guide
        orientation="1,0"
        position="102.25,114.25"
-       id="guide4027" />
+       id="guide4027"
+       inkscape:locked="false" />
   </sodipodi:namedview>
   <metadata
      id="metadata7">
@@ -218,11 +268,6 @@
        y="1037.8622"
        rx="0.30868819"
        ry="0.27033883" />
-    <path
-       style="fill:none;fill-rule:evenodd;stroke:#fafafa;stroke-width:1.99999976;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 2.7500992,1044.9976 3.2223638,3.7745 6.251386,-7.8394"
-       id="path4168"
-       inkscape:connector-curvature="0" />
     <rect
        style="opacity:1;fill:none;fill-opacity:1;stroke:url(#linearGradient4991);stroke-width:0.99999988;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.53333285"
        id="rect4167"
@@ -232,5 +277,15 @@
        y="1038.8623"
        rx="0.29002681"
        ry="0.2562125" />
+    <path
+       inkscape:connector-curvature="0"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.15;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.77860481;marker:none;enable-background:accumulate"
+       id="path2922-6-6-0-9-4-2-3"
+       d="M 11.154365,1040.3622 13,1042.0476 6.7986496,1050.3622 2,1046.1674 l 1.5872451,-2.1349 2.805367,2.4719 z" />
+    <path
+       inkscape:connector-curvature="0"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.77860481;marker:none;enable-background:accumulate"
+       id="path2922-6-6-0-9-4-2"
+       d="M 11.154365,1039.3622 13,1041.0476 6.7986496,1049.3622 2,1045.1674 l 1.5872451,-2.1349 2.805367,2.4719 z" />
   </g>
 </svg>

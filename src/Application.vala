@@ -48,7 +48,7 @@ namespace Yishu {
 
             var quit_action = new SimpleAction ("quit", null);
             add_action (quit_action);
-            add_accelerator ("<Control>q", "app.quit", null);
+						set_accels_for_action ("app.quit", {"<Control>q"});
             quit_action.activate.connect (() => {
                 if (window != null) {
                     window.destroy ();
@@ -78,7 +78,6 @@ namespace Yishu {
 
 		public override void activate(){
 			window = new MainWindow(this);
-			var settings = AppSettings.get_default ();
 			tasks_list_store = new Gtk.ListStore (6, typeof (string), typeof(string), typeof(GLib.Object), typeof(bool), typeof(bool), typeof(int));
 			setup_model();
 			window.tree_view.set_model(tasks_model_sort);
@@ -96,7 +95,7 @@ namespace Yishu {
 						tasks_model_sort.get_iter_from_string(out iter,path.to_string());
 						tasks_model_sort.get(iter, Columns.TASK_OBJECT, out task, -1);
 
-						popup_menu.popup(null, null, null, event.button, event.time);
+						popup_menu.popup_at_pointer(null);
 					}
 				}
 				return false;
@@ -447,30 +446,21 @@ namespace Yishu {
 				}
 			});
 
-			try {
-				int n = todo_file.read_file();
-				for (int i = 0; i < n; i++){
-					var task = new Task();
-					if (task.parse_from_string(todo_file.lines[i])){
-						TreeIter iter;
-						tasks_list_store.append(out iter);
-						task.linenr = i+1;
-						task.to_model(tasks_list_store, iter);
-					}
+			int n = todo_file.read_file();
+			for (int i = 0; i < n; i++){
+				var task = new Task();
+				if (task.parse_from_string(todo_file.lines[i])){
+					TreeIter iter;
+					tasks_list_store.append(out iter);
+					task.linenr = i+1;
+					task.to_model(tasks_list_store, iter);
 				}
-				update_global_tags();
 			}
-			catch (Error e){
-				warning("%s", e.message);
-				return false;
-			}
+			update_global_tags();
 			return true;
 		}
 
         public static int main(string[] args){
-            Intl.setlocale (LocaleCategory.ALL, "");
-            Intl.textdomain (Build.GETTEXT_PACKAGE);
-
         	var app = new Yishu.Application();
         	return app.run(args);
         }

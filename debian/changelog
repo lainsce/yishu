@@ -1,3 +1,10 @@
+com.github.lainsce.yishu (1.0.4) xenial; urgency=low
+
+  * Fixed internal GTK deprecations so the app doesn't complain about unused things.
+  * New icon that improves on the old one.
+
+ -- Lains <lainsce@airmail.cc>  Sat, 20 Jan 2018 18:10:00 -0300
+
 com.github.lainsce.yishu (1.0.3) xenial; urgency=low
 
   * Add preferences to set saving path for the todo.txt file.
