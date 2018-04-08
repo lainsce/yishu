@@ -2,99 +2,100 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.lainsce.yishu\n"
 "POT-Creation-Date: 2017-11-22 01:20-0200\n"
-"PO-Revision-Date: 2018-04-08 04:10-0500\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"PO-Revision-Date: 2018-04-08 04:11-0500\n"
 "Language-Team: \n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.0.6\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ca\n"
 
 #: src/Application.vala:211
 msgid "Edit task"
-msgstr "Editar tarea"
+msgstr "Edita la tasca"
 
 #: src/Application.vala:212
 msgid "Delete task"
-msgstr "Eliminar tarea"
+msgstr "Suprimeix la tasca"
 
 #: src/Application.vala:213
 msgid "Toggle done"
-msgstr "Marcar/desmarcar como realizada"
+msgstr "Marca/desmarca com a feta"
 
 #: src/Application.vala:217 src/TaskDialog.vala:48 src/MainWindow.vala:83
 msgid "Priority"
-msgstr "Prioridad"
+msgstr "Prioritat"
 
 #: src/Application.vala:220
 msgid "None"
-msgstr "Ninguna"
+msgstr "Cap"
 
 #: src/Application.vala:305
 msgid "Select your todo.txt file"
-msgstr "Seleccione el archivo «todo.txt»"
+msgstr "Seleccioneu el fitxer «todo.txt»"
 
 #: src/Application.vala:475
 msgid "The task has been deleted"
-msgstr "Se ha eliminado la tarea"
+msgstr "S’ha suprimit la tasca"
 
 #: src/Application.vala:550
 msgid "The todo.txt file has been modified and been re-read"
-msgstr "Se ha modificado el archivo «todo.txt» y se volverá a leer"
+msgstr "S’ha modificat el fitxer «todo.txt» i s’ha tornat a llegir"
 
 #: src/Task.vala:239
 msgid "Today"
-msgstr "Hoy"
+msgstr "Avui"
 
 #: src/Task.vala:242
 msgid "Yesterday"
-msgstr "Ayer"
+msgstr "Ahir"
 
 #: src/Task.vala:245
 msgid "days ago"
-msgstr "días atrás"
+msgstr "dies abans"
 
 #: src/TaskDialog.vala:37
 msgid "New Task"
-msgstr "Tarea nueva"
+msgstr "Tasca nova"
 
 #: src/TaskDialog.vala:47 src/MainWindow.vala:88
 msgid "Task"
-msgstr "Tarea"
+msgstr "Tasca"
 
 #: src/TaskDialog.vala:86
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Cancel·la"
 
 #: src/MainWindow.vala:44
 msgid "Open a todo.txt file to start adding tasks"
-msgstr "Abra un archivo «todo.txt» para empezar a añadir tareas"
+msgstr "Obriu un fitxer «todo.txt» i afegiu-hi tasques"
 
 #: src/MainWindow.vala:45
 msgid "Open file"
-msgstr "Abrir archivo"
+msgstr "Obre un fitxer"
 
 #: src/MainWindow.vala:45
 msgid "Use an existing todo.txt file"
-msgstr "Usar un archivo «todo.txt» existente"
+msgstr "Utilitza un fitxer «todo.txt» existent"
 
 #: src/MainWindow.vala:46
 msgid "What is a todo.txt file?"
-msgstr "¿Qué es un archivo «todo.txt»?"
+msgstr "Què és un fitxer «todo.txt»?"
 
 #: src/MainWindow.vala:46
 msgid "Learn more about todo.txt files"
-msgstr "Más información sobre los archivos «todo.txt»"
+msgstr "Més informació sobre els fitxers «todo.txt»"
 
 #: src/MainWindow.vala:57
 msgid "Open…"
-msgstr "Abrir…"
+msgstr "Obre…"
 
 #: src/MainWindow.vala:61
 msgid "Add task…"
-msgstr "Añadir tarea…"
+msgstr "Afegeix una tasca…"
 
 #: src/MainWindow.vala:95
 msgid "Done"
-msgstr "Realizada"
+msgstr "Feta"
