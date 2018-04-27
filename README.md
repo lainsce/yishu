@@ -1,5 +1,7 @@
 # ![icon](data/icon.png) Yishu (艺术)
-## A bespoke and simple Todo.txt client.
+
+## A bespoke and simple Todo.txt client
+
 [![Get it on AppCenter](https://appcenter.elementary.io/badge.svg)](https://appcenter.elementary.io/com.github.lainsce.yishu)
 
 [![Build Status](https://travis-ci.org/lainsce/yishu.svg?branch=master)](https://travis-ci.org/lainsce/yishu)
@@ -13,15 +15,11 @@ Would you like to support the development of this app to new heights? Then:
 
 [Be my backer on Patreon](https://www.patreon.com/lainsce)
 
-or
-
-[Buy me a coffee on Kofi](https://ko-fi.com/C1C169U6)
-
 ## Dependencies
 
 Please make sure you have these dependencies first before building.
 
-```
+```bash
 granite
 gtk+-3.0
 meson
@@ -31,8 +29,8 @@ meson
 
 Simply clone this repo, then:
 
-```
-$ meson build && cd build
-$ meson configure -Dprefix=/usr
-$ sudo ninja install
+```bash
+meson build && cd build
+meson configure -Dprefix=/usr
+sudo ninja install
 ```
