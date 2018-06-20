@@ -85,7 +85,7 @@ namespace Yishu {
 						if (Gtk.get_minor_version() < 20) {
 							popup_menu.popup(null, null, null, event.button, event.time);
 						} else {
-							popup_menu.popup_at_pointer(event);
+							// popup_menu.popup_at_pointer(event);
 						}
 					}
 				}
