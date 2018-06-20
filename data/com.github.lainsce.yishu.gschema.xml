@@ -25,7 +25,7 @@
 			<summary>Saved state height</summary>
 			<description>The size of the window is stored here when the application is closed to restore it on restart</description>
 		</key>
-    <key name="window-x" type="i">
+    	<key name="window-x" type="i">
 			<default>-1</default>
 			<summary>Window position</summary>
 			<description>The x axis of window position</description>

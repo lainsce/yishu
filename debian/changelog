@@ -1,3 +1,9 @@
+com.github.lainsce.yishu (1.0.6) xenial; urgency=low
+
+  * Fixed retaining a list open on close and also adding tasks correctly to a list.
+
+ -- Lains <lainsce@airmail.cc>  Fri, 22 Jun 2018 18:14:00 -0300
+
 com.github.lainsce.yishu (1.0.4) xenial; urgency=low
 
   * Fixed internal GTK deprecations so the app doesn't complain about unused things.

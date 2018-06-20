@@ -53,6 +53,14 @@
         <content_attribute id="money-gambling">none</content_attribute>
     </content_rating>
     <releases>
+      <release version="1.0.6" date="2018-06-22">
+          <description>
+              <p>Release: Flute Playing at an Temple</p>
+              <ul>
+                  <li>Fixed retaining a list open on close and also adding tasks correctly to a list.</li>
+              </ul>
+          </description>
+      </release>
       <release version="1.0.4" date="2018-01-20">
           <description>
               <p>Release: Water Painting a Picture</p>

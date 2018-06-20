@@ -29,10 +29,10 @@ namespace Yishu {
 		public List<string> contexts;
 		public string text;
 		public bool done;
-
+		
 		public TreeIter iter;
 		public int linenr;
-
+		
 		construct {
 			done = false;
 			date = null;
@@ -43,17 +43,17 @@ namespace Yishu {
 			projects = new List<string>();
 			contexts = new List<string>();
 		}
-
+		
 		public bool parse_from_string(string s){
-
+			
 			MatchInfo mi;
 			string match;
 			string match1;
 			string str = s;
-
+			
 			projects = new List<string>();
 			contexts = new List<string>();
-
+			
 			try {
 				var re = new Regex("@[a-zA-Z0-9-_]+");
 				while (re.match(str, 0, out mi)){
@@ -75,7 +75,7 @@ namespace Yishu {
 				}
 				re = new Regex ("^(x )?(\\(([A-Z])\\))?");
 				if (re.match(str, 0, out mi)){
-
+					
 					match1 = mi.fetch(1);
 					match = mi.fetch(3);
 					if (match != null){
@@ -83,13 +83,13 @@ namespace Yishu {
 						uint start = str.index_of(match);
 						str = str.splice(start-1, start + match.length + 2);
 					}
-
+					
 					if (match1 != null && match1 == "x "){
 						done = true;
 						str = str.splice(0, 2);
 					}
 				}
-
+				
 				re = new Regex ("[0-9]{4}-[0-9]{2}-[0-9]{2}");
 				var n = 0;
 				var dates = new List<string>();
@@ -107,16 +107,16 @@ namespace Yishu {
 				uint length = dates.length();
 				switch (length){
 					case 1:
-						date = dates.nth_data(0);
-						break;
+					date = dates.nth_data(0);
+					break;
 					case 2:
-						date = dates.nth_data(1);
-						completed_date = dates.nth_data(0);
-						break;
+					date = dates.nth_data(1);
+					completed_date = dates.nth_data(0);
+					break;
 					default:
-						break;
+					break;
 				}
-
+				
 				text = str.strip();
 				return (text.length > 0);
 			}
@@ -125,7 +125,7 @@ namespace Yishu {
 				return false;
 			}
 		}
-
+		
 		public string to_string(){
 			string str = "";
 			if (this.done){
@@ -151,19 +151,19 @@ namespace Yishu {
 			}
 			return str;
 		}
-
+		
 		public void to_model(Gtk.ListStore model, Gtk.TreeIter? iter){
-
+			
 			model.set(
-				iter,
-				Columns.PRIORITY, this.priority,
-				Columns.MARKUP, this.to_markup(),
-				Columns.TASK_OBJECT, this,
-				Columns.VISIBLE, true,
-				Columns.DONE, this.done,
-				Columns.LINE_NR, this.linenr
+			iter,
+			Columns.PRIORITY, this.priority,
+			Columns.MARKUP, this.to_markup(),
+			Columns.TASK_OBJECT, this,
+			Columns.VISIBLE, true,
+			Columns.DONE, this.done,
+			Columns.LINE_NR, this.linenr
 			);
-
+			
 			if (iter != null){
 				this.iter = iter;
 			}
@@ -171,9 +171,9 @@ namespace Yishu {
 				iter = this.iter;
 			}
 		}
-
+		
 		public string to_markup() {
-
+			
 			string ctx = "";
 			foreach (string context in this.contexts){
 				ctx += context;
@@ -184,64 +184,64 @@ namespace Yishu {
 				prj += project;
 				prj += " ";
 			}
-
+			
 			string markup = GLib.Markup.printf_escaped(
-				"<b>%s</b><small>\t<i>%s %s</i></small>\n<small><i><span foreground=\"#abacae\">%s</span></i></small>",
-				this.text,
-				prj,
-				ctx,
-				nice_date(this.date, 0)
+			"<b>%s</b><small>\t<i>%s %s</i></small>\n<small><i><span foreground=\"#abacae\">%s</span></i></small>",
+			this.text,
+			prj,
+			ctx,
+			nice_date(this.date, 0)
 			);
-
+			
 			if (this.done)
-				markup = "<s>" + markup + "</s>";
-
-
+			markup = "<s>" + markup + "</s>";
+			
+			
 			return markup;
 		}
-
+		
 		public string nice_date(string? date_string, int max_days){
-
+			
 			if (date_string == null) {
 				return "";
 			}
-
+			
 			if (max_days <= 0){
 				max_days = 30;
 			}
-
+			
 			try {
 				MatchInfo match_info;
 				var re = new Regex("([0-9]{4})-([0-9]{2})-([0-9]{2})");
 				if (re.match(date_string, 0, out match_info)){
-
+					
 					DateYear year =	(DateYear)int.parse(match_info.fetch(1));
 					DateMonth month = (DateMonth)int.parse(match_info.fetch(2));
 					DateDay day = (DateDay)int.parse(match_info.fetch(3));
-
+					
 					Date d = Date();
 					d.set_year(year);
 					d.set_month(month);
 					d.set_day(day);
-
+					
 					time_t t_now;
 					time_t(out t_now);
 					Date now = Date();
 					now.set_time_t(t_now);
-
+					
 					int diff = d.days_between(now);
 					if (diff < max_days){
 						string s = "";
 						switch (diff){
 							case 0:
-								s = _("Today");
-								break;
+							s = _("Today");
+							break;
 							case 1:
-								s = _("Yesterday");
-								break;
+							s = _("Yesterday");
+							break;
 							default:
-								s = "%u %s".printf(diff, _("days ago"));
-								break;
+							s = "%u %s".printf(diff, _("days ago"));
+							break;
 						}
 						return s;
 					}
@@ -257,6 +257,6 @@ namespace Yishu {
 			}
 			return date_string;
 		}
-
+		
 	}
 }

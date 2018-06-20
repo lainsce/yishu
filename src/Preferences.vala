@@ -19,22 +19,22 @@
 namespace Yishu.Widgets {
     public class Preferences : Gtk.Dialog {
         public Gtk.ComboBoxText list_place;
-
+        
         public Preferences (Gtk.Window? parent) {
             Object (
-                border_width: 6,
-                deletable: false,
-                resizable: false,
-                title: _("Preferences"),
-                transient_for: parent,
-                destroy_with_parent: true,
-                window_position: Gtk.WindowPosition.CENTER_ON_PARENT
+            border_width: 6,
+            deletable: false,
+            resizable: false,
+            title: _("Preferences"),
+            transient_for: parent,
+            destroy_with_parent: true,
+            window_position: Gtk.WindowPosition.CENTER_ON_PARENT
             );
         }
-
+        
         construct {
             var settings = AppSettings.get_default ();
-
+            
             var header = new Granite.HeaderLabel (_("Todo.txt Preferences"));
             var label = new SettingsLabel (_("Default Location:"));
             list_place = new Gtk.ComboBoxText();
@@ -42,9 +42,9 @@ namespace Yishu.Widgets {
             list_place.append_text("Home Folder");
             list_place.append_text("Dropbox Folder");
             list_place.append_text("Other Clients Folder");
-
+            
             string DS = "%c".printf(GLib.Path.DIR_SEPARATOR);
-
+            
             if (settings.todo_txt_file_path == Environment.get_home_dir() + DS + "todo.txt") {
                 list_place.set_active(0);
                 list_place.sensitive = true;
@@ -60,63 +60,63 @@ namespace Yishu.Widgets {
             } else {
                 list_place.sensitive = false;
             }
-
+            
             list_place.changed.connect (() => {
                 if (list_place.get_active_text () == "Home Folder") {
-                  settings.todo_txt_file_path = Environment.get_home_dir() + DS + "todo.txt";
-                  list_place.sensitive = true;
+                    settings.todo_txt_file_path = Environment.get_home_dir() + DS + "todo.txt";
+                    list_place.sensitive = true;
                 } else if (list_place.get_active_text () == "Dropbox Folder") {
-                  settings.todo_txt_file_path = Environment.get_home_dir() + DS + "Dropbox" + DS + "todo.txt";
-                  list_place.sensitive = true;
+                    settings.todo_txt_file_path = Environment.get_home_dir() + DS + "Dropbox" + DS + "todo.txt";
+                    list_place.sensitive = true;
                 } else if (list_place.get_active_text () == "Other Clients Folder") {
-                  settings.todo_txt_file_path = Environment.get_home_dir() + DS + "bin" + DS + "todo.txt" + DS + "todo.txt";
-                  list_place.sensitive = true;
+                    settings.todo_txt_file_path = Environment.get_home_dir() + DS + "bin" + DS + "todo.txt" + DS + "todo.txt";
+                    list_place.sensitive = true;
                 } else {
-                  list_place.sensitive = false;
+                    list_place.sensitive = false;
                 }
             });
-
+            
             var label_c = new SettingsLabel (_("Custom Location:"));
             var switch_c = new SettingsSwitch ("custom-file-enable");
             var chooser = new Gtk.FileChooserButton ("Open your file", Gtk.FileChooserAction.OPEN);
             chooser.hexpand = true;
-
+            
             var custom_help = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             custom_help.halign = Gtk.Align.START;
             custom_help.hexpand = true;
             custom_help.tooltip_text = _("Enabling custom locations will have you save your file\nin other places not recognized by other clients.");
-
+            
             var filter = new Gtk.FileFilter ();
-		        chooser.set_filter (filter);
-		        filter.add_mime_type ("*todo.txt");
-
+            chooser.set_filter (filter);
+            filter.add_mime_type ("todo.txt");
+            
             chooser.selection_changed.connect (() => {
-        			string uris = chooser.get_filename ();
-        			settings.todo_txt_file_path = uris;
-        		});
-
+                string uris = chooser.get_filename ();
+                settings.todo_txt_file_path = uris;
+            });
+            
             switch_c.notify["active"].connect (() => {
-              if (settings.custom_file_enable == true) {
+                if (settings.custom_file_enable == true) {
+                    chooser.sensitive = true;
+                    switch_c.active = true;
+                } else {
+                    chooser.sensitive = false;
+                    switch_c.active = false;
+                }
+            });
+            
+            if (settings.custom_file_enable == true) {
                 chooser.sensitive = true;
                 switch_c.active = true;
-              } else {
+            } else {
                 chooser.sensitive = false;
                 switch_c.active = false;
-              }
-            });
-
-            if (settings.custom_file_enable == true) {
-              chooser.sensitive = true;
-              switch_c.active = true;
-            } else {
-              chooser.sensitive = false;
-              switch_c.active = false;
             }
-
+            
             var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
             hbox.pack_start (switch_c, false, true, 0);
             hbox.pack_start (chooser, false, true, 0);
-
+            
             var main_grid = new Gtk.Grid ();
             main_grid.margin = 6;
             main_grid.row_spacing = 6;
@@ -127,16 +127,16 @@ namespace Yishu.Widgets {
             main_grid.attach (label_c, 0, 3, 1, 1);
             main_grid.attach (hbox, 1, 3, 3, 1);
             main_grid.attach (custom_help, 4, 3, 1, 1);
-
+            
             var content = this.get_content_area () as Gtk.Box;
             content.margin = 6;
             content.margin_top = 0;
             content.add (main_grid);
-
+            
             var close_button = this.add_button (_("Close"), Gtk.ResponseType.CLOSE);
             ((Gtk.Button) close_button).clicked.connect (() => destroy ());
         }
-
+        
         private class SettingsLabel : Gtk.Label {
             public SettingsLabel (string text) {
                 label = text;
@@ -144,7 +144,7 @@ namespace Yishu.Widgets {
                 margin_start = 12;
             }
         }
-
+        
         private class SettingsSwitch : Gtk.Switch {
             public SettingsSwitch (string setting) {
                 var main_settings = AppSettings.get_default ();
