@@ -53,6 +53,14 @@
         </screenshot>
     </screenshots>
     <releases>
+      <release version="1.0.7" date="2018-07-13">
+          <description>
+              <p>Release: Juno Offering</p>
+              <ul>
+                  <li>Juno update.</li>
+              </ul>
+          </description>
+      </release>
       <release version="1.0.6" date="2018-06-22">
           <description>
               <p>Release: Flute Playing at an Temple</p>
