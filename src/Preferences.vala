@@ -41,6 +41,8 @@ namespace Yishu.Widgets {
             list_place.hexpand = true;
             list_place.append_text("Home Folder");
             list_place.append_text("Dropbox Folder");
+            list_place.append_text("Nextcloud Folder");
+            list_place.append_text("ownCloud Folder");
             list_place.append_text("Other Clients Folder");
             
             string DS = "%c".printf(GLib.Path.DIR_SEPARATOR);
@@ -53,8 +55,16 @@ namespace Yishu.Widgets {
                 list_place.set_active(1);
                 list_place.sensitive = true;
                 debug ("Set as Dropbox");
-            } else if (settings.todo_txt_file_path == Environment.get_home_dir() + DS + "bin" + DS + "todo.txt" + DS + "todo.txt") {
+            } else if (settings.todo_txt_file_path == Environment.get_home_dir() + DS + "Nextcloud" + DS + "Todo" + DS + "todo.txt") {
                 list_place.set_active(2);
+                list_place.sensitive = true;
+                debug ("Set as Nextcloud");
+            } else if (settings.todo_txt_file_path == Environment.get_home_dir() + DS + "ownCloud" + DS + "Todo" + DS + "todo.txt") {
+                list_place.set_active(3);
+                list_place.sensitive = true;
+                debug ("Set as ownCloud");
+            } else if (settings.todo_txt_file_path == Environment.get_home_dir() + DS + "bin" + DS + "todo.txt" + DS + "todo.txt") {
+                list_place.set_active(4);
                 list_place.sensitive = true;
                 debug ("Set as Other");
             } else {
@@ -67,6 +77,12 @@ namespace Yishu.Widgets {
                     list_place.sensitive = true;
                 } else if (list_place.get_active_text () == "Dropbox Folder") {
                     settings.todo_txt_file_path = Environment.get_home_dir() + DS + "Dropbox" + DS + "todo.txt";
+                    list_place.sensitive = true;
+                } else if (list_place.get_active_text () == "Nextcloud Folder") {
+                    settings.todo_txt_file_path = Environment.get_home_dir() + DS + "Nextcloud" + DS + "Todo" + DS + "todo.txt";
+                    list_place.sensitive = true;
+                } else if (list_place.get_active_text () == "ownCloud Folder") {
+                    settings.todo_txt_file_path = Environment.get_home_dir() + DS + "ownCloud" + DS + "Todo" + DS + "todo.txt";
                     list_place.sensitive = true;
                 } else if (list_place.get_active_text () == "Other Clients Folder") {
                     settings.todo_txt_file_path = Environment.get_home_dir() + DS + "bin" + DS + "todo.txt" + DS + "todo.txt";
