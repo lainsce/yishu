@@ -56,15 +56,15 @@ namespace Yishu.Widgets {
                 list_place.sensitive = true;
                 debug ("Set as Dropbox");
             } else if (settings.todo_txt_file_path == Environment.get_home_dir() + DS + "Nextcloud" + DS + "Todo" + DS + "todo.txt") {
-                list_place.set_active(1);
+                list_place.set_active(2);
                 list_place.sensitive = true;
                 debug ("Set as Nextcloud");
             } else if (settings.todo_txt_file_path == Environment.get_home_dir() + DS + "ownCloud" + DS + "Todo" + DS + "todo.txt") {
-                list_place.set_active(1);
+                list_place.set_active(3);
                 list_place.sensitive = true;
                 debug ("Set as ownCloud");
             } else if (settings.todo_txt_file_path == Environment.get_home_dir() + DS + "bin" + DS + "todo.txt" + DS + "todo.txt") {
-                list_place.set_active(2);
+                list_place.set_active(4);
                 list_place.sensitive = true;
                 debug ("Set as Other");
             } else {
