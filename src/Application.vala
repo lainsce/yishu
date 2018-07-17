@@ -314,6 +314,10 @@ namespace Yishu {
 				settings.todo_txt_file_path = Environment.get_home_dir() + DS + "todo.txt";
 			} else if (settings.todo_txt_file_path == Environment.get_home_dir() + DS + "Dropbox" + DS + "todo.txt") {
 				settings.todo_txt_file_path = Environment.get_home_dir() + DS + "Dropbox" + DS + "todo.txt";
+			} else if (settings.todo_txt_file_path == Environment.get_home_dir() + DS + "Nextcloud" + DS + "Todo" + DS + "todo.txt") {
+				settings.todo_txt_file_path = Environment.get_home_dir() + DS + "Nextcloud" + DS + "todo.txt";
+			} else if (settings.todo_txt_file_path == Environment.get_home_dir() + DS + "ownCloud" + DS + "Todo" + DS + "todo.txt") {
+				settings.todo_txt_file_path = Environment.get_home_dir() + DS + "ownCloud" + DS + "Todo" + DS + "todo.txt";
 			} else if (settings.todo_txt_file_path == Environment.get_home_dir() + DS + "bin" + DS + "todo.txt" + DS + "todo.txt") {
 				settings.todo_txt_file_path = Environment.get_home_dir() + DS + "bin" + DS + "todo.txt" + DS + "todo.txt";
 			} else {
