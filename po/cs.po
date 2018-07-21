@@ -1,0 +1,104 @@
+#
+# Jan Marek <janmarek28@gmail.com>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.lainsce.yishu\n"
+"POT-Creation-Date: 2017-11-22 01:20-0200\n"
+"PO-Revision-Date: 2018-07-21 18:46+0200\n"
+"Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
+"Language-Team: čeština <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Gtranslator 2.91.7\n"
+
+#: src/Application.vala:211
+msgid "Edit task"
+msgstr "Upravit úkol"
+
+#: src/Application.vala:212
+msgid "Delete task"
+msgstr "Smazat úkol"
+
+#: src/Application.vala:213
+msgid "Toggle done"
+msgstr "Přepnout dokončení"
+
+#: src/Application.vala:217 src/TaskDialog.vala:48 src/MainWindow.vala:83
+msgid "Priority"
+msgstr "Priorita"
+
+#: src/Application.vala:220
+msgid "None"
+msgstr "Žádný"
+
+#: src/Application.vala:305
+msgid "Select your todo.txt file"
+msgstr "Vyberte svůj todo.txt soubor"
+
+#: src/Application.vala:475
+msgid "The task has been deleted"
+msgstr "Úkol byl odstraněn"
+
+#: src/Application.vala:550
+msgid "The todo.txt file has been modified and been re-read"
+msgstr "Soubor todo.txt byl změněn a následně znovu načten"
+
+#: src/Task.vala:239
+msgid "Today"
+msgstr "Dnes"
+
+#: src/Task.vala:242
+msgid "Yesterday"
+msgstr "Včera"
+
+#: src/Task.vala:245
+msgid "days ago"
+msgstr "dnů zpátky"
+
+#: src/TaskDialog.vala:37
+msgid "New Task"
+msgstr "Nový úkol"
+
+#: src/TaskDialog.vala:47 src/MainWindow.vala:88
+msgid "Task"
+msgstr "Úkol"
+
+#: src/TaskDialog.vala:86
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: src/MainWindow.vala:44
+msgid "Open a todo.txt file to start adding tasks"
+msgstr "Otevřete todo.txt soubor pro přidávání úkolů"
+
+#: src/MainWindow.vala:45
+msgid "Open file"
+msgstr "Otevřít soubor"
+
+#: src/MainWindow.vala:45
+msgid "Use an existing todo.txt file"
+msgstr "Použít existující todo.txt soubor"
+
+#: src/MainWindow.vala:46
+msgid "What is a todo.txt file?"
+msgstr "Co je todo.txt soubor?"
+
+#: src/MainWindow.vala:46
+msgid "Learn more about todo.txt files"
+msgstr "Zjistit více o todo.txt souborech"
+
+#: src/MainWindow.vala:57
+msgid "Open…"
+msgstr "Otevřít…"
+
+#: src/MainWindow.vala:61
+msgid "Add task…"
+msgstr "Přidat úkol…"
+
+#: src/MainWindow.vala:95
+msgid "Done"
+msgstr "Hotovo"
