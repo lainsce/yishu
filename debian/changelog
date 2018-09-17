@@ -1,0 +1,36 @@
+com.github.lainsce.yishu (1.0.6) xenial; urgency=low
+
+  * Fixed retaining a list open on close and also adding tasks correctly to a list.
+
+ -- Lains <lainsce@airmail.cc>  Fri, 22 Jun 2018 18:14:00 -0300
+
+com.github.lainsce.yishu (1.0.4) xenial; urgency=low
+
+  * Fixed internal GTK deprecations so the app doesn't complain about unused things.
+  * New icon that improves on the old one.
+
+ -- Lains <lainsce@airmail.cc>  Sat, 20 Jan 2018 18:10:00 -0300
+
+com.github.lainsce.yishu (1.0.3) xenial; urgency=low
+
+  * Add preferences to set saving path for the todo.txt file.
+
+ -- Lains <lainsce@airmail.cc>  Fri, 05 Jan 2018 15:30:00 -0300
+
+com.github.lainsce.yishu (1.0.2) xenial; urgency=low
+
+  * Add option to create new file on Welcome.
+
+ -- Lains <lainsce@airmail.cc>  Fri, 01 Dec 2017 12:30:00 -0300
+
+com.github.lainsce.yishu (1.0.1) xenial; urgency=low
+
+  * Fixed minor thing for AppCenter review.
+
+ -- Lains <lainsce@airmail.cc>  Fri, 24 Nov 2017 19:30:00 -0300
+
+com.github.lainsce.yishu (1.0.0) xenial; urgency=low
+
+  * First release.
+
+ -- Lains <lainsce@airmail.cc>  Fri, 24 Nov 2017 15:40:00 -0300
