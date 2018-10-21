@@ -1,2 +1,21 @@
 @define-color colorPrimary #ACE580;
 @define-color textColorPrimary #333333;
+
+treeview header button,
+column-header .button {
+   background-image:
+        linear-gradient(
+           to bottom,
+           shade (
+               @bg_color,
+               1.1
+           ),
+           @bg_color
+        );
+   padding: 4px 2px;
+}
+
+treeview header button:last-child,
+column-header:last-child .button {
+    border-right-width: 0;
+}

@@ -28,7 +28,7 @@ namespace Yishu {
 		DONE,
 		LINE_NR
 	}
-	
+
 	public class Application : Gtk.Application {
 		private TodoFile todo_file;
 		private MainWindow window;
@@ -36,19 +36,19 @@ namespace Yishu {
 		private Gtk.ListStore tasks_list_store;
 		private TreeModelFilter tasks_model_filter;
 		private TreeModelSort tasks_model_sort;
-		
+
 		private Task trashed_task;
 		public string current_filename = null;
-		
+
 		construct {
 			application_id = "com.github.lainsce.yishu";
 			trashed_task = null;
 		}
-		
+
 		public Application () {
 			ApplicationFlags flags = ApplicationFlags.HANDLES_OPEN;
 			set_flags(flags);
-			
+
 			var settings = AppSettings.get_default ();
 			if (settings.todo_txt_file_path == null) {
 				read_file(null);
@@ -57,14 +57,15 @@ namespace Yishu {
 					read_file(settings.todo_txt_file_path);
 				});
 			}
-			
+
 			if (!settings.show_completed) {
 				toggle_show_completed ();
 			}
 		}
-		
+
 		public override void activate(){
 			window = new MainWindow(this);
+            var settings = AppSettings.get_default ();
 			tasks_list_store = new Gtk.ListStore (6, typeof (string), typeof(string), typeof(GLib.Object), typeof(bool), typeof(bool), typeof(int));
 			setup_model();
 			window.tree_view.set_model(tasks_model_sort);
@@ -81,12 +82,7 @@ namespace Yishu {
 					if (window.tree_view.get_path_at_pos((int)event.x, (int)event.y, out path, out column, out cell_x, out cell_y)){
 						tasks_model_sort.get_iter_from_string(out iter,path.to_string());
 						tasks_model_sort.get(iter, Columns.TASK_OBJECT, out task, -1);
-						
-						if (Gtk.get_minor_version() < 20) {
-							popup_menu.popup(null, null, null, event.button, event.time);
-						} else {
-							// popup_menu.popup_at_pointer(event);
-						}
+						popup_menu.popup_at_pointer(event);
 					}
 				}
 				return false;
@@ -114,24 +110,32 @@ namespace Yishu {
 				todo_file.write_file();
 				toggle_show_completed();
 			});
-			if (read_file(null)) {
-				window.welcome.hide();
-				window.tree_view.show();
-			} else {
-				window.welcome.show();
-				window.tree_view.hide();
-			}
+
+            if (read_file(settings.todo_txt_file_path)) {
+                window.welcome.hide();
+                window.tree_view.show();
+            } else if (settings.todo_txt_file_path == "" && read_file(null)) {
+                window.welcome.show();
+                window.tree_view.hide();
+            }
+
+            settings.changed.connect (() => {
+    			if (read_file(settings.todo_txt_file_path)) {
+    				window.welcome.hide();
+    				window.tree_view.show();
+    			} else if (settings.todo_txt_file_path == "" && read_file(null)) {
+    				window.welcome.show();
+    				window.tree_view.hide();
+    			}
+            });
 			tasks_model_filter.refilter();
-			var settings = AppSettings.get_default ();
-			string DS = "%c".printf(GLib.Path.DIR_SEPARATOR);
-			settings.todo_txt_file_path = Environment.get_home_dir() + DS + "todo.txt";
 		}
-		
+
 		private void toggle_show_completed(){
 			tasks_model_filter.refilter();
 			update_global_tags();
 		}
-		
+
 		private void setup_menus () {
 			popup_menu = new Gtk.Menu();
 			var accel_group_popup = new Gtk.AccelGroup();
@@ -140,12 +144,12 @@ namespace Yishu {
 			var edit_task_menu_item = new Gtk.MenuItem.with_label(_("Edit task"));
 			var delete_task_menu_item = new Gtk.MenuItem.with_label(_("Delete task"));
 			var toggle_done_menu_item = new Gtk.MenuItem.with_label(_("Toggle done"));
-			
+
 			var priority_menu = new Gtk.Menu();
-			
+
 			var priority_menu_item = new Gtk.MenuItem.with_label(_("Priority"));
 			priority_menu_item.set_submenu(priority_menu);
-			
+
 			var priority_none_menu_item = new Gtk.MenuItem.with_label(_("None"));
 			priority_menu.append(priority_none_menu_item);
 			priority_none_menu_item.add_accelerator("activate", accel_group_popup, Gdk.Key.BackSpace, Gdk.ModifierType.CONTROL_MASK, Gtk.AccelFlags.VISIBLE);
@@ -156,12 +160,12 @@ namespace Yishu {
 					update_todo_file_after_task_edited (task);
 				}
 			});
-			
+
 			for (char prio = 'A'; prio <= 'F'; prio++){
 				var priority_x_menu_item = new Gtk.MenuItem.with_label("%c".printf(prio));
 				priority_x_menu_item.add_accelerator("activate", accel_group_popup, Gdk.Key.A + (prio - 'A'), Gdk.ModifierType.CONTROL_MASK, Gtk.AccelFlags.VISIBLE);
 				priority_x_menu_item.activate.connect( (menu_item) => {
-					
+
 					Task task = get_selected_task();
 					if (task != null){
 						task.priority = menu_item.get_label ();
@@ -170,22 +174,22 @@ namespace Yishu {
 				});
 				priority_menu.append(priority_x_menu_item);
 			}
-			
+
 			edit_task_menu_item.add_accelerator("activate", accel_group_popup, Gdk.Key.F2, 0, Gtk.AccelFlags.VISIBLE);
 			delete_task_menu_item.add_accelerator("activate", accel_group_popup, Gdk.Key.Delete, 0, Gtk.AccelFlags.VISIBLE);
 			toggle_done_menu_item.add_accelerator("activate", accel_group_popup, Gdk.Key.space, 0, Gtk.AccelFlags.VISIBLE);
 			edit_task_menu_item.activate.connect(edit_task);
 			delete_task_menu_item.activate.connect(delete_task);
 			toggle_done_menu_item.activate.connect(toggle_done);
-			
+
 			popup_menu.append(toggle_done_menu_item);
 			popup_menu.append(priority_menu_item);
 			popup_menu.append(edit_task_menu_item);
 			popup_menu.append(delete_task_menu_item);
-			
+
 			popup_menu.show_all();
 		}
-		
+
 		private void update_todo_file_after_task_edited (Task task){
 			if (task != null){
 				tasks_model_filter.refilter ();
@@ -194,11 +198,11 @@ namespace Yishu {
 				todo_file.write_file();
 			}
 		}
-		
+
 		private void reset(){
 			tasks_list_store.clear();
 		}
-		
+
 		private void setup_model(){
 			tasks_model_filter = new TreeModelFilter(tasks_list_store, null);
 			tasks_model_sort = new Gtk.TreeModelSort.with_model(tasks_model_filter);
@@ -207,7 +211,7 @@ namespace Yishu {
 				string prio_b;
 				model.get(iter_a, Columns.PRIORITY, out prio_a, -1);
 				model.get(iter_b, Columns.PRIORITY, out prio_b, -1);
-				
+
 				if (prio_a == "" && prio_b != ""){
 					return 1;
 				}
@@ -218,24 +222,24 @@ namespace Yishu {
 			});
 			tasks_model_sort.set_sort_column_id(Columns.PRIORITY, Gtk.SortType.ASCENDING);
 		}
-		
+
 		private void update_global_tags(){
 			var settings = AppSettings.get_default ();
 			bool show_completed = settings.show_completed;
-			
+
 			tasks_list_store.foreach( (model, path, iter) => {
 				Task task;
 				model.get(iter, Columns.TASK_OBJECT, out task, -1);
-				
+
 				if (!show_completed && task.done){
 					return false;
 				}
-				
+
 				return false;
-				
+
 			});
 		}
-		
+
 		private Task get_selected_task(){
 			TreeIter iter;
 			TreeModel model;
@@ -246,27 +250,27 @@ namespace Yishu {
 			}
 			return task;
 		}
-		
+
 		private TaskDialog add_edit_dialog () {
 			var dialog = new TaskDialog(window);
-			
+
 			return dialog;
 		}
-		
+
 		private void toggle_done () {
 			Task task = get_selected_task ();
 			if (task != null) {
-				
+
 				task.done = !task.done;
 				task.to_model(tasks_list_store, task.iter);
 				tasks_model_filter.refilter();
 				todo_file.lines[task.linenr - 1] = task.to_string();
 				todo_file.write_file();
-				
+
 				update_global_tags();
 			}
 		}
-		
+
 		private void edit_task () {
 			TreeIter iter;
 			TreeModel model;
@@ -276,13 +280,13 @@ namespace Yishu {
 				return;
 			}
 			model.get(iter, Columns.TASK_OBJECT, out task, -1);
-			
+
 			if (task != null){
-				
+
 				var dialog = add_edit_dialog();
-				
+
 				dialog.entry.set_text(task.to_string());
-				
+
 				dialog.show_all();
 				int response = dialog.run();
 				switch (response){
@@ -298,54 +302,40 @@ namespace Yishu {
 				}
 				update_global_tags();
 				dialog.destroy();
-				
+
 				sel.select_iter(iter);
 			}
 		}
-		
+
 		private void add_task (){
 			var dialog = add_edit_dialog();
 			dialog.show_all ();
-			
+
 			var settings = AppSettings.get_default ();
-			string DS = "%c".printf(GLib.Path.DIR_SEPARATOR);
-			
-			if (settings.todo_txt_file_path == Environment.get_home_dir() + DS + "todo.txt") {
-				settings.todo_txt_file_path = Environment.get_home_dir() + DS + "todo.txt";
-			} else if (settings.todo_txt_file_path == Environment.get_home_dir() + DS + "Dropbox" + DS + "todo.txt") {
-				settings.todo_txt_file_path = Environment.get_home_dir() + DS + "Dropbox" + DS + "todo.txt";
-			} else if (settings.todo_txt_file_path == Environment.get_home_dir() + DS + "Nextcloud" + DS + "Todo" + DS + "todo.txt") {
-				settings.todo_txt_file_path = Environment.get_home_dir() + DS + "Nextcloud" + DS + "todo.txt";
-			} else if (settings.todo_txt_file_path == Environment.get_home_dir() + DS + "ownCloud" + DS + "Todo" + DS + "todo.txt") {
-				settings.todo_txt_file_path = Environment.get_home_dir() + DS + "ownCloud" + DS + "Todo" + DS + "todo.txt";
-			} else if (settings.todo_txt_file_path == Environment.get_home_dir() + DS + "bin" + DS + "todo.txt" + DS + "todo.txt") {
-				settings.todo_txt_file_path = Environment.get_home_dir() + DS + "bin" + DS + "todo.txt" + DS + "todo.txt";
-			} else {
-				settings.todo_txt_file_path = Environment.get_home_dir() + DS + "todo.txt";
-			}
-			
+			string file_path_txt = settings.todo_txt_file_path;
+
 			int response = dialog.run ();
 			switch (response){
 				case Gtk.ResponseType.ACCEPT:
-				
+
 				string str = dialog.entry.get_text();
 				Task task = new Task();
-				
+
 				if (task.parse_from_string(str)){
 					Date d = Date();
 					var output = new char[100];
 					d.set_time_t(time_t(null));
 					d.strftime(output, "%Y-%m-%d");
 					task.date = (string)output;
-					
-					read_file (settings.todo_txt_file_path);
+
+					read_file (file_path_txt);
 					todo_file.lines.add(task.to_string());
-					
+
 					TreeIter iter, fiter, siter;
-					
+
 					tasks_list_store.append(out iter);
 					task.to_model(tasks_list_store, iter);
-					
+
 					if (todo_file.write_file()){
 						task.linenr = todo_file.n_lines;
 						task.to_model(tasks_list_store, iter);
@@ -353,25 +343,25 @@ namespace Yishu {
 					else {
 						warning ("Failed to write file");
 					}
-					
+
 					update_global_tags();
-					
+
 					tasks_model_filter.convert_child_iter_to_iter(out fiter, iter);
 					tasks_model_sort.convert_child_iter_to_iter(out siter, fiter);
-					
+
 					window.tree_view.get_selection().select_iter(siter);
 				}
-				
+
 				window.welcome.hide();
 				window.tree_view.show();
-				
+
 				break;
 				default:
 				break;
 			}
 			dialog.destroy();
 		}
-		
+
 		private void delete_task () {
 			Task task = get_selected_task ();
 			if (task != null) {
@@ -387,40 +377,40 @@ namespace Yishu {
             	infobar.show_close_button = false;
             	infobar.message_type = Gtk.MessageType.INFO;
 				infobar.show_all();
-				
+
 				window.info_bar_box.foreach( (child) => {
 					child.destroy();
 				});
-				
+
 				window.info_bar_box.pack_start(infobar, true, true, 0);
 				infobar.response.connect( () => {
 					undelete();
 					infobar.destroy();
 				});
-				
+
 				update_global_tags();
 			}
 		}
-		
+
 		private void undelete () {
 			if (trashed_task != null){
 				debug ("Restoring task: " + trashed_task.text + " at line nr. " + "%u".printf(trashed_task.linenr));
-				
+
 				todo_file.lines.insert(trashed_task.linenr - 1, trashed_task.to_string());
 				todo_file.write_file();
 				TreeIter iter;
 				tasks_list_store.append(out iter);
 				trashed_task.to_model(tasks_list_store, iter);
 				tasks_model_filter.refilter();
-				
+
 				trashed_task = null;
 			}
 		}
-		
+
 		public bool read_file (string? filename) {
 			reset();
 			var settings = AppSettings.get_default ();
-			
+
 			if (filename != null){
 				todo_file = new TodoFile(filename);
 			}
@@ -431,15 +421,15 @@ namespace Yishu {
 					todo_file = test_file;
 				}
 			}
-			
+
 			if (todo_file == null){
 				return false;
 			}
-			
+
 			this.current_filename = filename;
-			
+
 			todo_file.monitor.changed.connect( (file, other_file, event) => {
-				
+
 				if (event == FileMonitorEvent.CHANGES_DONE_HINT){
 					var info_bar = new Gtk.InfoBar.with_buttons("_OK", Gtk.ResponseType.ACCEPT);
 					info_bar.set_message_type(Gtk.MessageType.WARNING);
@@ -456,7 +446,7 @@ namespace Yishu {
 					read_file(null);
 				}
 			});
-			
+
 			int n = todo_file.read_file();
 			for (int i = 0; i < n; i++){
 				var task = new Task();
@@ -470,7 +460,7 @@ namespace Yishu {
 			update_global_tags();
 			return true;
 		}
-		
+
 		public static int main(string[] args){
 			var app = new Yishu.Application();
 			return app.run(args);

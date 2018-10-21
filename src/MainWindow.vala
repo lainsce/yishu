@@ -28,24 +28,27 @@ namespace Yishu {
 		public Granite.Widgets.Welcome no_file;
 		public Gtk.TreeView tree_view;
 		public Gtk.CellRendererToggle cell_renderer_toggle;
-        
+        public Gtk.SearchEntry search_entry;
+
 		public const string ACTION_PREFIX = "win.";
 		public const string ACTION_PREFS = "action_prefs";
 		public SimpleActionGroup actions { get; construct; }
         public static Gee.MultiMap<string, string> action_accelerators = new Gee.HashMultiMap<string, string> ();
-        
+
         private const GLib.ActionEntry[] action_entries = {
             { ACTION_PREFS,              action_prefs     }
         };
-        
+
         public MainWindow (Gtk.Application application) {
             GLib.Object (application: application,
             icon_name: "com.github.lainsce.yishu",
             height_request: 600,
             width_request: 600,
             title: N_("Yishu"));
+
+            //search_entry.search_changed.connect (trigger_search);
         }
-        
+
         construct {
             key_press_event.connect ((e) => {
                 uint keycode = e.hardware_keycode;
@@ -60,19 +63,19 @@ namespace Yishu {
             var provider = new Gtk.CssProvider ();
             provider.load_from_resource ("/com/github/lainsce/yishu/stylesheet.css");
             Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            
+
 			actions = new SimpleActionGroup ();
             actions.add_action_entries (action_entries, this);
             insert_action_group ("win", actions);
-            
+
             var settings = AppSettings.get_default ();
             int x = settings.window_x;
 			int y = settings.window_y;
-            
+
             if (x != -1 && y != -1) {
                 move (x, y);
             }
-            
+
             if (Gtk.get_minor_version() < 20) {
                 set_default_size (settings.saved_state_width, settings.saved_state_height);
             } else {
@@ -83,32 +86,35 @@ namespace Yishu {
                     set_allocation (rect);
                 }
             }
-            
+
 			var vbox = new Box(Gtk.Orientation.VERTICAL, 0);
 			var stack = new Stack();
 			var swin = new ScrolledWindow(null, null);
-            
+
 			welcome = new Granite.Widgets.Welcome("No Todo.txt File Open", _("Open a todo.txt file to start adding tasks"));
             welcome.append("appointment-new", _("Add task"), _("Create a new todo.txt file with this task in your Home folder"));
 			welcome.append("help-contents", _("What is a todo.txt file?"), _("Learn more about todo.txt files"));
 			no_file = new Granite.Widgets.Welcome("No Todo.txt File Found", _("Add tasks to start this todo.txt file"));
-            
+
+            search_entry = new Gtk.SearchEntry ();
+            search_entry.placeholder_text = "Search task";
+
 			/* Create toolbar */
 			toolbar = new HeaderBar();
             this.set_titlebar(toolbar);
             toolbar.set_show_close_button (true);
             toolbar.has_subtitle = false;
-            toolbar.set_title("Yishu");
-            
+            toolbar.set_custom_title(search_entry);
+
 			add_button = new Gtk.Button ();
             add_button.set_image (new Gtk.Image.from_icon_name ("appointment-new", Gtk.IconSize.LARGE_TOOLBAR));
             add_button.has_tooltip = true;
             add_button.tooltip_text = (_("Add task…"));
-            
+
 			var prefs_button = new Gtk.ModelButton ();
             prefs_button.action_name = ACTION_PREFIX + ACTION_PREFS;
 			prefs_button.text = (_("Preferences"));
-            
+
 			var menu_grid = new Gtk.Grid ();
             menu_grid.margin = 6;
             menu_grid.row_spacing = 6;
@@ -116,48 +122,48 @@ namespace Yishu {
             menu_grid.orientation = Gtk.Orientation.VERTICAL;
             menu_grid.add (prefs_button);
             menu_grid.show_all ();
-            
+
             var menu = new Gtk.Popover (null);
             menu.add (menu_grid);
-            
+
             var menu_button = new Gtk.MenuButton ();
             menu_button.set_image (new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR));
             menu_button.has_tooltip = true;
             menu_button.tooltip_text = (_("Settings"));
 			menu_button.popover = menu;
-			
+
 			toolbar.pack_start (add_button);
 			toolbar.pack_end (menu_button);
-            
+
 			tree_view = setup_tree_view();
 			swin.add(tree_view);
 			stack.add(welcome);
 			stack.add(swin);
-            
+
 			info_bar_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
 			vbox.pack_start(info_bar_box, false, false, 0);
 			vbox.pack_start(stack, true, true, 0);
 			add(vbox);
-            
+
 			show_all();
 		}
-        
+
 		private void action_prefs () {
             debug ("Prefs button pressed.");
 			var preferences_dialog = new Widgets.Preferences (this);
 			preferences_dialog.show_all ();
         }
-        
+
         public override bool delete_event (Gdk.EventAny event) {
             int x, y;
             int w, h;
             Gtk.Allocation rect;
             var settings = AppSettings.get_default ();
-            
+
             if (Gtk.get_minor_version() < 20) {
                 get_position (out x, out y);
                 get_size(out w, out h);
-                
+
                 settings.window_x = x;
                 settings.window_y = y;
                 settings.saved_state_width = w;
@@ -165,7 +171,7 @@ namespace Yishu {
             } else {
                 get_position (out x, out y);
                 get_allocation (out rect);
-                
+
                 settings.saved_state_width = rect.width;
                 settings.saved_state_height = rect.height;
                 settings.window_x = x;
@@ -173,6 +179,30 @@ namespace Yishu {
             }
             return false;
         }
+
+        /*
+        public void trigger_search () {
+            var search_string = search_entry.text;
+
+            TreeIter iter;
+			TreeModel model;
+			Task task = null;
+			var sel = tree_view.get_selection();
+			if (sel.get_selected(out model, out iter)){
+				model.get(iter, Columns.TASK_OBJECT, out task, -1);
+			}
+
+            bool found = (search_entry.text != "");
+            if (found) {
+                search_entry.get_style_context ().remove_class (Gtk.STYLE_CLASS_ERROR);
+                if (sel.get_selected(out model, out iter)){
+    				model.get(iter, Columns.TASK_OBJECT, out task, -1);
+    			}
+            } else if (search_entry.text != "") {
+                search_entry.get_style_context ().add_class (Gtk.STYLE_CLASS_ERROR);
+            }
+        }
+        */
 
 		protected bool match_keycode (int keyval, uint code) {
             Gdk.KeymapKey [] keys;
@@ -186,28 +216,28 @@ namespace Yishu {
 
             return false;
         }
-        
+
 		private TreeView setup_tree_view(){
 			TreeView tv = new TreeView();
 			TreeViewColumn col;
-            
+
 			col = new TreeViewColumn.with_attributes(_("Priority"), new Granite.Widgets.CellRendererBadge(), "text", Columns.PRIORITY);
 			col.set_sort_column_id(Columns.PRIORITY);
 			col.resizable = true;
 			tv.append_column(col);
-            
+
 			col = new TreeViewColumn.with_attributes(_("Task"), new CellRendererText(), "markup", Columns.MARKUP);
 			col.set_sort_column_id(Columns.MARKUP);
 			col.resizable = true;
             col.expand = true;
 			tv.append_column(col);
-            
+
 			cell_renderer_toggle = new CellRendererToggle();
 			col = new TreeViewColumn.with_attributes(_("Done"), cell_renderer_toggle, "active", Columns.DONE);
 			col.set_sort_column_id(Columns.DONE);
 			col.resizable = true;
 			tv.append_column(col);
-            
+
 			return tv;
 		}
 	}

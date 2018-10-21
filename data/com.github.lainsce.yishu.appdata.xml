@@ -53,6 +53,15 @@
         </screenshot>
     </screenshots>
     <releases>
+        <release version="1.0.8" date="2018-10-26">
+            <description>
+                <p>Release: Search &amp; Blues</p>
+                <ul>
+                    <li>NEW: Search your tasks.</li>
+                    <li>FIX: Task folder is properly saved now.</li>
+                </ul>
+            </description>
+        </release>
       <release version="1.0.7" date="2018-07-13">
           <description>
               <p>Release: Juno Offering</p>
