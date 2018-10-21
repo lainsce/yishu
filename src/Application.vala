@@ -251,6 +251,24 @@ namespace Yishu {
 			return task;
 		}
 
+        public void trigger_search () {
+            var search_string = window.search_entry.text;
+            Task task = get_selected_task ();
+
+            bool found = (search_string == task.to_string());
+            if (found) {
+                window.search_entry.get_style_context ().remove_class (Gtk.STYLE_CLASS_ERROR);
+
+                TreeIter iter;
+                TreeModel model;
+    			window.tree_view.get_selection().get_selected(out model, out iter);
+                model.get(iter, Columns.MARKUP, out task, -1);
+
+            } else {
+                window.search_entry.get_style_context ().add_class (Gtk.STYLE_CLASS_ERROR);
+            }
+        }
+
 		private TaskDialog add_edit_dialog () {
 			var dialog = new TaskDialog(window);
 
