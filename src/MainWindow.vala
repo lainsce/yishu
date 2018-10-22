@@ -189,7 +189,6 @@ namespace Yishu {
 		private TreeView setup_tree_view(){
 			TreeView tv = new TreeView();
 			TreeViewColumn col;
-            tv.set_enable_search (true);
 
 			col = new TreeViewColumn.with_attributes(_("Priority"), new Granite.Widgets.CellRendererBadge(), "text", Columns.PRIORITY);
 			col.set_sort_column_id(Columns.PRIORITY);
