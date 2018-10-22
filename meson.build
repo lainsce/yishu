@@ -46,6 +46,7 @@ executable(
     'src/Task.vala',
     'src/TaskDialog.vala',
     'src/TodoFile.vala',
+    'src/SearchEntry.vala',
     'src/MainWindow.vala',
     'src/Preferences.vala',
     'src/Constants/AppSettings.vala',

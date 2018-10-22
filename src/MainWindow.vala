@@ -28,7 +28,6 @@ namespace Yishu {
 		public Granite.Widgets.Welcome no_file;
 		public Gtk.TreeView tree_view;
 		public Gtk.CellRendererToggle cell_renderer_toggle;
-        public Gtk.SearchEntry search_entry;
 
 		public const string ACTION_PREFIX = "win.";
 		public const string ACTION_PREFS = "action_prefs";
@@ -45,8 +44,6 @@ namespace Yishu {
             height_request: 600,
             width_request: 600,
             title: N_("Yishu"));
-
-            //search_entry.search_changed.connect (trigger_search);
         }
 
         construct {
@@ -96,15 +93,11 @@ namespace Yishu {
 			welcome.append("help-contents", _("What is a todo.txt file?"), _("Learn more about todo.txt files"));
 			no_file = new Granite.Widgets.Welcome("No Todo.txt File Found", _("Add tasks to start this todo.txt file"));
 
-            search_entry = new Gtk.SearchEntry ();
-            search_entry.placeholder_text = "Search task";
-
 			/* Create toolbar */
 			toolbar = new HeaderBar();
             this.set_titlebar(toolbar);
             toolbar.set_show_close_button (true);
             toolbar.has_subtitle = false;
-            toolbar.set_custom_title(search_entry);
 
 			add_button = new Gtk.Button ();
             add_button.set_image (new Gtk.Image.from_icon_name ("appointment-new", Gtk.IconSize.LARGE_TOOLBAR));
@@ -180,30 +173,6 @@ namespace Yishu {
             return false;
         }
 
-        /*
-        public void trigger_search () {
-            var search_string = search_entry.text;
-
-            TreeIter iter;
-			TreeModel model;
-			Task task = null;
-			var sel = tree_view.get_selection();
-			if (sel.get_selected(out model, out iter)){
-				model.get(iter, Columns.TASK_OBJECT, out task, -1);
-			}
-
-            bool found = (search_entry.text != "");
-            if (found) {
-                search_entry.get_style_context ().remove_class (Gtk.STYLE_CLASS_ERROR);
-                if (sel.get_selected(out model, out iter)){
-    				model.get(iter, Columns.TASK_OBJECT, out task, -1);
-    			}
-            } else if (search_entry.text != "") {
-                search_entry.get_style_context ().add_class (Gtk.STYLE_CLASS_ERROR);
-            }
-        }
-        */
-
 		protected bool match_keycode (int keyval, uint code) {
             Gdk.KeymapKey [] keys;
             Gdk.Keymap keymap = Gdk.Keymap.get_for_display (Gdk.Display.get_default ());
@@ -220,6 +189,7 @@ namespace Yishu {
 		private TreeView setup_tree_view(){
 			TreeView tv = new TreeView();
 			TreeViewColumn col;
+            tv.set_enable_search (true);
 
 			col = new TreeViewColumn.with_attributes(_("Priority"), new Granite.Widgets.CellRendererBadge(), "text", Columns.PRIORITY);
 			col.set_sort_column_id(Columns.PRIORITY);

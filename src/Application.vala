@@ -36,6 +36,7 @@ namespace Yishu {
 		private Gtk.ListStore tasks_list_store;
 		private TreeModelFilter tasks_model_filter;
 		private TreeModelSort tasks_model_sort;
+        public SearchTasks search_entry;
 
 		private Task trashed_task;
 		public string current_filename = null;
@@ -69,6 +70,9 @@ namespace Yishu {
 			tasks_list_store = new Gtk.ListStore (6, typeof (string), typeof(string), typeof(GLib.Object), typeof(bool), typeof(bool), typeof(int));
 			setup_model();
 			window.tree_view.set_model(tasks_model_sort);
+            search_entry = new SearchTasks (window.tree_view, tasks_model_sort);
+            search_entry.placeholder_text = "Search task";
+            window.toolbar.set_custom_title(search_entry);
 			setup_menus();
 			window.add_button.clicked.connect(add_task);
 			window.tree_view.button_press_event.connect( (tv, event) => {
@@ -250,24 +254,6 @@ namespace Yishu {
 			}
 			return task;
 		}
-
-        public void trigger_search () {
-            var search_string = window.search_entry.text;
-            Task task = get_selected_task ();
-
-            bool found = (search_string == task.to_string());
-            if (found) {
-                window.search_entry.get_style_context ().remove_class (Gtk.STYLE_CLASS_ERROR);
-
-                TreeIter iter;
-                TreeModel model;
-    			window.tree_view.get_selection().get_selected(out model, out iter);
-                model.get(iter, Columns.MARKUP, out task, -1);
-
-            } else {
-                window.search_entry.get_style_context ().add_class (Gtk.STYLE_CLASS_ERROR);
-            }
-        }
 
 		private TaskDialog add_edit_dialog () {
 			var dialog = new TaskDialog(window);
