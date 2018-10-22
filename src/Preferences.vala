@@ -51,6 +51,7 @@ namespace Yishu.Widgets {
             string nc = homedir + "/Nextcloud/todo.txt";
             string oc = homedir + "/ownCloud/todo.txt";
             string other = homedir + "/bin/todo.txt/todo.txt";
+            settings.todo_txt_file_path = home;
             string file_used = settings.todo_txt_file_path;
 
             if (file_used == home) {

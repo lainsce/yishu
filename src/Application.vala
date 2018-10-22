@@ -115,13 +115,17 @@ namespace Yishu {
 				toggle_show_completed();
 			});
 
-            if (read_file(settings.todo_txt_file_path)) {
-                window.welcome.hide();
-                window.tree_view.show();
-            } else if (settings.todo_txt_file_path == "" && read_file(null)) {
-                window.welcome.show();
-                window.tree_view.hide();
-            }
+            string homedir = GLib.Environment.get_home_dir ();
+            string home = homedir + "/todo.txt";
+            settings.todo_txt_file_path = home;
+
+            if (read_file(null)) {
+				window.welcome.hide();
+				window.tree_view.show();
+			} else {
+				window.welcome.show();
+				window.tree_view.hide();
+			}
 
             settings.changed.connect (() => {
     			if (read_file(settings.todo_txt_file_path)) {
@@ -378,7 +382,7 @@ namespace Yishu {
             	var infobar_label = new Gtk.Label ("The task has been deleted");
 				infobar.get_content_area ().add (infobar_label);
 				infobar.add_button("_Undo", Gtk.ResponseType.ACCEPT);
-            	infobar.show_close_button = false;
+            	infobar.show_close_button = true;
             	infobar.message_type = Gtk.MessageType.INFO;
 				infobar.show_all();
 
@@ -387,8 +391,10 @@ namespace Yishu {
 				});
 
 				window.info_bar_box.pack_start(infobar, true, true, 0);
-				infobar.response.connect( () => {
-					undelete();
+				infobar.response.connect( (response) => {
+                    if (response == Gtk.ResponseType.ACCEPT) {
+                        undelete();
+                    }
 					infobar.destroy();
 				});
 
