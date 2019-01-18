@@ -1,0 +1,105 @@
+# French translations for com.github.lainsce.yishu package.
+# Copyright (C) 2019 THE com.github.lainsce.yishu'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.lainsce.yishu package.
+# NathanBnm, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.lainsce.yishu\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-10-29 21:15+0900\n"
+"PO-Revision-Date: 2019-01-17 21:50+0100\n"
+"Last-Translator: NathanBnm\n"
+"Language-Team: Français\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/Application.vala:211
+msgid "Edit task"
+msgstr "Modifier la tâche"
+
+#: src/Application.vala:212
+msgid "Delete task"
+msgstr "Supprimer la tâche"
+
+#: src/Application.vala:213
+msgid "Toggle done"
+msgstr "Marquer comme terminé"
+
+#: src/Application.vala:217 src/TaskDialog.vala:48 src/MainWindow.vala:83
+msgid "Priority"
+msgstr "Priorité"
+
+#: src/Application.vala:220
+msgid "None"
+msgstr "Aucun"
+
+#: src/Application.vala:305
+msgid "Select your todo.txt file"
+msgstr "Sélectionnez votre fichier todo.txt"
+
+#: src/Application.vala:475
+msgid "The task has been deleted"
+msgstr "La tâche a bien été supprimée"
+
+#: src/Application.vala:550
+msgid "The todo.txt file has been modified and been re-read"
+msgstr "Le fichier todo.txt a été modifié et actualisé"
+
+#: src/Task.vala:239
+msgid "Today"
+msgstr "Aujourd'hui"
+
+#: src/Task.vala:242
+msgid "Yesterday"
+msgstr "Hier"
+
+#: src/Task.vala:245
+msgid "days ago"
+msgstr "jours avant"
+
+#: src/TaskDialog.vala:37
+msgid "New Task"
+msgstr "Nouvelle tâche"
+
+#: src/TaskDialog.vala:47 src/MainWindow.vala:88
+msgid "Task"
+msgstr "Tâche"
+
+#: src/TaskDialog.vala:86
+msgid "Cancel"
+msgstr "Annuler"
+
+#: src/MainWindow.vala:44
+msgid "Open a todo.txt file to start adding tasks"
+msgstr "Ouvrez un fichier todo.txt pour commencer à ajouter des tâches"
+
+#: src/MainWindow.vala:45
+msgid "Open file"
+msgstr "Ouvrir un fichier"
+
+#: src/MainWindow.vala:45
+msgid "Use an existing todo.txt file"
+msgstr "Utiliser un fichier todo.txt existant"
+
+#: src/MainWindow.vala:46
+msgid "What is a todo.txt file?"
+msgstr "Qu'est-ce qu'un fichier todo.txt ?"
+
+#: src/MainWindow.vala:46
+msgid "Learn more about todo.txt files"
+msgstr "En savoir plus sur les fichiers todo.txt"
+
+#: src/MainWindow.vala:57
+msgid "Open…"
+msgstr "Ouvrir…"
+
+#: src/MainWindow.vala:61
+msgid "Add task…"
+msgstr "Ajouter une tâche…"
+
+#: src/MainWindow.vala:95
+msgid "Done"
+msgstr "Terminé"
