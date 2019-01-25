@@ -16,90 +16,189 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/Application.vala:211
+#: data/com.github.lainsce.yishu.desktop:2
+#: data/com.github.lainsce.yishu.appdata.xml:6
+msgid "Yishu"
+msgstr "Yishu"
+
+#: data/com.github.lainsce.yishu.desktop:3
+#: data/com.github.lainsce.yishu.appdata.xml:7
+msgid "A bespoke and simple Todo.txt client"
+msgstr "Un client Todo.txt simple et sur mesure"
+
+#: data/com.github.lainsce.yishu.appdata.xml:9
+msgid "Write a to-do list that will be easy to sync with most known Todo.txt clients"
+msgstr "Rédigez une liste de tâches qui sera facile à synchroniser avec les clients Todo.txt les plus connus."
+
+#: data/com.github.lainsce.yishu.appdata.xml:11
+msgid "Quit anytime with the shortcut Ctrl + Q"
+msgstr "Quitter à tout moment avec le raccourci Ctrl + Q"
+
+#: data/com.github.lainsce.yishu.appdata.xml:12
+msgid "Easily shareable with other Todo.txt clients on other platforms"
+msgstr "Facilement partageable avec d'autres clients Todo.txt sur d'autres plates-formes"
+
+#: src/Application.vala:74
+msgid "Search task"
+msgstr "Rechercher une tâche"
+
+#: src/Application.vala:152
 msgid "Edit task"
 msgstr "Modifier la tâche"
 
-#: src/Application.vala:212
+#: src/Application.vala:153
 msgid "Delete task"
 msgstr "Supprimer la tâche"
 
-#: src/Application.vala:213
+#: src/Application.vala:154
 msgid "Toggle done"
 msgstr "Marquer comme terminé"
 
-#: src/Application.vala:217 src/TaskDialog.vala:48 src/MainWindow.vala:83
+#: src/Application.vala:158 src/TaskDialog.vala:44 src/MainWindow.vala:83
 msgid "Priority"
 msgstr "Priorité"
 
-#: src/Application.vala:220
+#: src/Application.vala:161
 msgid "None"
 msgstr "Aucun"
 
-#: src/Application.vala:305
-msgid "Select your todo.txt file"
-msgstr "Sélectionnez votre fichier todo.txt"
+#: src/Application.vala:352
+msgid "Failed to write file"
+msgstr "Échec de l'écriture du fichier"
 
-#: src/Application.vala:475
-msgid "The task has been deleted"
-msgstr "La tâche a bien été supprimée"
+#: src/Application.vala:444
+#: src/TaskDialog.vala:91
+msgid "_OK"
+msgstr "_OK"
 
-#: src/Application.vala:550
+#: src/Application.vala:447
 msgid "The todo.txt file has been modified and been re-read"
-msgstr "Le fichier todo.txt a été modifié et actualisé"
+msgstr "Le fichier todo.txt a été modifié et relu"
 
-#: src/Task.vala:239
+#: src/Task.vala:237
 msgid "Today"
 msgstr "Aujourd'hui"
 
-#: src/Task.vala:242
+#: src/Task.vala:240
 msgid "Yesterday"
 msgstr "Hier"
 
-#: src/Task.vala:245
+#: src/Task.vala:243
 msgid "days ago"
 msgstr "jours avant"
 
-#: src/TaskDialog.vala:37
+#: src/TaskDialog.vala:33
 msgid "New Task"
 msgstr "Nouvelle tâche"
 
-#: src/TaskDialog.vala:47 src/MainWindow.vala:88
+#: src/TaskDialog.vala:43 src/MainWindow.vala:88
 msgid "Task"
 msgstr "Tâche"
 
-#: src/TaskDialog.vala:86
+#: src/TaskDialog.vala:88
+msgid "Adding + to a word will categorize the task.\nAdding @ to a word will specify the task's place."
+msgstr "Ajouter + à un mot catégorisera la tâche.\nAjouter @ à un mot indiquera l'emplacement de la tâche."
+
+#: src/TaskDialog.vala:90
 msgid "Cancel"
 msgstr "Annuler"
 
-#: src/MainWindow.vala:44
+#: src/MainWindow.vala:91
+msgid "No Todo.txt File Open"
+msgstr "Pas de fichier todo.txt ouvert"
+
+#: src/MainWindow.vala:91
 msgid "Open a todo.txt file to start adding tasks"
 msgstr "Ouvrez un fichier todo.txt pour commencer à ajouter des tâches"
 
-#: src/MainWindow.vala:45
-msgid "Open file"
-msgstr "Ouvrir un fichier"
+#: src/MainWindow.vala:92
+msgid "Add task"
+msgstr "Ajouter une tâche"
 
-#: src/MainWindow.vala:45
-msgid "Use an existing todo.txt file"
-msgstr "Utiliser un fichier todo.txt existant"
+#: src/MainWindow.vala:92
+msgid "Create a new todo.txt file with this task in your Home folder"
+msgstr "Créez un nouveau fichier todo.txt avec cette tâche dans votre dossier personnel"
 
-#: src/MainWindow.vala:46
+#: src/MainWindow.vala:93
 msgid "What is a todo.txt file?"
 msgstr "Qu'est-ce qu'un fichier todo.txt ?"
 
-#: src/MainWindow.vala:46
+#: src/MainWindow.vala:93
 msgid "Learn more about todo.txt files"
 msgstr "En savoir plus sur les fichiers todo.txt"
 
-#: src/MainWindow.vala:57
-msgid "Open…"
-msgstr "Ouvrir…"
+#: src/MainWindow.vala:94
+msgid "No Todo.txt File Found"
+msgstr "Aucun fichier todo.txt trouvé"
 
-#: src/MainWindow.vala:61
+#: src/MainWindow.vala:94
+msgid "Add tasks to start this todo.txt file"
+msgstr "Ajoutez des tâches pour commencer avec ce fichier todo.txt"
+
+#: src/MainWindow.vala:105
 msgid "Add task…"
 msgstr "Ajouter une tâche…"
 
-#: src/MainWindow.vala:95
+#: src/MainWindow.vala:109
+msgid "Preferences"
+msgstr "Préférences"
+
+#: src/MainWindow.vala:125
+msgid "Settings"
+msgstr "Paramètres"
+
+#: src/MainWindow.vala:197
+msgid "Priority"
+msgstr "Priorité"
+
+#: src/MainWindow.vala:202
+msgid "Task"
+msgstr "Tâche"
+
+#: src/MainWindow.vala:209
 msgid "Done"
 msgstr "Terminé"
+
+#: src/Preferences.vala:38
+msgid "Todo.txt Preferences"
+msgstr "Préférences todo.txt"
+
+#: src/Preferences.vala:39
+msgid "Default Location:"
+msgstr "Emplacement par défaut :"
+
+#: src/Preferences.vala:42
+msgid "Home Folder"
+msgstr "Dossier personnel"
+
+#: src/Preferences.vala:43
+msgid "Dropbox Folder"
+msgstr "Dossier Dropbox"
+
+#: src/Preferences.vala:44
+msgid "Nextcloud Folder"
+msgstr "Dossier Nextcloud"
+
+#: src/Preferences.vala:45
+msgid "ownCloud Folder"
+msgstr "Dossier ownCloud"
+
+#: src/Preferences.vala:46
+msgid "Other Clients Folder"
+msgstr "Dossier des autres clients"
+
+#: src/Preferences.vala:103
+msgid "Custom Location:"
+msgstr "Emplacement personnalisé :"
+
+#: src/Preferences.vala:105
+msgid "Open your file"
+msgstr "Ouvrez votre fichier"
+
+#: src/Preferences.vala:111
+msgid "Enabling custom locations will have you save your file\nin other places not recognized by other clients."
+msgstr "L'activation des emplacements personnalisés vous permettra d'enregistrer votre fichier dans d'autres emplacements non reconnus par les autres clients."
+
+#: src/Preferences.vala:160
+msgid "Close"
+msgstr "Fermer"
