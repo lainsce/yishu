@@ -1,7 +1,6 @@
 [Desktop Entry]
 Name=Yishu
 Comment=A bespoke and simple Todo.txt client
-Comment[cs]=Jednoduchý Todo.txt klient na míru
 Categories=GTK;Utility;ProjectManagement;
 Exec=com.github.lainsce.yishu
 Icon=com.github.lainsce.yishu

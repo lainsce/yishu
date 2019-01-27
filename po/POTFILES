@@ -1,6 +1,7 @@
 src/Application.vala
 src/Task.vala
 src/TaskDialog.vala
-src/TodoFile.vala
 src/MainWindow.vala
-src/Constants/AppSettings.vala
+src/Preferences.vala
+data/com.github.lainsce.yishu.desktop
+data/com.github.lainsce.yishu.appdata.xml
