@@ -1,0 +1,198 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.lainsce.yishu\n"
+"POT-Creation-Date: 2019-02-26 11:45+0100\n"
+"PO-Revision-Date: 2019-02-26 12:50+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"Last-Translator: patbec\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: de_DE\n"
+
+#: data/com.github.lainsce.yishu.desktop:2
+#: data/com.github.lainsce.yishu.appdata.xml:6
+msgid "Yishu"
+msgstr "Yishu"
+
+#: data/com.github.lainsce.yishu.desktop:3
+#: data/com.github.lainsce.yishu.appdata.xml:7
+msgid "A bespoke and simple Todo.txt client"
+msgstr "Eine individuelle und einfache Anwendung zu Aufgabenverwaltung"
+
+#: data/com.github.lainsce.yishu.appdata.xml:9
+msgid "Write a to-do list that will be easy to sync with most known Todo.txt clients"
+msgstr "Schreiben Sie eine Aufgabenliste, die mit bekannten anderen Todo.txt-Anwendungen synchronisiert werden kann"
+
+#: data/com.github.lainsce.yishu.appdata.xml:11
+msgid "Quit anytime with the shortcut Ctrl + Q"
+msgstr "Mit der Tastenkombination Strg + Q kann die Anwendung jederzeit beendet werden"
+
+#: data/com.github.lainsce.yishu.appdata.xml:12
+msgid "Easily shareable with other Todo.txt clients on other platforms"
+msgstr "Teilen Sie Ihre Aufgaben mit Todo.txt-Clients auf anderen Plattformen"
+
+#: src/Application.vala:74
+msgid "Search task"
+msgstr "Aufgabe suchen"
+
+#: src/Application.vala:152
+msgid "Edit task"
+msgstr "Aufgabe bearbeiten"
+
+#: src/Application.vala:153
+msgid "Delete task"
+msgstr "Aufgabe löschen"
+
+#: src/Application.vala:154
+msgid "Toggle done"
+msgstr "Aufgabe umschalten"
+
+#: src/Application.vala:158 src/TaskDialog.vala:44 src/MainWindow.vala:83
+#: src/MainWindow.vala:197
+msgid "Priority"
+msgstr "Priorität"
+
+#: src/Application.vala:161
+msgid "None"
+msgstr "Keine"
+
+#: src/Application.vala:352
+msgid "Failed to write file"
+msgstr "Die Aufgabenliste konnte nicht gespeichert werden"
+
+#: src/Application.vala:444 src/TaskDialog.vala:91
+msgid "_OK"
+msgstr "OK"
+
+#: src/Application.vala:447
+msgid "The todo.txt file has been modified and been re-read"
+msgstr "Die Aufgabenliste wurde verändert und musste erneut eingelesen werden"
+
+#: src/Task.vala:237
+msgid "Today"
+msgstr "Heute"
+
+#: src/Task.vala:240
+msgid "Yesterday"
+msgstr "Gestern"
+
+#: src/Task.vala:243
+msgid "days ago"
+msgstr "Tage zuvor"
+
+#: src/TaskDialog.vala:33
+msgid "New Task"
+msgstr "Neue Aufgabe"
+
+#: src/TaskDialog.vala:43 src/MainWindow.vala:88 src/MainWindow.vala:202
+msgid "Task"
+msgstr "Aufgabe"
+
+#: src/TaskDialog.vala:88
+msgid ""
+"Adding + to a word will categorize the task.\n"
+"Adding @ to a word will specify the task's place."
+msgstr ""
+"Ein + Zeichen vor einem Wort, unterteilt die Aufgabe in eine Kategorie.\n"
+"Ein @ Zeichen vor einem Wort, gibt den Ort der Aufgabe an."
+
+#: src/TaskDialog.vala:90
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: src/MainWindow.vala:91
+msgid "No Todo.txt File Open"
+msgstr "Keine Todo.txt Datei geöffnet"
+
+#: src/MainWindow.vala:91
+msgid "Open a todo.txt file to start adding tasks"
+msgstr "Öffnen Sie eine Todo.txt Datei, um Aufgaben hinzuzufügen"
+
+#: src/MainWindow.vala:92
+msgid "Add task"
+msgstr "Aufgabe hinzufügen"
+
+#: src/MainWindow.vala:92
+msgid "Create a new todo.txt file with this task in your Home folder"
+msgstr "Erstellt im Persönlichen Ordner eine neue Todo.txt Datei mit dieser Aufgabe"
+
+#: src/MainWindow.vala:93
+msgid "What is a todo.txt file?"
+msgstr "Was ist eine Todo.txt-Datei?"
+
+#: src/MainWindow.vala:93
+msgid "Learn more about todo.txt files"
+msgstr "Erfahren Sie mehr über Todo.txt-Dateien"
+
+#: src/MainWindow.vala:94
+msgid "No Todo.txt File Found"
+msgstr "Keine Todo.txt Datei gefunden"
+
+#: src/MainWindow.vala:94
+msgid "Add tasks to start this todo.txt file"
+msgstr "Erstellen Sie eine Aufgabe um zu beginnen"
+
+#: src/MainWindow.vala:105
+msgid "Add task…"
+msgstr "Aufgabe hinzufügen…"
+
+#: src/MainWindow.vala:109
+msgid "Preferences"
+msgstr "Einstellungen"
+
+#: src/MainWindow.vala:125
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: src/MainWindow.vala:209
+msgid "Done"
+msgstr "Fertig"
+
+#: src/Preferences.vala:38
+msgid "Todo.txt Preferences"
+msgstr "Todo.txt Einstellungen"
+
+#: src/Preferences.vala:39
+msgid "Default Location:"
+msgstr "Standardspeicherort:"
+
+#: src/Preferences.vala:42
+msgid "Home Folder"
+msgstr "Persönlicher Ordner"
+
+#: src/Preferences.vala:43
+msgid "Dropbox Folder"
+msgstr "Dropbox Ordner"
+
+#: src/Preferences.vala:44
+msgid "Nextcloud Folder"
+msgstr "Nextcloud Ordner"
+
+#: src/Preferences.vala:45
+msgid "ownCloud Folder"
+msgstr "ownCloud Ordner"
+
+#: src/Preferences.vala:46
+msgid "Other Clients Folder"
+msgstr "Andere Anwendungsordner"
+
+#: src/Preferences.vala:103
+msgid "Custom Location:"
+msgstr "Benutzerdefinierter Ort:"
+
+#: src/Preferences.vala:105
+msgid "Open your file"
+msgstr "Öffnen der Datei"
+
+#: src/Preferences.vala:111
+msgid ""
+"Enabling custom locations will have you save your file\n"
+"in other places not recognized by other clients."
+msgstr "Wenn Sie die Einstellung 'benutzerdefinierter Ort' aktiviert haben, können Sie einen beliebigen Speicherort festlegen. Andere Anwendungen wie z.B. Nextcloud können dann nicht mehr auf Ihre Aufgaben zugreifen."
+
+#: src/Preferences.vala:160
+msgid "Close"
+msgstr "Schließen"
