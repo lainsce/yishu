@@ -53,6 +53,14 @@
         </screenshot>
     </screenshots>
     <releases>
+        <release version="1.1.0" date="2019-03-15">
+            <description>
+                <p>Release: Zeit and Temps</p>
+                <ul>
+                    <li>German and French translations.</li>
+                </ul>
+            </description>
+        </release>
         <release version="1.0.8" date="2018-10-26">
             <description>
                 <p>Release: Search &amp; Blues</p>
