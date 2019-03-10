@@ -54,7 +54,7 @@ msgstr "Supprimer la tâche"
 msgid "Toggle done"
 msgstr "Marquer comme terminé"
 
-#: src/Application.vala:158 src/TaskDialog.vala:44 src/MainWindow.vala:83
+#: src/Application.vala:158 src/TaskDialog.vala:44 src/MainWindow.vala:83 src/MainWindow.vala:197
 msgid "Priority"
 msgstr "Priorité"
 
@@ -146,10 +146,6 @@ msgstr "Préférences"
 #: src/MainWindow.vala:125
 msgid "Settings"
 msgstr "Paramètres"
-
-#: src/MainWindow.vala:197
-msgid "Priority"
-msgstr "Priorité"
 
 #: src/MainWindow.vala:209
 msgid "Done"
