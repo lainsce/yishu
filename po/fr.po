@@ -91,7 +91,7 @@ msgstr "jours avant"
 msgid "New Task"
 msgstr "Nouvelle tâche"
 
-#: src/TaskDialog.vala:43 src/MainWindow.vala:88
+#: src/TaskDialog.vala:43 src/MainWindow.vala:88 src/MainWindow.vala:202
 msgid "Task"
 msgstr "Tâche"
 
@@ -150,10 +150,6 @@ msgstr "Paramètres"
 #: src/MainWindow.vala:197
 msgid "Priority"
 msgstr "Priorité"
-
-#: src/MainWindow.vala:202
-msgid "Task"
-msgstr "Tâche"
 
 #: src/MainWindow.vala:209
 msgid "Done"
