@@ -1,8 +1,14 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.lainsce.yishu package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.lainsce.yishu\n"
-"POT-Creation-Date: 2017-11-22 01:20-0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-03-23 23:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,62 +17,35 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/com.github.lainsce.yishu.desktop:2
-#: data/com.github.lainsce.yishu.appdata.xml:6
-msgid "Yishu"
-msgstr ""
-
-#: data/com.github.lainsce.yishu.desktop:3
-#: data/com.github.lainsce.yishu.appdata.xml:7
-msgid "A bespoke and simple Todo.txt client"
-msgstr ""
-
-#: data/com.github.lainsce.yishu.appdata.xml:9
-msgid "Write a to-do list that will be easy to sync with most known Todo.txt clients"
-msgstr ""
-
-#: data/com.github.lainsce.yishu.appdata.xml:11
-msgid "Quit anytime with the shortcut Ctrl + Q"
-msgstr ""
-
-#: data/com.github.lainsce.yishu.appdata.xml:12
-msgid "Easily shareable with other Todo.txt clients on other platforms"
-msgstr ""
-
 #: src/Application.vala:74
 msgid "Search task"
 msgstr ""
 
-#: src/Application.vala:152
-msgid "Edit task"
+#: src/Application.vala:75
+msgid "Type Task Name"
 msgstr ""
 
 #: src/Application.vala:153
-msgid "Delete task"
+msgid "Edit task"
 msgstr ""
 
 #: src/Application.vala:154
+msgid "Delete task"
+msgstr ""
+
+#: src/Application.vala:155
 msgid "Toggle done"
 msgstr ""
 
-#: src/Application.vala:158 src/TaskDialog.vala:44 src/MainWindow.vala:83
+#: src/Application.vala:159 src/TaskDialog.vala:44 src/MainWindow.vala:197
 msgid "Priority"
 msgstr ""
 
-#: src/Application.vala:161
+#: src/Application.vala:162
 msgid "None"
 msgstr ""
 
-#: src/Application.vala:352
-msgid "Failed to write file"
-msgstr ""
-
-#: src/Application.vala:444
-#: src/TaskDialog.vala:91
-msgid "_OK"
-msgstr ""
-
-#: src/Application.vala:447
+#: src/Application.vala:448
 msgid "The todo.txt file has been modified and been re-read"
 msgstr ""
 
@@ -86,16 +65,27 @@ msgstr ""
 msgid "New Task"
 msgstr ""
 
-#: src/TaskDialog.vala:43 src/MainWindow.vala:88
+#: src/TaskDialog.vala:43 src/MainWindow.vala:202
 msgid "Task"
 msgstr ""
 
 #: src/TaskDialog.vala:88
-msgid "Adding + to a word will categorize the task.\nAdding @ to a word will specify the task's place."
+msgid ""
+"Adding + to a word will categorize the task.\n"
+"Adding @ to a word will specify the task's place."
 msgstr ""
 
 #: src/TaskDialog.vala:90
 msgid "Cancel"
+msgstr ""
+
+#: src/TaskDialog.vala:91
+msgid "OK"
+msgstr ""
+
+#: src/MainWindow.vala:46 data/com.github.lainsce.yishu.desktop:3
+#: data/com.github.lainsce.yishu.appdata.xml:6
+msgid "Yishu"
 msgstr ""
 
 #: src/MainWindow.vala:91
@@ -134,20 +124,12 @@ msgstr ""
 msgid "Add task…"
 msgstr ""
 
-#: src/MainWindow.vala:109
+#: src/MainWindow.vala:109 src/Preferences.vala:28
 msgid "Preferences"
 msgstr ""
 
 #: src/MainWindow.vala:125
 msgid "Settings"
-msgstr ""
-
-#: src/MainWindow.vala:197
-msgid "Priority"
-msgstr ""
-
-#: src/MainWindow.vala:202
-msgid "Task"
 msgstr ""
 
 #: src/MainWindow.vala:209
@@ -191,9 +173,122 @@ msgid "Open your file"
 msgstr ""
 
 #: src/Preferences.vala:111
-msgid "Enabling custom locations will have you save your file\nin other places not recognized by other clients."
+msgid ""
+"Enabling custom locations will have you save your file\n"
+"in other places not recognized by other clients."
 msgstr ""
 
 #: src/Preferences.vala:160
 msgid "Close"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.desktop:4
+#: data/com.github.lainsce.yishu.appdata.xml:7
+msgid "A bespoke and simple Todo.txt client"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.desktop:7
+msgid "com.github.lainsce.yishu"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:9
+msgid ""
+"Write a to-do list that will be easy to sync with most known Todo.txt clients"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:11
+msgid "Quit anytime with the shortcut Ctrl + Q"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:12
+msgid "Easily shareable with other Todo.txt clients on other platforms"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:18
+msgid "Lains"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:58
+msgid "Release: Zeit and Temps"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:60
+msgid "German and French translations."
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:66
+msgid "Release: Search &amp; Blues"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:68
+msgid "NEW: Search your tasks."
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:69
+msgid "FIX: Task folder is properly saved now."
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:75
+msgid "Release: Juno Offering"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:77
+msgid "Juno update."
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:83
+msgid "Release: Flute Playing at an Temple"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:85
+msgid ""
+"Fixed retaining a list open on close and also adding tasks correctly to a "
+"list."
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:91
+msgid "Release: Water Painting a Picture"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:93
+msgid ""
+"Fixed internal GTK deprecations so the app doesn't complain about unused "
+"things."
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:94
+msgid "New icon that improves on the old one."
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:100
+msgid "Release: Rest Easy and Calligraphy"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:102
+msgid ""
+"Added a preferences dialog with a setting to where to save the todo.txt file."
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:108
+msgid "Release: Bamboo Shoots in the Sand"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:110
+msgid "Added the option to create new todo.txt files on welcome."
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:116
+msgid "Release: A Tree Waving in the Wind"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:118
+msgid "Fixed minor things for the AppCenter review."
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:124
+msgid "Release: A River Crossing"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:126
+msgid "First release."
 msgstr ""

@@ -39,11 +39,11 @@ namespace Yishu.Widgets {
             var label = new SettingsLabel (_("Default Location:"));
             list_place = new Gtk.ComboBoxText();
             list_place.hexpand = true;
-            list_place.append_text("Home Folder");
-            list_place.append_text("Dropbox Folder");
-            list_place.append_text("Nextcloud Folder");
-            list_place.append_text("ownCloud Folder");
-            list_place.append_text("Other Clients Folder");
+            list_place.append_text(_("Home Folder"));
+            list_place.append_text(_("Dropbox Folder"));
+            list_place.append_text(_("Nextcloud Folder"));
+            list_place.append_text(_("ownCloud Folder"));
+            list_place.append_text(_("Other Clients Folder"));
 
             string homedir = GLib.Environment.get_home_dir ();
             string home = homedir + "/todo.txt";
@@ -102,7 +102,7 @@ namespace Yishu.Widgets {
 
             var label_c = new SettingsLabel (_("Custom Location:"));
             var switch_c = new SettingsSwitch ("custom-file-enable");
-            var chooser = new Gtk.FileChooserButton ("Open your file", Gtk.FileChooserAction.OPEN);
+            var chooser = new Gtk.FileChooserButton (_("Open your file"), Gtk.FileChooserAction.OPEN);
             chooser.hexpand = true;
 
             var custom_help = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);

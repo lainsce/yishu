@@ -1,101 +1,305 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.lainsce.yishu\n"
-"POT-Creation-Date: 2017-11-22 01:20-0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-03-23 23:19+0100\n"
 "PO-Revision-Date: 2018-02-25 17:43+0100\n"
+"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch - vistausss@outlook.com\n"
+"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.0.6\n"
-"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: nl_NL\n"
 
-#: src/Application.vala:211
+#: src/Application.vala:74
+msgid "Search task"
+msgstr ""
+
+#: src/Application.vala:75
+msgid "Type Task Name"
+msgstr ""
+
+#: src/Application.vala:153
 msgid "Edit task"
 msgstr "Taak bewerken"
 
-#: src/Application.vala:212
+#: src/Application.vala:154
 msgid "Delete task"
 msgstr "Taak verwijderen"
 
-#: src/Application.vala:213
+#: src/Application.vala:155
 msgid "Toggle done"
 msgstr "Afgerond/Niet-afgerond"
 
-#: src/Application.vala:217 src/TaskDialog.vala:48 src/MainWindow.vala:83
+#: src/Application.vala:159 src/TaskDialog.vala:44 src/MainWindow.vala:197
 msgid "Priority"
 msgstr "Prioriteit"
 
-#: src/Application.vala:220
+#: src/Application.vala:162
 msgid "None"
 msgstr "Geen"
 
-#: src/Application.vala:305
-msgid "Select your todo.txt file"
-msgstr "Selecteer uw todo.txt-bestand"
-
-#: src/Application.vala:475
-msgid "The task has been deleted"
-msgstr "De taak is verwijderd"
-
-#: src/Application.vala:550
+#: src/Application.vala:448
 msgid "The todo.txt file has been modified and been re-read"
 msgstr "Het todo.txt-bestand is bewerkt en opnieuw ingelezen"
 
-#: src/Task.vala:239
+#: src/Task.vala:237
 msgid "Today"
 msgstr "Vandaag"
 
-#: src/Task.vala:242
+#: src/Task.vala:240
 msgid "Yesterday"
 msgstr "Gisteren"
 
-#: src/Task.vala:245
+#: src/Task.vala:243
 msgid "days ago"
 msgstr "dagen geleden"
 
-#: src/TaskDialog.vala:37
+#: src/TaskDialog.vala:33
 msgid "New Task"
 msgstr "Nieuwe taak"
 
-#: src/TaskDialog.vala:47 src/MainWindow.vala:88
+#: src/TaskDialog.vala:43 src/MainWindow.vala:202
 msgid "Task"
 msgstr "Taak"
 
-#: src/TaskDialog.vala:86
+#: src/TaskDialog.vala:88
+msgid ""
+"Adding + to a word will categorize the task.\n"
+"Adding @ to a word will specify the task's place."
+msgstr ""
+
+#: src/TaskDialog.vala:90
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: src/MainWindow.vala:44
+#: src/TaskDialog.vala:91
+msgid "OK"
+msgstr ""
+
+#: src/MainWindow.vala:46 data/com.github.lainsce.yishu.desktop:3
+#: data/com.github.lainsce.yishu.appdata.xml:6
+msgid "Yishu"
+msgstr ""
+
+#: src/MainWindow.vala:91
+msgid "No Todo.txt File Open"
+msgstr ""
+
+#: src/MainWindow.vala:91
 msgid "Open a todo.txt file to start adding tasks"
 msgstr "Open een todo.txt-bestand om taken toe te voegen"
 
-#: src/MainWindow.vala:45
-msgid "Open file"
-msgstr "Bestand openen"
+#: src/MainWindow.vala:92
+#, fuzzy
+msgid "Add task"
+msgstr "Taak toevoegen…"
 
-#: src/MainWindow.vala:45
-msgid "Use an existing todo.txt file"
-msgstr "Gebruik een bestaand todo.txt-bestand"
+#: src/MainWindow.vala:92
+msgid "Create a new todo.txt file with this task in your Home folder"
+msgstr ""
 
-#: src/MainWindow.vala:46
+#: src/MainWindow.vala:93
 msgid "What is a todo.txt file?"
 msgstr "Wat is een todo.txt-bestand?"
 
-#: src/MainWindow.vala:46
+#: src/MainWindow.vala:93
 msgid "Learn more about todo.txt files"
 msgstr "Meer informatie over todo.txt-bestanden"
 
-#: src/MainWindow.vala:57
-msgid "Open…"
-msgstr "Openen…"
+#: src/MainWindow.vala:94
+msgid "No Todo.txt File Found"
+msgstr ""
 
-#: src/MainWindow.vala:61
+#: src/MainWindow.vala:94
+#, fuzzy
+msgid "Add tasks to start this todo.txt file"
+msgstr "Wat is een todo.txt-bestand?"
+
+#: src/MainWindow.vala:105
 msgid "Add task…"
 msgstr "Taak toevoegen…"
 
-#: src/MainWindow.vala:95
+#: src/MainWindow.vala:109 src/Preferences.vala:28
+msgid "Preferences"
+msgstr ""
+
+#: src/MainWindow.vala:125
+msgid "Settings"
+msgstr ""
+
+#: src/MainWindow.vala:209
 msgid "Done"
 msgstr "Afgerond"
+
+#: src/Preferences.vala:38
+msgid "Todo.txt Preferences"
+msgstr ""
+
+#: src/Preferences.vala:39
+msgid "Default Location:"
+msgstr ""
+
+#: src/Preferences.vala:42
+msgid "Home Folder"
+msgstr ""
+
+#: src/Preferences.vala:43
+msgid "Dropbox Folder"
+msgstr ""
+
+#: src/Preferences.vala:44
+msgid "Nextcloud Folder"
+msgstr ""
+
+#: src/Preferences.vala:45
+msgid "ownCloud Folder"
+msgstr ""
+
+#: src/Preferences.vala:46
+msgid "Other Clients Folder"
+msgstr ""
+
+#: src/Preferences.vala:103
+msgid "Custom Location:"
+msgstr ""
+
+#: src/Preferences.vala:105
+#, fuzzy
+msgid "Open your file"
+msgstr "Bestand openen"
+
+#: src/Preferences.vala:111
+msgid ""
+"Enabling custom locations will have you save your file\n"
+"in other places not recognized by other clients."
+msgstr ""
+
+#: src/Preferences.vala:160
+msgid "Close"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.desktop:4
+#: data/com.github.lainsce.yishu.appdata.xml:7
+msgid "A bespoke and simple Todo.txt client"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.desktop:7
+msgid "com.github.lainsce.yishu"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:9
+msgid ""
+"Write a to-do list that will be easy to sync with most known Todo.txt clients"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:11
+msgid "Quit anytime with the shortcut Ctrl + Q"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:12
+msgid "Easily shareable with other Todo.txt clients on other platforms"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:18
+msgid "Lains"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:58
+msgid "Release: Zeit and Temps"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:60
+msgid "German and French translations."
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:66
+msgid "Release: Search &amp; Blues"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:68
+msgid "NEW: Search your tasks."
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:69
+msgid "FIX: Task folder is properly saved now."
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:75
+msgid "Release: Juno Offering"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:77
+msgid "Juno update."
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:83
+msgid "Release: Flute Playing at an Temple"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:85
+msgid ""
+"Fixed retaining a list open on close and also adding tasks correctly to a "
+"list."
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:91
+msgid "Release: Water Painting a Picture"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:93
+msgid ""
+"Fixed internal GTK deprecations so the app doesn't complain about unused "
+"things."
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:94
+msgid "New icon that improves on the old one."
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:100
+msgid "Release: Rest Easy and Calligraphy"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:102
+msgid ""
+"Added a preferences dialog with a setting to where to save the todo.txt file."
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:108
+msgid "Release: Bamboo Shoots in the Sand"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:110
+msgid "Added the option to create new todo.txt files on welcome."
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:116
+msgid "Release: A Tree Waving in the Wind"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:118
+msgid "Fixed minor things for the AppCenter review."
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:124
+msgid "Release: A River Crossing"
+msgstr ""
+
+#: data/com.github.lainsce.yishu.appdata.xml:126
+msgid "First release."
+msgstr ""
+
+#~ msgid "Select your todo.txt file"
+#~ msgstr "Selecteer uw todo.txt-bestand"
+
+#~ msgid "The task has been deleted"
+#~ msgstr "De taak is verwijderd"
+
+#~ msgid "Use an existing todo.txt file"
+#~ msgstr "Gebruik een bestaand todo.txt-bestand"
+
+#~ msgid "Open…"
+#~ msgstr "Openen…"
