@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.lainsce.yishu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-23 23:19+0100\n"
+"POT-Creation-Date: 2019-03-23 23:23+0100\n"
 "PO-Revision-Date: 2018-04-08 04:10-0500\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: \n"
@@ -39,6 +39,14 @@ msgstr "Prioridad"
 #: src/Application.vala:162
 msgid "None"
 msgstr "Ninguna"
+
+#: src/Application.vala:383
+msgid "The task has been deleted"
+msgstr "Se ha eliminado la tarea"
+
+#: src/Application.vala:385
+msgid "_Undo"
+msgstr ""
 
 #: src/Application.vala:448
 msgid "The todo.txt file has been modified and been re-read"
@@ -293,9 +301,6 @@ msgstr ""
 
 #~ msgid "Select your todo.txt file"
 #~ msgstr "Seleccione el archivo «todo.txt»"
-
-#~ msgid "The task has been deleted"
-#~ msgstr "Se ha eliminado la tarea"
 
 #~ msgid "Use an existing todo.txt file"
 #~ msgstr "Usar un archivo «todo.txt» existente"

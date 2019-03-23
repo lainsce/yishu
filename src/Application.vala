@@ -380,9 +380,9 @@ namespace Yishu {
 				tasks_list_store.remove(ref task.iter);
 
 				var infobar = new Gtk.InfoBar ();
-            	var infobar_label = new Gtk.Label ("The task has been deleted");
+            	var infobar_label = new Gtk.Label (_("The task has been deleted"));
 				infobar.get_content_area ().add (infobar_label);
-				infobar.add_button("_Undo", Gtk.ResponseType.ACCEPT);
+				infobar.add_button(_("_Undo"), Gtk.ResponseType.ACCEPT);
             	infobar.show_close_button = true;
             	infobar.message_type = Gtk.MessageType.INFO;
 				infobar.show_all();

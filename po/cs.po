@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.lainsce.yishu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-23 23:19+0100\n"
+"POT-Creation-Date: 2019-03-23 23:23+0100\n"
 "PO-Revision-Date: 2018-07-21 18:46+0200\n"
 "Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
 "Language-Team: čeština <>\n"
@@ -43,6 +43,14 @@ msgstr "Priorita"
 #: src/Application.vala:162
 msgid "None"
 msgstr "Žádný"
+
+#: src/Application.vala:383
+msgid "The task has been deleted"
+msgstr "Úkol byl odstraněn"
+
+#: src/Application.vala:385
+msgid "_Undo"
+msgstr ""
 
 #: src/Application.vala:448
 msgid "The todo.txt file has been modified and been re-read"
@@ -297,9 +305,6 @@ msgstr ""
 
 #~ msgid "Select your todo.txt file"
 #~ msgstr "Vyberte svůj todo.txt soubor"
-
-#~ msgid "The task has been deleted"
-#~ msgstr "Úkol byl odstraněn"
 
 #~ msgid "Use an existing todo.txt file"
 #~ msgstr "Použít existující todo.txt soubor"

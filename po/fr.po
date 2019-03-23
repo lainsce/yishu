@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.lainsce.yishu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-23 23:19+0100\n"
+"POT-Creation-Date: 2019-03-23 23:23+0100\n"
 "PO-Revision-Date: 2019-01-25 23:14+0100\n"
 "Last-Translator: NathanBnm\n"
 "Language-Team: Français\n"
@@ -43,6 +43,14 @@ msgstr "Priorité"
 #: src/Application.vala:162
 msgid "None"
 msgstr "Aucun"
+
+#: src/Application.vala:383
+msgid "The task has been deleted"
+msgstr "La tâche a été supprimée"
+
+#: src/Application.vala:385
+msgid "_Undo"
+msgstr "_Annuler"
 
 #: src/Application.vala:448
 msgid "The todo.txt file has been modified and been re-read"

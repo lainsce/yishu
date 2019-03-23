@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.lainsce.yishu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-23 23:19+0100\n"
+"POT-Creation-Date: 2019-03-23 23:23+0100\n"
 "PO-Revision-Date: 2018-02-25 17:43+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch - vistausss@outlook.com\n"
@@ -40,6 +40,14 @@ msgstr "Prioriteit"
 #: src/Application.vala:162
 msgid "None"
 msgstr "Geen"
+
+#: src/Application.vala:383
+msgid "The task has been deleted"
+msgstr "De taak is verwijderd"
+
+#: src/Application.vala:385
+msgid "_Undo"
+msgstr ""
 
 #: src/Application.vala:448
 msgid "The todo.txt file has been modified and been re-read"
@@ -294,9 +302,6 @@ msgstr ""
 
 #~ msgid "Select your todo.txt file"
 #~ msgstr "Selecteer uw todo.txt-bestand"
-
-#~ msgid "The task has been deleted"
-#~ msgstr "De taak is verwijderd"
 
 #~ msgid "Use an existing todo.txt file"
 #~ msgstr "Gebruik een bestaand todo.txt-bestand"
