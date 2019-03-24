@@ -71,7 +71,8 @@ namespace Yishu {
 			setup_model();
 			window.tree_view.set_model(tasks_model_sort);
             search_entry = new SearchTasks (window.tree_view, tasks_model_sort);
-            search_entry.placeholder_text = "Search task";
+			search_entry.placeholder_text = _("Search task");
+			search_entry.set_tooltip_text (_("Type Task Name"));
             window.toolbar.set_custom_title(search_entry);
 			setup_menus();
 			window.add_button.clicked.connect(add_task);
@@ -379,9 +380,9 @@ namespace Yishu {
 				tasks_list_store.remove(ref task.iter);
 
 				var infobar = new Gtk.InfoBar ();
-            	var infobar_label = new Gtk.Label ("The task has been deleted");
+            	var infobar_label = new Gtk.Label (_("The task has been deleted"));
 				infobar.get_content_area ().add (infobar_label);
-				infobar.add_button("_Undo", Gtk.ResponseType.ACCEPT);
+				infobar.add_button(_("_Undo"), Gtk.ResponseType.ACCEPT);
             	infobar.show_close_button = true;
             	infobar.message_type = Gtk.MessageType.INFO;
 				infobar.show_all();

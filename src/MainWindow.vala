@@ -88,10 +88,10 @@ namespace Yishu {
 			var stack = new Stack();
 			var swin = new ScrolledWindow(null, null);
 
-			welcome = new Granite.Widgets.Welcome("No Todo.txt File Open", _("Open a todo.txt file to start adding tasks"));
+			welcome = new Granite.Widgets.Welcome(_("No Todo.txt File Open"), _("Open a todo.txt file to start adding tasks"));
             welcome.append("appointment-new", _("Add task"), _("Create a new todo.txt file with this task in your Home folder"));
 			welcome.append("help-contents", _("What is a todo.txt file?"), _("Learn more about todo.txt files"));
-			no_file = new Granite.Widgets.Welcome("No Todo.txt File Found", _("Add tasks to start this todo.txt file"));
+			no_file = new Granite.Widgets.Welcome(_("No Todo.txt File Found"), _("Add tasks to start this todo.txt file"));
 
 			/* Create toolbar */
 			toolbar = new HeaderBar();
