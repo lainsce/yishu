@@ -1,0 +1,194 @@
+# English translations for com.github.lainsce.yishu package.
+# Copyright (C) 2019 THE com.github.lainsce.yishu'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.lainsce.yishu package.
+# Automatically generated, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.lainsce.yishu\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-03-30 17:17+0100\n"
+"PO-Revision-Date: 2019-03-30 16:53+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: en_AU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/Application.vala:74
+msgid "Search task"
+msgstr "Search task"
+
+#: src/Application.vala:75
+msgid "Type Task Name"
+msgstr "Type Task Name"
+
+#: src/Application.vala:153
+msgid "Edit task"
+msgstr "Edit task"
+
+#: src/Application.vala:154
+msgid "Delete task"
+msgstr "Delete task"
+
+#: src/Application.vala:155
+msgid "Toggle done"
+msgstr "Toggle done"
+
+#: src/Application.vala:159 src/TaskDialog.vala:44 src/MainWindow.vala:197
+msgid "Priority"
+msgstr "Priority"
+
+#: src/Application.vala:162
+msgid "None"
+msgstr "None"
+
+#: src/Application.vala:383
+msgid "The task has been deleted"
+msgstr "The task has been deleted"
+
+#: src/Application.vala:385
+msgid "_Undo"
+msgstr "_Undo"
+
+#: src/Application.vala:448
+msgid "The todo.txt file has been modified and been re-read"
+msgstr "The todo.txt file has been modified and been re-read"
+
+#: src/Task.vala:237
+msgid "Today"
+msgstr "Today"
+
+#: src/Task.vala:240
+msgid "Yesterday"
+msgstr "Yesterday"
+
+#: src/Task.vala:243
+msgid "days ago"
+msgstr "days ago"
+
+#: src/TaskDialog.vala:33
+msgid "New Task"
+msgstr "New Task"
+
+#: src/TaskDialog.vala:43 src/MainWindow.vala:202
+msgid "Task"
+msgstr "Task"
+
+#: src/TaskDialog.vala:88
+msgid ""
+"Adding + to a word will categorize the task.\n"
+"Adding @ to a word will specify the task's place."
+msgstr ""
+"Adding + to a word will categorize the task.\n"
+"Adding @ to a word will specify the task's place."
+
+#: src/TaskDialog.vala:90
+msgid "Cancel"
+msgstr "Cancel"
+
+#: src/TaskDialog.vala:91
+msgid "OK"
+msgstr "OK"
+
+#: src/MainWindow.vala:46
+msgid "Yishu"
+msgstr "Yishu"
+
+#: src/MainWindow.vala:91
+msgid "No Todo.txt File Open"
+msgstr "No Todo.txt File Open"
+
+#: src/MainWindow.vala:91
+msgid "Open a todo.txt file to start adding tasks"
+msgstr "Open a todo.txt file to start adding tasks"
+
+#: src/MainWindow.vala:92
+msgid "Add task"
+msgstr "Add task"
+
+#: src/MainWindow.vala:92
+msgid "Create a new todo.txt file with this task in your Home folder"
+msgstr "Create a new todo.txt file with this task in your Home folder"
+
+#: src/MainWindow.vala:93
+msgid "What is a todo.txt file?"
+msgstr "What is a todo.txt file?"
+
+#: src/MainWindow.vala:93
+msgid "Learn more about todo.txt files"
+msgstr "Learn more about todo.txt files"
+
+#: src/MainWindow.vala:94
+msgid "No Todo.txt File Found"
+msgstr "No Todo.txt File Found"
+
+#: src/MainWindow.vala:94
+msgid "Add tasks to start this todo.txt file"
+msgstr "Add tasks to start this todo.txt file"
+
+#: src/MainWindow.vala:105
+msgid "Add task…"
+msgstr "Add task…"
+
+#: src/MainWindow.vala:109 src/Preferences.vala:28
+msgid "Preferences"
+msgstr "Preferences"
+
+#: src/MainWindow.vala:125
+msgid "Settings"
+msgstr "Settings"
+
+#: src/MainWindow.vala:209
+msgid "Done"
+msgstr "Done"
+
+#: src/Preferences.vala:38
+msgid "Todo.txt Preferences"
+msgstr "Todo.txt Preferences"
+
+#: src/Preferences.vala:39
+msgid "Default Location:"
+msgstr "Default Location:"
+
+#: src/Preferences.vala:42
+msgid "Home Folder"
+msgstr "Home Folder"
+
+#: src/Preferences.vala:43
+msgid "Dropbox Folder"
+msgstr "Dropbox Folder"
+
+#: src/Preferences.vala:44
+msgid "Nextcloud Folder"
+msgstr "Nextcloud Folder"
+
+#: src/Preferences.vala:45
+msgid "ownCloud Folder"
+msgstr "ownCloud Folder"
+
+#: src/Preferences.vala:46
+msgid "Other Clients Folder"
+msgstr "Other Clients Folder"
+
+#: src/Preferences.vala:103
+msgid "Custom Location:"
+msgstr "Custom Location:"
+
+#: src/Preferences.vala:105
+msgid "Open your file"
+msgstr "Open your file"
+
+#: src/Preferences.vala:111
+msgid ""
+"Enabling custom locations will have you save your file\n"
+"in other places not recognized by other clients."
+msgstr ""
+"Enabling custom locations will have you save your file\n"
+"in other places not recognized by other clients."
+
+#: src/Preferences.vala:160
+msgid "Close"
+msgstr "Close"
