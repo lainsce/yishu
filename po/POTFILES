@@ -3,5 +3,3 @@ src/Task.vala
 src/TaskDialog.vala
 src/MainWindow.vala
 src/Preferences.vala
-data/com.github.lainsce.yishu.desktop.in
-data/com.github.lainsce.yishu.appdata.xml.in
