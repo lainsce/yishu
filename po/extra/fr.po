@@ -20,7 +20,7 @@ msgstr ""
 #: data/com.github.lainsce.yishu.desktop.in:3
 #: data/com.github.lainsce.yishu.appdata.xml.in:6
 msgid "Yishu"
-msgstr ""
+msgstr "Yishu"
 
 #: data/com.github.lainsce.yishu.desktop.in:4
 #: data/com.github.lainsce.yishu.appdata.xml.in:7
