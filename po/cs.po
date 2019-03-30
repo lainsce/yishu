@@ -1,15 +1,15 @@
 # Czech translations for com.github.lainsce.yishu package.
 # Copyright (C) 2019 THE com.github.lainsce.yishu'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the com.github.lainsce.yishu package.
-# Automatically generated, 2019.
+# Jan Marek, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.lainsce.yishu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-30 16:53+0100\n"
+"POT-Creation-Date: 2019-03-30 17:17+0100\n"
 "PO-Revision-Date: 2019-03-30 16:53+0100\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
 "Language-Team: none\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -27,27 +27,27 @@ msgstr ""
 
 #: src/Application.vala:153
 msgid "Edit task"
-msgstr ""
+msgstr "Upravit úkol"
 
 #: src/Application.vala:154
 msgid "Delete task"
-msgstr ""
+msgstr "Smazat úkol"
 
 #: src/Application.vala:155
 msgid "Toggle done"
-msgstr ""
+msgstr "Přepnout dokončení"
 
 #: src/Application.vala:159 src/TaskDialog.vala:44 src/MainWindow.vala:197
 msgid "Priority"
-msgstr ""
+msgstr "Priorita"
 
 #: src/Application.vala:162
 msgid "None"
-msgstr ""
+msgstr "Žádný"
 
 #: src/Application.vala:383
 msgid "The task has been deleted"
-msgstr ""
+msgstr "Úkol byl odstraněn"
 
 #: src/Application.vala:385
 msgid "_Undo"
@@ -55,27 +55,27 @@ msgstr ""
 
 #: src/Application.vala:448
 msgid "The todo.txt file has been modified and been re-read"
-msgstr ""
+msgstr "Soubor todo.txt byl změněn a následně znovu načten"
 
 #: src/Task.vala:237
 msgid "Today"
-msgstr ""
+msgstr "Dnes"
 
 #: src/Task.vala:240
 msgid "Yesterday"
-msgstr ""
+msgstr "Včera"
 
 #: src/Task.vala:243
 msgid "days ago"
-msgstr ""
+msgstr "dnů zpátky"
 
 #: src/TaskDialog.vala:33
 msgid "New Task"
-msgstr ""
+msgstr "Nový úkol"
 
 #: src/TaskDialog.vala:43 src/MainWindow.vala:202
 msgid "Task"
-msgstr ""
+msgstr "Úkol"
 
 #: src/TaskDialog.vala:88
 msgid ""
@@ -85,7 +85,7 @@ msgstr ""
 
 #: src/TaskDialog.vala:90
 msgid "Cancel"
-msgstr ""
+msgstr "Zrušit"
 
 #: src/TaskDialog.vala:91
 msgid "OK"
@@ -101,11 +101,11 @@ msgstr ""
 
 #: src/MainWindow.vala:91
 msgid "Open a todo.txt file to start adding tasks"
-msgstr ""
+msgstr "Otevřete todo.txt soubor pro přidávání úkolů"
 
 #: src/MainWindow.vala:92
 msgid "Add task"
-msgstr ""
+msgstr "Přidat úkol"
 
 #: src/MainWindow.vala:92
 msgid "Create a new todo.txt file with this task in your Home folder"
@@ -113,11 +113,11 @@ msgstr ""
 
 #: src/MainWindow.vala:93
 msgid "What is a todo.txt file?"
-msgstr ""
+msgstr "Co je todo.txt soubor?"
 
 #: src/MainWindow.vala:93
 msgid "Learn more about todo.txt files"
-msgstr ""
+msgstr "Zjistit více o todo.txt souborech"
 
 #: src/MainWindow.vala:94
 msgid "No Todo.txt File Found"
@@ -129,7 +129,7 @@ msgstr ""
 
 #: src/MainWindow.vala:105
 msgid "Add task…"
-msgstr ""
+msgstr "Přidat úkol…"
 
 #: src/MainWindow.vala:109 src/Preferences.vala:28
 msgid "Preferences"
@@ -141,7 +141,7 @@ msgstr ""
 
 #: src/MainWindow.vala:209
 msgid "Done"
-msgstr ""
+msgstr "Hotovo"
 
 #: src/Preferences.vala:38
 msgid "Todo.txt Preferences"

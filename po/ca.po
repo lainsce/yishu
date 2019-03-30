@@ -1,15 +1,15 @@
 # Catalan translations for com.github.lainsce.yishu package.
 # Copyright (C) 2019 THE com.github.lainsce.yishu'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the com.github.lainsce.yishu package.
-# Automatically generated, 2019.
+# Adolfo Jayme Barrientos, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.lainsce.yishu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-30 16:53+0100\n"
+"POT-Creation-Date: 2019-03-30 17:17+0100\n"
 "PO-Revision-Date: 2019-03-30 16:53+0100\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -26,27 +26,27 @@ msgstr ""
 
 #: src/Application.vala:153
 msgid "Edit task"
-msgstr ""
+msgstr "Edita la tasca"
 
 #: src/Application.vala:154
 msgid "Delete task"
-msgstr ""
+msgstr "Suprimeix la tasca"
 
 #: src/Application.vala:155
 msgid "Toggle done"
-msgstr ""
+msgstr "Marca/desmarca com a feta"
 
 #: src/Application.vala:159 src/TaskDialog.vala:44 src/MainWindow.vala:197
 msgid "Priority"
-msgstr ""
+msgstr "Prioritat"
 
 #: src/Application.vala:162
 msgid "None"
-msgstr ""
+msgstr "Cap"
 
 #: src/Application.vala:383
 msgid "The task has been deleted"
-msgstr ""
+msgstr "S’ha suprimit la tasca"
 
 #: src/Application.vala:385
 msgid "_Undo"
@@ -54,27 +54,27 @@ msgstr ""
 
 #: src/Application.vala:448
 msgid "The todo.txt file has been modified and been re-read"
-msgstr ""
+msgstr "S’ha modificat el fitxer «todo.txt» i s’ha tornat a llegir"
 
 #: src/Task.vala:237
 msgid "Today"
-msgstr ""
+msgstr "Avui"
 
 #: src/Task.vala:240
 msgid "Yesterday"
-msgstr ""
+msgstr "Ahir"
 
 #: src/Task.vala:243
 msgid "days ago"
-msgstr ""
+msgstr "dies abans"
 
 #: src/TaskDialog.vala:33
 msgid "New Task"
-msgstr ""
+msgstr "Tasca nova"
 
 #: src/TaskDialog.vala:43 src/MainWindow.vala:202
 msgid "Task"
-msgstr ""
+msgstr "Tasca"
 
 #: src/TaskDialog.vala:88
 msgid ""
@@ -84,7 +84,7 @@ msgstr ""
 
 #: src/TaskDialog.vala:90
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel·la"
 
 #: src/TaskDialog.vala:91
 msgid "OK"
@@ -100,7 +100,7 @@ msgstr ""
 
 #: src/MainWindow.vala:91
 msgid "Open a todo.txt file to start adding tasks"
-msgstr ""
+msgstr "Obriu un fitxer «todo.txt» i afegiu-hi tasques"
 
 #: src/MainWindow.vala:92
 msgid "Add task"
@@ -112,11 +112,11 @@ msgstr ""
 
 #: src/MainWindow.vala:93
 msgid "What is a todo.txt file?"
-msgstr ""
+msgstr "Què és un fitxer «todo.txt»?"
 
 #: src/MainWindow.vala:93
 msgid "Learn more about todo.txt files"
-msgstr ""
+msgstr "Més informació sobre els fitxers «todo.txt»"
 
 #: src/MainWindow.vala:94
 msgid "No Todo.txt File Found"
@@ -128,7 +128,7 @@ msgstr ""
 
 #: src/MainWindow.vala:105
 msgid "Add task…"
-msgstr ""
+msgstr "Afegeix una tasca…"
 
 #: src/MainWindow.vala:109 src/Preferences.vala:28
 msgid "Preferences"
@@ -140,7 +140,7 @@ msgstr ""
 
 #: src/MainWindow.vala:209
 msgid "Done"
-msgstr ""
+msgstr "Feta"
 
 #: src/Preferences.vala:38
 msgid "Todo.txt Preferences"

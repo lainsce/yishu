@@ -1,15 +1,15 @@
 # Spanish translations for com.github.lainsce.yishu package.
 # Copyright (C) 2019 THE com.github.lainsce.yishu'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the com.github.lainsce.yishu package.
-# Automatically generated, 2019.
+# Adolfo Jayme Barrientos, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.lainsce.yishu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-30 16:53+0100\n"
+"POT-Creation-Date: 2019-03-30 17:17+0100\n"
 "PO-Revision-Date: 2019-03-30 16:53+0100\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -27,27 +27,27 @@ msgstr ""
 
 #: src/Application.vala:153
 msgid "Edit task"
-msgstr ""
+msgstr "Editar tarea"
 
 #: src/Application.vala:154
 msgid "Delete task"
-msgstr ""
+msgstr "Eliminar tarea"
 
 #: src/Application.vala:155
 msgid "Toggle done"
-msgstr ""
+msgstr "Marcar/desmarcar como realizada"
 
 #: src/Application.vala:159 src/TaskDialog.vala:44 src/MainWindow.vala:197
 msgid "Priority"
-msgstr ""
+msgstr "Prioridad"
 
 #: src/Application.vala:162
 msgid "None"
-msgstr ""
+msgstr "Ninguna"
 
 #: src/Application.vala:383
 msgid "The task has been deleted"
-msgstr ""
+msgstr "Se ha eliminado la tarea"
 
 #: src/Application.vala:385
 msgid "_Undo"
@@ -55,27 +55,27 @@ msgstr ""
 
 #: src/Application.vala:448
 msgid "The todo.txt file has been modified and been re-read"
-msgstr ""
+msgstr "Se ha modificado el archivo «todo.txt» y se volverá a leer"
 
 #: src/Task.vala:237
 msgid "Today"
-msgstr ""
+msgstr "Hoy"
 
 #: src/Task.vala:240
 msgid "Yesterday"
-msgstr ""
+msgstr "Ayer"
 
 #: src/Task.vala:243
 msgid "days ago"
-msgstr ""
+msgstr "días atrás"
 
 #: src/TaskDialog.vala:33
 msgid "New Task"
-msgstr ""
+msgstr "Tarea nueva"
 
 #: src/TaskDialog.vala:43 src/MainWindow.vala:202
 msgid "Task"
-msgstr ""
+msgstr "Tarea"
 
 #: src/TaskDialog.vala:88
 msgid ""
@@ -85,7 +85,7 @@ msgstr ""
 
 #: src/TaskDialog.vala:90
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: src/TaskDialog.vala:91
 msgid "OK"
@@ -101,11 +101,11 @@ msgstr ""
 
 #: src/MainWindow.vala:91
 msgid "Open a todo.txt file to start adding tasks"
-msgstr ""
+msgstr "Abra un archivo «todo.txt» para empezar a añadir tareas"
 
 #: src/MainWindow.vala:92
 msgid "Add task"
-msgstr ""
+msgstr "Añadir tarea"
 
 #: src/MainWindow.vala:92
 msgid "Create a new todo.txt file with this task in your Home folder"
@@ -113,11 +113,11 @@ msgstr ""
 
 #: src/MainWindow.vala:93
 msgid "What is a todo.txt file?"
-msgstr ""
+msgstr "¿Qué es un archivo «todo.txt»?"
 
 #: src/MainWindow.vala:93
 msgid "Learn more about todo.txt files"
-msgstr ""
+msgstr "Más información sobre los archivos «todo.txt»"
 
 #: src/MainWindow.vala:94
 msgid "No Todo.txt File Found"
@@ -129,7 +129,7 @@ msgstr ""
 
 #: src/MainWindow.vala:105
 msgid "Add task…"
-msgstr ""
+msgstr "Añadir tarea…"
 
 #: src/MainWindow.vala:109 src/Preferences.vala:28
 msgid "Preferences"
@@ -141,7 +141,7 @@ msgstr ""
 
 #: src/MainWindow.vala:209
 msgid "Done"
-msgstr ""
+msgstr "Realizada"
 
 #: src/Preferences.vala:38
 msgid "Todo.txt Preferences"

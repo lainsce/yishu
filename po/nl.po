@@ -1,15 +1,15 @@
 # Dutch translations for com.github.lainsce.yishu package.
 # Copyright (C) 2019 THE com.github.lainsce.yishu'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the com.github.lainsce.yishu package.
-# Automatically generated, 2019.
+# Heimen Stoffels, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.lainsce.yishu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-30 16:53+0100\n"
+"POT-Creation-Date: 2019-03-30 17:17+0100\n"
 "PO-Revision-Date: 2019-03-30 16:53+0100\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: none\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -27,27 +27,27 @@ msgstr ""
 
 #: src/Application.vala:153
 msgid "Edit task"
-msgstr ""
+msgstr "Taak bewerken"
 
 #: src/Application.vala:154
 msgid "Delete task"
-msgstr ""
+msgstr "Taak verwijderen"
 
 #: src/Application.vala:155
 msgid "Toggle done"
-msgstr ""
+msgstr "Afgerond/Niet-afgerond"
 
 #: src/Application.vala:159 src/TaskDialog.vala:44 src/MainWindow.vala:197
 msgid "Priority"
-msgstr ""
+msgstr "Prioriteit"
 
 #: src/Application.vala:162
 msgid "None"
-msgstr ""
+msgstr "Geen"
 
 #: src/Application.vala:383
 msgid "The task has been deleted"
-msgstr ""
+msgstr "De taak is verwijderd"
 
 #: src/Application.vala:385
 msgid "_Undo"
@@ -55,27 +55,27 @@ msgstr ""
 
 #: src/Application.vala:448
 msgid "The todo.txt file has been modified and been re-read"
-msgstr ""
+msgstr "Het todo.txt-bestand is bewerkt en opnieuw ingelezen"
 
 #: src/Task.vala:237
 msgid "Today"
-msgstr ""
+msgstr "Vandaag"
 
 #: src/Task.vala:240
 msgid "Yesterday"
-msgstr ""
+msgstr "Gisteren"
 
 #: src/Task.vala:243
 msgid "days ago"
-msgstr ""
+msgstr "dagen geleden"
 
 #: src/TaskDialog.vala:33
 msgid "New Task"
-msgstr ""
+msgstr "Nieuwe taak"
 
 #: src/TaskDialog.vala:43 src/MainWindow.vala:202
 msgid "Task"
-msgstr ""
+msgstr "Taak"
 
 #: src/TaskDialog.vala:88
 msgid ""
@@ -85,7 +85,7 @@ msgstr ""
 
 #: src/TaskDialog.vala:90
 msgid "Cancel"
-msgstr ""
+msgstr "Annuleren"
 
 #: src/TaskDialog.vala:91
 msgid "OK"
@@ -105,7 +105,7 @@ msgstr ""
 
 #: src/MainWindow.vala:92
 msgid "Add task"
-msgstr ""
+msgstr "Taak bewerken"
 
 #: src/MainWindow.vala:92
 msgid "Create a new todo.txt file with this task in your Home folder"
@@ -129,7 +129,7 @@ msgstr ""
 
 #: src/MainWindow.vala:105
 msgid "Add task…"
-msgstr ""
+msgstr "Taak bewerken…"
 
 #: src/MainWindow.vala:109 src/Preferences.vala:28
 msgid "Preferences"

@@ -1,15 +1,15 @@
 # German translations for extra package.
 # Copyright (C) 2019 THE extra'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the extra package.
-# Automatically generated, 2019.
+# patbec, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-30 16:53+0100\n"
+"POT-Creation-Date: 2019-03-30 17:18+0100\n"
 "PO-Revision-Date: 2019-03-30 16:53+0100\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: patbec\n"
 "Language-Team: none\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr ""
 #: data/com.github.lainsce.yishu.desktop.in:4
 #: data/com.github.lainsce.yishu.appdata.xml.in:7
 msgid "A bespoke and simple Todo.txt client"
-msgstr ""
+msgstr "Eine individuelle und einfache Anwendung zu Aufgabenverwaltung"
 
 #: data/com.github.lainsce.yishu.desktop.in:7
 msgid "com.github.lainsce.yishu"
@@ -35,14 +35,18 @@ msgstr ""
 msgid ""
 "Write a to-do list that will be easy to sync with most known Todo.txt clients"
 msgstr ""
+"Schreiben Sie eine Aufgabenliste, die mit bekannten anderen Todo.txt-"
+"Anwendungen synchronisiert werden kann"
 
 #: data/com.github.lainsce.yishu.appdata.xml.in:11
 msgid "Quit anytime with the shortcut Ctrl + Q"
 msgstr ""
+"Mit der Tastenkombination Strg + Q kann die Anwendung jederzeit beendet "
+"werden"
 
 #: data/com.github.lainsce.yishu.appdata.xml.in:12
 msgid "Easily shareable with other Todo.txt clients on other platforms"
-msgstr ""
+msgstr "Teilen Sie Ihre Aufgaben mit Todo.txt-Clients auf anderen Plattformen"
 
 #: data/com.github.lainsce.yishu.appdata.xml.in:18
 msgid "Lains"
