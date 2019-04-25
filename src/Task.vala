@@ -186,7 +186,7 @@ namespace Yishu {
 			}
 			
 			string markup = GLib.Markup.printf_escaped(
-			"<b>%s</b><small>\t<i>%s %s</i></small>\n<small><i><span foreground=\"#abacae\">%s</span></i></small>",
+			"<b>%s</b><small>\t<i>%s %s</i></small>\n<small><i><span foreground=\"#7B7C7E\">%s</span></i></small>",
 			this.text,
 			prj,
 			ctx,
