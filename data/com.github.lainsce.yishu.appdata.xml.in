@@ -53,6 +53,15 @@
         </screenshot>
     </screenshots>
     <releases>
+        <release version="1.1.2" date="2019-07-30">
+            <description>
+                <p>Release: Redesign and Fixes</p>
+                <ul>
+                    <li>App has a redesign</li>
+                    <li>Removed Del keybind - it was legacy code</li>
+                </ul>
+            </description>
+        </release>
         <release version="1.1.1" date="2019-04-26">
             <description>
                 <p>Release: Contrast Rebellion</p>

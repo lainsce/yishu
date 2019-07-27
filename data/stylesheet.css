@@ -1,18 +1,41 @@
-@define-color colorPrimary #ACE580;
+@define-color colorAccent #74C02E;
 @define-color textColorPrimary #333333;
 
 treeview header button,
 column-header .button {
-   background-image:
-        linear-gradient(
-           to bottom,
-           shade (
-               @bg_color,
-               1.1
-           ),
-           @bg_color
-        );
+   background-image: none;
+   background-color: transparent;
+   border: 1px solid transparent;
    padding: 4px 2px;
+}
+
+.yi-titlebar {
+   background-image: none;
+   background-color: @bg_color;
+   border: 1px solid @bg_color;
+   box-shadow: none;
+   color: @fg_color;
+   padding: 4px 2px;
+}
+
+.yi-searchbar {
+    background-image: none;
+    background-color: shade(@bg_color,0.90);
+    border: 1px solid @bg_color;
+    border-radius: 30px;
+    box-shadow: none;
+    color: @fg_color;
+    padding: 6px;
+ }
+
+.yi-titlebar image {
+    color: @fg_color;
+    box-shadow: none;
+    -gtk-icon-shadow: none;
+}
+
+.yi-button {
+    border-radius: 35px;
 }
 
 treeview header button:last-child,

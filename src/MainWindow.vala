@@ -42,7 +42,7 @@ namespace Yishu {
             GLib.Object (application: application,
             icon_name: "com.github.lainsce.yishu",
             height_request: 600,
-            width_request: 600,
+            width_request: 500,
             title: N_("Yishu"));
         }
 
@@ -67,21 +67,16 @@ namespace Yishu {
 
             var settings = AppSettings.get_default ();
             int x = settings.window_x;
-			int y = settings.window_y;
+            int y = settings.window_y;
+            int w = settings.saved_state_width;
+            int h = settings.saved_state_height;
 
             if (x != -1 && y != -1) {
                 move (x, y);
             }
 
-            if (Gtk.get_minor_version() < 20) {
-                set_default_size (settings.saved_state_width, settings.saved_state_height);
-            } else {
-                if (settings.saved_state_height != -1 ||  settings.saved_state_width != -1) {
-                    var rect = Gtk.Allocation ();
-                    rect.height = settings.saved_state_height;
-                    rect.width = settings.saved_state_width;
-                    set_allocation (rect);
-                }
+            if (w != -1 && h != -1) {
+                resize (w, h);
             }
 
 			var vbox = new Box(Gtk.Orientation.VERTICAL, 0);
@@ -98,6 +93,8 @@ namespace Yishu {
             this.set_titlebar(toolbar);
             toolbar.set_show_close_button (true);
             toolbar.has_subtitle = false;
+            var header_context = toolbar.get_style_context ();
+            header_context.add_class ("yi-titlebar");
 
 			add_button = new Gtk.Button ();
             add_button.set_image (new Gtk.Image.from_icon_name ("appointment-new", Gtk.IconSize.LARGE_TOOLBAR));
@@ -150,26 +147,15 @@ namespace Yishu {
         public override bool delete_event (Gdk.EventAny event) {
             int x, y;
             int w, h;
-            Gtk.Allocation rect;
             var settings = AppSettings.get_default ();
 
-            if (Gtk.get_minor_version() < 20) {
-                get_position (out x, out y);
-                get_size(out w, out h);
+            get_position (out x, out y);
+            get_size(out w, out h);
 
-                settings.window_x = x;
-                settings.window_y = y;
-                settings.saved_state_width = w;
-                settings.saved_state_height = h;
-            } else {
-                get_position (out x, out y);
-                get_allocation (out rect);
-
-                settings.saved_state_width = rect.width;
-                settings.saved_state_height = rect.height;
-                settings.window_x = x;
-                settings.window_y = y;
-            }
+            settings.window_x = x;
+            settings.window_y = y;
+            settings.saved_state_width = w;
+            settings.saved_state_height = h;
             return false;
         }
 

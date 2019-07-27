@@ -70,7 +70,10 @@ namespace Yishu {
 			tasks_list_store = new Gtk.ListStore (6, typeof (string), typeof(string), typeof(GLib.Object), typeof(bool), typeof(bool), typeof(int));
 			setup_model();
 			window.tree_view.set_model(tasks_model_sort);
-            search_entry = new SearchTasks (window.tree_view, tasks_model_sort);
+			search_entry = new SearchTasks (window.tree_view, tasks_model_sort);
+			var header_context = search_entry.get_style_context ();
+            header_context.add_class (Gtk.STYLE_CLASS_FLAT);
+            header_context.add_class ("yi-searchbar");
 			search_entry.placeholder_text = _("Search task");
 			search_entry.set_tooltip_text (_("Type Task Name"));
             window.toolbar.set_custom_title(search_entry);
@@ -185,7 +188,6 @@ namespace Yishu {
 			}
 
 			edit_task_menu_item.add_accelerator("activate", accel_group_popup, Gdk.Key.F2, 0, Gtk.AccelFlags.VISIBLE);
-			delete_task_menu_item.add_accelerator("activate", accel_group_popup, Gdk.Key.Delete, 0, Gtk.AccelFlags.VISIBLE);
 			toggle_done_menu_item.add_accelerator("activate", accel_group_popup, Gdk.Key.space, 0, Gtk.AccelFlags.VISIBLE);
 			edit_task_menu_item.activate.connect(edit_task);
 			delete_task_menu_item.activate.connect(delete_task);

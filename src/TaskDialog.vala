@@ -23,7 +23,7 @@ namespace Yishu {
 		public Gtk.Entry entry;
 		private Gtk.EntryCompletion completion;
 		private Gtk.ListStore list_store;
-		private Gtk.ButtonBox bbox;
+		private Gtk.Grid bbox;
 		
 		public TaskDialog (Gtk.Window? parent) {
 			Object (
@@ -60,27 +60,39 @@ namespace Yishu {
 				this.response(Gtk.ResponseType.ACCEPT);
 			});
 			
-			bbox = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
-			bbox.set_spacing (6);
+			bbox = new Gtk.Grid ();
+			bbox.set_column_spacing (6);
 			bbox.margin_start = 12;
 			var button = new Button.with_label("A");
+			var header_context = button.get_style_context ();
+            header_context.add_class ("yi-button");
 			bbox.add(button);
 			button.clicked.connect(on_priority_button_clicked);
-			button = new Button.with_label("B");
-			bbox.add(button);
-			button.clicked.connect(on_priority_button_clicked);
-			button = new Button.with_label("C");
-			bbox.add(button);
-			button.clicked.connect(on_priority_button_clicked);
-			button = new Button.with_label("D");
-			bbox.add(button);
-			button.clicked.connect(on_priority_button_clicked);
-			button = new Button.with_label("E");
-			bbox.add(button);
-			button.clicked.connect(on_priority_button_clicked);
-			button = new Button.with_label("F");
-			bbox.add(button);
-			button.clicked.connect(on_priority_button_clicked);
+			var button2 = new Button.with_label("B");
+			var header_context2 = button2.get_style_context ();
+            header_context2.add_class ("yi-button");
+			bbox.add(button2);
+			button2.clicked.connect(on_priority_button_clicked);
+			var button3 = new Button.with_label("C");
+			var header_context3 = button3.get_style_context ();
+            header_context3.add_class ("yi-button");
+			bbox.add(button3);
+			button3.clicked.connect(on_priority_button_clicked);
+			var button4 = new Button.with_label("D");
+			var header_context4 = button4.get_style_context ();
+            header_context4.add_class ("yi-button");
+			bbox.add(button4);
+			button4.clicked.connect(on_priority_button_clicked);
+			var button5 = new Button.with_label("E");
+			var header_context5 = button5.get_style_context ();
+            header_context5.add_class ("yi-button");
+			bbox.add(button5);
+			button5.clicked.connect(on_priority_button_clicked);
+			var button6 = new Button.with_label("F");
+			var header_context6 = button6.get_style_context ();
+			bbox.add(button6);
+			button6.clicked.connect(on_priority_button_clicked);
+            header_context6.add_class ("yi-button");
 			
 			var task_help = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
 			task_help.halign = Gtk.Align.START;
@@ -93,6 +105,7 @@ namespace Yishu {
 			
 			var main_grid = new Gtk.Grid();
 			main_grid.margin = 6;
+			main_grid.margin_top = 0;
 			main_grid.row_spacing = 6;
 			main_grid.column_spacing = 12;
 			main_grid.attach (task_label, 0, 0, 1, 1);
