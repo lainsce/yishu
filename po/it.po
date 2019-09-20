@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: com.github.lainsce.yishu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-30 17:17+0100\n"
-"PO-Revision-Date: 2019-03-30 16:53+0100\n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2019-09-02 17:24+0100\n"
+"Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -19,172 +19,176 @@ msgstr ""
 
 #: src/Application.vala:74
 msgid "Search task"
-msgstr ""
+msgstr "Cerca attività"
 
 #: src/Application.vala:75
 msgid "Type Task Name"
-msgstr ""
+msgstr "Inserisci il nome attività"
 
 #: src/Application.vala:153
 msgid "Edit task"
-msgstr ""
+msgstr "Modifica attività"
 
 #: src/Application.vala:154
 msgid "Delete task"
-msgstr ""
+msgstr "Elimina attività"
 
 #: src/Application.vala:155
 msgid "Toggle done"
-msgstr ""
+msgstr "Cambia stato"
 
 #: src/Application.vala:159 src/TaskDialog.vala:44 src/MainWindow.vala:197
 msgid "Priority"
-msgstr ""
+msgstr "Priorità"
 
 #: src/Application.vala:162
 msgid "None"
-msgstr ""
+msgstr "Nulla"
 
 #: src/Application.vala:383
 msgid "The task has been deleted"
-msgstr ""
+msgstr "L'attività è stata eliminata"
 
 #: src/Application.vala:385
 msgid "_Undo"
-msgstr ""
+msgstr "_Annulla"
 
 #: src/Application.vala:448
 msgid "The todo.txt file has been modified and been re-read"
-msgstr ""
+msgstr "Il file todo.txt è stato modificato e ricaricato"
 
 #: src/Task.vala:237
 msgid "Today"
-msgstr ""
+msgstr "Oggi"
 
 #: src/Task.vala:240
 msgid "Yesterday"
-msgstr ""
+msgstr "Ieri"
 
 #: src/Task.vala:243
 msgid "days ago"
-msgstr ""
+msgstr "giorni fa"
 
 #: src/TaskDialog.vala:33
 msgid "New Task"
-msgstr ""
+msgstr "Nuova Attività"
 
 #: src/TaskDialog.vala:43 src/MainWindow.vala:202
 msgid "Task"
-msgstr ""
+msgstr "Attività"
 
 #: src/TaskDialog.vala:88
 msgid ""
 "Adding + to a word will categorize the task.\n"
 "Adding @ to a word will specify the task's place."
 msgstr ""
+"Aggiungendo + ad una parola, categorizza una attività.\n"
+"Aggiunendo @ a una parola, specificherà la posizione di una attività."
 
 #: src/TaskDialog.vala:90
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #: src/TaskDialog.vala:91
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/MainWindow.vala:46
 msgid "Yishu"
-msgstr ""
+msgstr "Yishu"
 
 #: src/MainWindow.vala:91
 msgid "No Todo.txt File Open"
-msgstr ""
+msgstr "Nessun file Todo.txt aperto"
 
 #: src/MainWindow.vala:91
 msgid "Open a todo.txt file to start adding tasks"
-msgstr ""
+msgstr "Apri un file todo.txt per iniziare ad aggiungere attività"
 
 #: src/MainWindow.vala:92
 msgid "Add task"
-msgstr ""
+msgstr "Aggiungi Attività"
 
 #: src/MainWindow.vala:92
 msgid "Create a new todo.txt file with this task in your Home folder"
-msgstr ""
+msgstr "Crea un nuovo file todo.txt con questa attività nella tua cartella Home"
 
 #: src/MainWindow.vala:93
 msgid "What is a todo.txt file?"
-msgstr ""
+msgstr "Che cos'è un file todo.txt?"
 
 #: src/MainWindow.vala:93
 msgid "Learn more about todo.txt files"
-msgstr ""
+msgstr "Scopri di più sui file todo.txt"
 
 #: src/MainWindow.vala:94
 msgid "No Todo.txt File Found"
-msgstr ""
+msgstr "nessun file Todo.txt trovato"
 
 #: src/MainWindow.vala:94
 msgid "Add tasks to start this todo.txt file"
-msgstr ""
+msgstr "Aggiungi attività all'inizio di questo file todo.txt"
 
 #: src/MainWindow.vala:105
 msgid "Add task…"
-msgstr ""
+msgstr "Aggiungi attività…"
 
 #: src/MainWindow.vala:109 src/Preferences.vala:28
 msgid "Preferences"
-msgstr ""
+msgstr "Preferenze"
 
 #: src/MainWindow.vala:125
 msgid "Settings"
-msgstr ""
+msgstr "Impostazioni"
 
 #: src/MainWindow.vala:209
 msgid "Done"
-msgstr ""
+msgstr "Fatto"
 
 #: src/Preferences.vala:38
 msgid "Todo.txt Preferences"
-msgstr ""
+msgstr "Preferenze Todo.txt"
 
 #: src/Preferences.vala:39
 msgid "Default Location:"
-msgstr ""
+msgstr "Posizione predefinita:"
 
 #: src/Preferences.vala:42
 msgid "Home Folder"
-msgstr ""
+msgstr "Cartella Home"
 
 #: src/Preferences.vala:43
 msgid "Dropbox Folder"
-msgstr ""
+msgstr "Cartella Dropbox"
 
 #: src/Preferences.vala:44
 msgid "Nextcloud Folder"
-msgstr ""
+msgstr "Cartella Nextcloud"
 
 #: src/Preferences.vala:45
 msgid "ownCloud Folder"
-msgstr ""
+msgstr "Cartella ownCloud"
 
 #: src/Preferences.vala:46
 msgid "Other Clients Folder"
-msgstr ""
+msgstr "Cartella per altri Client"
 
 #: src/Preferences.vala:103
 msgid "Custom Location:"
-msgstr ""
+msgstr "Posizione personalizzata"
 
 #: src/Preferences.vala:105
 msgid "Open your file"
-msgstr ""
+msgstr "Apri il tuo file"
 
 #: src/Preferences.vala:111
 msgid ""
 "Enabling custom locations will have you save your file\n"
 "in other places not recognized by other clients."
 msgstr ""
+"Abilitando i percorsi personalizzati, i tuoi client\n"
+"potrebbero non trovare i tuoi file."
 
 #: src/Preferences.vala:160
 msgid "Close"
-msgstr ""
+msgstr "Chiudi"
