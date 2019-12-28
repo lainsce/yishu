@@ -97,7 +97,7 @@ namespace Yishu {
 			var task_help = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
 			task_help.halign = Gtk.Align.START;
 			task_help.hexpand = true;
-			task_help.tooltip_text = _("Adding + to a word will categorize the task.\nAdding @ to a word will specify the task's place.");
+			task_help.tooltip_text = _("Adding YYYY-MM-DD after the priority and before the task will give a due date to the task.\nAdding + to a word will categorize the task.\nAdding @ to a word will specify the task's place.");
 			
 			var close_button = add_button (_("Cancel"), Gtk.ResponseType.CLOSE);
 			this.add_button((_("OK")), Gtk.ResponseType.ACCEPT);
