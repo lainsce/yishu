@@ -232,18 +232,24 @@ namespace Yishu {
 					int diff = d.days_between(now);
 					if (diff < max_days){
 						string s = "";
-						switch (diff){
-							case 0:
-							s = _("Today");
-							break;
-							case 1:
-							s = _("Yesterday");
-							break;
-							default:
-							s = "%u %s".printf(diff, _("days ago"));
-							break;
+						if (diff < 0) {
+							s = "%i %s".printf(diff * -1, _("days from now"));
+							return s;
 						}
-						return s;
+						else {
+							switch (diff){
+								case 0:
+								s = _("Today");
+								break;
+								case 1:
+								s = _("Yesterday");
+								break;
+								default:
+								s = "%i %s".printf(diff, _("days ago"));
+								break;
+							}
+							return s;
+						}
 					}
 					else {
 						char buf[100];
