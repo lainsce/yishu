@@ -76,6 +76,8 @@ namespace Yishu {
             header_context.add_class ("yi-searchbar");
 			search_entry.placeholder_text = _("Search task");
 			search_entry.set_tooltip_text (_("Type Task Name"));
+			search_entry.margin_start = 24;
+			search_entry.hexpand = true;
             window.toolbar.set_custom_title(search_entry);
 			setup_menus();
 			window.add_button.clicked.connect(add_task);
@@ -102,7 +104,7 @@ namespace Yishu {
 					add_task();
 					break;
 					case 1:
-					Granite.Services.System.open_uri("http://todotxt.com");
+					GLib.AppInfo.launch_default_for_uri ("http://todotxt.com", null);
 					break;
 				}
 			});
@@ -126,18 +128,22 @@ namespace Yishu {
             if (read_file(null)) {
 				window.welcome.hide();
 				window.tree_view.show();
+				window.add_button.show();
 			} else {
 				window.welcome.show();
 				window.tree_view.hide();
+				window.add_button.hide();
 			}
 
             settings.changed.connect (() => {
     			if (read_file(settings.todo_txt_file_path)) {
     				window.welcome.hide();
-    				window.tree_view.show();
+					window.tree_view.show();
+					window.add_button.show();
     			} else if (settings.todo_txt_file_path == "" && read_file(null)) {
     				window.welcome.show();
-    				window.tree_view.hide();
+					window.tree_view.hide();
+					window.add_button.hide();
     			}
             });
 			tasks_model_filter.refilter();
@@ -365,6 +371,7 @@ namespace Yishu {
 
 				window.welcome.hide();
 				window.tree_view.show();
+				window.add_button.show();
 
 				break;
 				default:

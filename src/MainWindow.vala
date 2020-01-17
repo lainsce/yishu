@@ -97,9 +97,18 @@ namespace Yishu {
             header_context.add_class ("yi-titlebar");
 
 			add_button = new Gtk.Button ();
-            add_button.set_image (new Gtk.Image.from_icon_name ("appointment-new", Gtk.IconSize.LARGE_TOOLBAR));
+            add_button.set_image (new Gtk.Image.from_icon_name ("appointment-new-symbolic", Gtk.IconSize.SMALL_TOOLBAR));
             add_button.has_tooltip = true;
             add_button.tooltip_text = (_("Add task…"));
+            add_button.halign = Gtk.Align.END;
+            add_button.valign = Gtk.Align.END;
+            add_button.margin = 12;
+
+            var add_button_context = add_button.get_style_context ();
+            add_button_context.add_class ("yi-addbutton");
+
+            var overlay = new Gtk.Overlay ();
+            overlay.expand = true;
 
 			var prefs_button = new Gtk.ModelButton ();
             prefs_button.action_name = ACTION_PREFIX + ACTION_PREFS;
@@ -122,17 +131,19 @@ namespace Yishu {
             menu_button.tooltip_text = (_("Settings"));
 			menu_button.popover = menu;
 
-			toolbar.pack_start (add_button);
 			toolbar.pack_end (menu_button);
 
 			tree_view = setup_tree_view();
 			swin.add(tree_view);
 			stack.add(welcome);
-			stack.add(swin);
+            stack.add(swin);
+            
+            overlay.add_overlay (add_button);
+            overlay.add (stack);
 
 			info_bar_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
 			vbox.pack_start(info_bar_box, false, false, 0);
-			vbox.pack_start(stack, true, true, 0);
+			vbox.pack_start(overlay, true, true, 0);
 			add(vbox);
 
 			show_all();

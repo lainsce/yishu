@@ -1,6 +1,6 @@
 # Name our project
 project('com.github.lainsce.yishu', ['vala', 'c'],
-    version: '1.1.0'
+    version: '1.1.3'
 )
 
 # Import main lib files

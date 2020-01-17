@@ -21,11 +21,11 @@ column-header .button {
 .yi-searchbar {
     background-image: none;
     background-color: shade(@bg_color,0.90);
-    border: 1px solid @bg_color;
+    border: 1px solid shade(@bg_color,0.70);
     border-radius: 30px;
     box-shadow: none;
     color: @fg_color;
-    padding: 6px;
+    padding: 8px;
  }
 
 .yi-titlebar image {
@@ -35,7 +35,21 @@ column-header .button {
 }
 
 .yi-button {
-    border-radius: 35px;
+    background-color: shade(@bg_color,0.90);
+    border-radius: 30px;
+    padding: 5px;
+}
+
+.yi-addbutton {
+    background-color: shade(@colorAccent,0.90);
+    border-radius: 50%;
+    border: 1px solid transparent;
+    padding: 15px;
+    box-shadow: 0 5px 5px 5px rgba(@fg_color,0.67);
+}
+
+.yi-addbutton image {
+    color: #FAFAFA;
 }
 
 treeview header button:last-child,
