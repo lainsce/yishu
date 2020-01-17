@@ -37,6 +37,12 @@ namespace Yishu {
             var sort_model = new Gtk.TreeModelSort.with_model (filter_model);
             process_view.set_model (sort_model);
 
+            var settings = AppSettings.get_default ();
+            if (settings.save_search) {
+                this.text = settings.saved_search_string;
+            }
+            
+
             this.show_all ();
         }
 
@@ -50,6 +56,11 @@ namespace Yishu {
                     Gtk.TreePath tree_path = new Gtk.TreePath.from_indices (0, 0);
                     process_view.set_cursor (tree_path, null, false);
                     process_view.grab_focus ();
+
+                    var settings = AppSettings.get_default ();
+                    if (settings.save_search) {
+                        settings.saved_search_string = this.text;
+                    }
                 }
             });
         }

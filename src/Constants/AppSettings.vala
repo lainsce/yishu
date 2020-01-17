@@ -22,7 +22,9 @@ namespace Yishu {
         public int saved_state_height { get; set; }
         public bool show_completed { get; set; }
         public bool custom_file_enable { get; set; }
+        public bool save_search { get; set; }
         public string todo_txt_file_path { get; set; }
+        public string saved_search_string { get; set; }
         
         private static AppSettings? instance;
         public static unowned AppSettings get_default () {

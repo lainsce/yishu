@@ -35,8 +35,12 @@ namespace Yishu.Widgets {
         construct {
             var settings = AppSettings.get_default ();
 
-            var header = new Granite.HeaderLabel (_("Todo.txt Preferences"));
-            var label = new SettingsLabel (_("Default Location:"));
+            var header = new Granite.HeaderLabel (_("Interface"));
+            var label = new SettingsLabel (_("Save searches:"));
+            var switch_b = new SettingsSwitch ("save-search");
+
+            var header2 = new Granite.HeaderLabel (_("Todo.txt Preferences"));
+            var label2 = new SettingsLabel (_("Default Location:"));
             list_place = new Gtk.ComboBoxText();
             list_place.hexpand = true;
             list_place.append_text(_("Home Folder"));
@@ -137,6 +141,7 @@ namespace Yishu.Widgets {
                 switch_c.active = false;
             }
 
+
             var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
             hbox.pack_start (switch_c, false, true, 0);
             hbox.pack_start (chooser, false, true, 0);
@@ -147,10 +152,13 @@ namespace Yishu.Widgets {
             main_grid.column_spacing = 12;
             main_grid.attach (header, 0, 1, 1, 1);
             main_grid.attach (label, 0, 2, 1, 1);
-            main_grid.attach (list_place, 1, 2, 3, 1);
-            main_grid.attach (label_c, 0, 3, 1, 1);
-            main_grid.attach (hbox, 1, 3, 3, 1);
-            main_grid.attach (custom_help, 4, 3, 1, 1);
+            main_grid.attach (switch_b, 1, 2, 1, 1);
+            main_grid.attach (header2, 0, 3, 1, 1);
+            main_grid.attach (label2, 0, 4, 1, 1);
+            main_grid.attach (list_place, 1, 4, 3, 1);
+            main_grid.attach (label_c, 0, 5, 1, 1);
+            main_grid.attach (hbox, 1, 5, 3, 1);
+            main_grid.attach (custom_help, 4, 5, 1, 1);
 
             var content = this.get_content_area () as Gtk.Box;
             content.margin = 6;
