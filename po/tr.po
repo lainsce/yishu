@@ -101,8 +101,7 @@ msgstr "Açık Todo.txt Dosyası Yok"
 
 #: src/MainWindow.vala:91
 msgid "Open a todo.txt file to start adding tasks"
-msgstr "
-Görev eklemeye başlamak için bir todo.txt dosyası açın"
+msgstr "Görev eklemeye başlamak için bir todo.txt dosyası açın"
 
 #: src/MainWindow.vala:92
 msgid "Add task"
