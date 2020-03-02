@@ -9,8 +9,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-30 17:17+0100\n"
 "PO-Revision-Date: 2019-03-30 16:53+0100\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"Last-Translator: Safak Genisol\n"
+"Language-Team: Turkish\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,63 +19,63 @@ msgstr ""
 
 #: src/Application.vala:74
 msgid "Search task"
-msgstr ""
+msgstr "Görev Arama"
 
 #: src/Application.vala:75
 msgid "Type Task Name"
-msgstr ""
+msgstr "Görev Türü Adı"
 
 #: src/Application.vala:153
 msgid "Edit task"
-msgstr ""
+msgstr "Görevi Düzenle"
 
 #: src/Application.vala:154
 msgid "Delete task"
-msgstr ""
+msgstr "Görevi sil"
 
 #: src/Application.vala:155
 msgid "Toggle done"
-msgstr ""
+msgstr "Görev tamamlandı"
 
 #: src/Application.vala:159 src/TaskDialog.vala:44 src/MainWindow.vala:197
 msgid "Priority"
-msgstr ""
+msgstr "Öncelik"
 
 #: src/Application.vala:162
 msgid "None"
-msgstr ""
+msgstr "Yok"
 
 #: src/Application.vala:383
 msgid "The task has been deleted"
-msgstr ""
+msgstr "Görev silindi"
 
 #: src/Application.vala:385
 msgid "_Undo"
-msgstr ""
+msgstr "_Geri al"
 
 #: src/Application.vala:448
 msgid "The todo.txt file has been modified and been re-read"
-msgstr ""
+msgstr "Todo.txt "
 
 #: src/Task.vala:237
 msgid "Today"
-msgstr ""
+msgstr "Bugün"
 
 #: src/Task.vala:240
 msgid "Yesterday"
-msgstr ""
+msgstr "Dün"
 
 #: src/Task.vala:243
 msgid "days ago"
-msgstr ""
+msgstr "günler önce"
 
 #: src/TaskDialog.vala:33
 msgid "New Task"
-msgstr ""
+msgstr "Yeni Görev"
 
 #: src/TaskDialog.vala:43 src/MainWindow.vala:202
 msgid "Task"
-msgstr ""
+msgstr "Görev"
 
 #: src/TaskDialog.vala:88
 msgid ""
@@ -85,106 +85,108 @@ msgstr ""
 
 #: src/TaskDialog.vala:90
 msgid "Cancel"
-msgstr ""
+msgstr "İptal"
 
 #: src/TaskDialog.vala:91
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/MainWindow.vala:46
 msgid "Yishu"
-msgstr ""
+msgstr "Yishu"
 
 #: src/MainWindow.vala:91
 msgid "No Todo.txt File Open"
-msgstr ""
+msgstr "Açık Todo.txt Dosyası Yok"
 
 #: src/MainWindow.vala:91
 msgid "Open a todo.txt file to start adding tasks"
-msgstr ""
+msgstr "Görev eklemeye başlamak için bir todo.txt dosyası açın"
 
 #: src/MainWindow.vala:92
 msgid "Add task"
-msgstr ""
+msgstr "Görev ekle"
 
 #: src/MainWindow.vala:92
 msgid "Create a new todo.txt file with this task in your Home folder"
-msgstr ""
+msgstr "Ana klasörünüzde bu görev ile yeni bir todo.txt dosyası oluştur"
 
 #: src/MainWindow.vala:93
 msgid "What is a todo.txt file?"
-msgstr ""
+msgstr "Todo.txt dosyası nedir?"
 
 #: src/MainWindow.vala:93
 msgid "Learn more about todo.txt files"
-msgstr ""
+msgstr "Todo.txt dosyaları hakkında daha fazla bilgi edinin"
 
 #: src/MainWindow.vala:94
 msgid "No Todo.txt File Found"
-msgstr ""
+msgstr "Hiçbir Todo.txt Dosyası Bulunamadı"
 
 #: src/MainWindow.vala:94
 msgid "Add tasks to start this todo.txt file"
-msgstr ""
+msgstr "Bu todo.txt dosyasını başlatmak için görevler ekleyin"
 
 #: src/MainWindow.vala:105
 msgid "Add task…"
-msgstr ""
+msgstr "Görev ekle…"
 
 #: src/MainWindow.vala:109 src/Preferences.vala:28
 msgid "Preferences"
-msgstr ""
+msgstr "Tercihler"
 
 #: src/MainWindow.vala:125
 msgid "Settings"
-msgstr ""
+msgstr "Ayarlar"
 
 #: src/MainWindow.vala:209
 msgid "Done"
-msgstr ""
+msgstr "Bitti"
 
 #: src/Preferences.vala:38
 msgid "Todo.txt Preferences"
-msgstr ""
+msgstr "Todo.txt Tercihler"
 
 #: src/Preferences.vala:39
 msgid "Default Location:"
-msgstr ""
+msgstr "Varsayılan Konum:"
 
 #: src/Preferences.vala:42
 msgid "Home Folder"
-msgstr ""
+msgstr "Ana Klasör"
 
 #: src/Preferences.vala:43
 msgid "Dropbox Folder"
-msgstr ""
+msgstr "Dropbox Klasörü"
 
 #: src/Preferences.vala:44
 msgid "Nextcloud Folder"
-msgstr ""
+msgstr "Nextcloud Klasörü"
 
 #: src/Preferences.vala:45
 msgid "ownCloud Folder"
-msgstr ""
+msgstr "ownCloud Klasörü"
 
 #: src/Preferences.vala:46
 msgid "Other Clients Folder"
-msgstr ""
+msgstr "Diğer İstemci Klasörü"
 
 #: src/Preferences.vala:103
 msgid "Custom Location:"
-msgstr ""
+msgstr "Özel Konum"
 
 #: src/Preferences.vala:105
 msgid "Open your file"
-msgstr ""
+msgstr "Dosyayı Açın"
 
 #: src/Preferences.vala:111
 msgid ""
 "Enabling custom locations will have you save your file\n"
 "in other places not recognized by other clients."
 msgstr ""
+"Özel konumları etkinleştirmek,dosyanızı diğer servislerin\n"
+"göremiyeceği başka yerlere kaydetmenizi sağlar."
 
 #: src/Preferences.vala:160
 msgid "Close"
-msgstr ""
+msgstr "Kapat"
