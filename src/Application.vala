@@ -123,7 +123,6 @@ namespace Yishu {
 
             string homedir = GLib.Environment.get_home_dir ();
             string home = homedir + "/todo.txt";
-            settings.todo_txt_file_path = home;
 
             if (read_file(null)) {
 				window.welcome.hide();
