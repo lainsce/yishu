@@ -72,6 +72,12 @@ namespace Yishu.Widgets {
             } else if (file_used == other) {
                 list_place.set_active(4);
                 debug ("Set as Other");
+            } else {
+                settings.custom_file_enable = true;
+                list_place.set_active(0);
+                list_place.sensitive = false;
+                label2.sensitive = false;
+                debug ("Set as custom");
             }
 
             list_place.changed.connect (() => {
@@ -126,20 +132,29 @@ namespace Yishu.Widgets {
                 if (settings.custom_file_enable == true) {
                     chooser.sensitive = true;
                     switch_c.active = true;
+                    list_place.sensitive = false;
+                    label2.sensitive = false;
                 } else {
                     chooser.sensitive = false;
                     switch_c.active = false;
+                    list_place.sensitive = true;
+                    label2.sensitive = true;
+                    list_place.set_active(0);
+                    settings.todo_txt_file_path = home;
                 }
             });
 
             if (settings.custom_file_enable == true) {
                 chooser.sensitive = true;
                 switch_c.active = true;
+                list_place.sensitive = false;
+                label2.sensitive = false;
             } else {
                 chooser.sensitive = false;
                 switch_c.active = false;
+                list_place.sensitive = true;
+                label2.sensitive = true;
             }
-
 
             var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
             hbox.pack_start (switch_c, false, true, 0);
