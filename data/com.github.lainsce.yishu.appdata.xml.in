@@ -54,6 +54,15 @@
         </screenshot>
     </screenshots>
     <releases>
+        <release version="1.2.5" date="2020-06-06">
+            <description>
+                <p>Release: Location Known</p>
+                <ul>
+                    <li>Fixed: Default or Custom location being reset (Darshak Parikh - @dar5hak)</li>
+                    <li>Added: Turkish and Polish translations</li>
+                </ul>
+            </description>
+        </release>
         <release version="1.2.3" date="2020-05-08">
             <description>
                 <p>Release: Location Known</p>
