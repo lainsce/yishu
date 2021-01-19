@@ -27,7 +27,7 @@ namespace Yishu {
 		public Gee.ArrayList<string> lines;
 		public FileMonitor monitor;
 		public int n_lines;
-		
+
 		public TodoFile (string path) {
 			this.path = path;
 			this.file = File.new_for_path(path);
@@ -39,7 +39,7 @@ namespace Yishu {
 				warning ("%s\n", e.message);
 			}
 		}
-		
+
 		public bool exists(){
 			try {
 				var stream = file.read();
@@ -50,11 +50,11 @@ namespace Yishu {
 			}
 			return true;
 		}
-		
+
 		public int read_file(){
 			lines.clear();
 			n_lines = 0;
-			
+
 			try {
 				var input_stream = new DataInputStream(file.read());
 				string line;
@@ -70,7 +70,7 @@ namespace Yishu {
 			}
 			return n_lines;
 		}
-		
+
 		public bool write_file(){
 			try {
 				n_lines = 0;
@@ -89,6 +89,15 @@ namespace Yishu {
 			}
 			return true;
 		}
+
+		public void delete_file () {
+			try {
+				if (exists () == true)
+					file.delete ();
+			} catch (Error e){
+				warning ("%s\n", e.message);
+			}
+		}
 	}
-	
+
 }

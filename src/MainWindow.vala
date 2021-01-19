@@ -16,37 +16,88 @@
 * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 * Boston, MA 02110-1301 USA
 */
-using Gtk;
 
 namespace Yishu {
-	public class MainWindow : Gtk.Window {
+	public class MainWindow : Hdy.Window {
+	    public Gtk.Application app { get; construct; }
 		public Gtk.Box info_bar_box;
-		public Gtk.HeaderBar toolbar;
-		public Gtk.Button open_button;
+		public Hdy.HeaderBar titlebar;
+		public Hdy.HeaderBar fauxtitlebar;
+		public Hdy.Leaflet leaflet;
+		public Gtk.Button delete_all_button;
 		public Gtk.Button add_button;
+		public Gtk.ScrolledWindow swin;
 		public Granite.Widgets.Welcome welcome;
 		public Granite.Widgets.Welcome no_file;
+		public Gtk.Stack sidebar_stack;
+		public Gtk.Label sidebar_no_tags;
 		public Gtk.TreeView tree_view;
+		public Gtk.TreeView tv;
+		public Gtk.Grid normal_view;
 		public Gtk.CellRendererToggle cell_renderer_toggle;
-
-		public const string ACTION_PREFIX = "win.";
-		public const string ACTION_PREFS = "action_prefs";
-		public SimpleActionGroup actions { get; construct; }
-        public static Gee.MultiMap<string, string> action_accelerators = new Gee.HashMultiMap<string, string> ();
-
-        private const GLib.ActionEntry[] action_entries = {
-            { ACTION_PREFS,              action_prefs     }
-        };
+		public Gtk.Stack stack;
+		public Granite.Widgets.SourceList sidebar;
+		public Granite.Widgets.SourceList.ExpandableItem projects_category;
+        public Granite.Widgets.SourceList.ExpandableItem contexts_category;
+        public Widgets.Preferences preferences_dialog;
 
         public MainWindow (Gtk.Application application) {
-            GLib.Object (application: application,
-            icon_name: "com.github.lainsce.yishu",
-            height_request: 600,
-            width_request: 500,
-            title: N_("Yishu"));
+            GLib.Object (
+                         application: application,
+                         app: application,
+                         icon_name: "com.github.lainsce.yishu",
+                         height_request: 300,
+                         width_request: 500,
+                         title: N_("Yishu")
+            );
+
+            if (Yishu.Application.grsettings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK) {
+                Yishu.Application.gsettings.set_boolean("dark-mode", true);
+            } else if (Yishu.Application.grsettings.prefers_color_scheme == Granite.Settings.ColorScheme.NO_PREFERENCE) {
+                Yishu.Application.gsettings.set_boolean("dark-mode", false);
+            }
+
+            Yishu.Application.grsettings.notify["prefers-color-scheme"].connect (() => {
+                if (Yishu.Application.grsettings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK) {
+                    Yishu.Application.gsettings.set_boolean("dark-mode", true);
+                } else if (Yishu.Application.grsettings.prefers_color_scheme == Granite.Settings.ColorScheme.NO_PREFERENCE) {
+                    Yishu.Application.gsettings.set_boolean("dark-mode", false);
+                }
+            });
+
+            if (Yishu.Application.gsettings.get_boolean("dark-mode")) {
+                Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
+                titlebar.get_style_context ().add_class ("yi-titlebar-dark");
+                tv.get_style_context ().add_class ("yi-tv-dark");
+                swin.get_style_context ().add_class ("yi-tv-dark");
+                stack.get_style_context ().add_class ("yi-stack-dark");
+            } else {
+                Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = false;
+                titlebar.get_style_context ().remove_class ("yi-titlebar-dark");
+                tv.get_style_context ().remove_class ("yi-tv-dark");
+                swin.get_style_context ().remove_class ("yi-tv-dark");
+                stack.get_style_context ().remove_class ("yi-stack-dark");
+            }
+
+            Yishu.Application.gsettings.changed.connect (() => {
+                if (Yishu.Application.gsettings.get_boolean("dark-mode")) {
+                    Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
+                    titlebar.get_style_context ().add_class ("yi-titlebar-dark");
+                    tv.get_style_context ().add_class ("yi-tv-dark");
+                    swin.get_style_context ().add_class ("yi-tv-dark");
+                    stack.get_style_context ().add_class ("yi-stack-dark");
+                } else {
+                    Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = false;
+                    titlebar.get_style_context ().remove_class ("yi-titlebar-dark");
+                    tv.get_style_context ().remove_class ("yi-tv-dark");
+                    swin.get_style_context ().remove_class ("yi-tv-dark");
+                    stack.get_style_context ().remove_class ("yi-stack-dark");
+                }
+            });
         }
 
         construct {
+            Hdy.init ();
             key_press_event.connect ((e) => {
                 uint keycode = e.hardware_keycode;
                 if ((e.state & Gdk.ModifierType.CONTROL_MASK) != 0) {
@@ -60,10 +111,6 @@ namespace Yishu {
             var provider = new Gtk.CssProvider ();
             provider.load_from_resource ("/com/github/lainsce/yishu/stylesheet.css");
             Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-
-			actions = new SimpleActionGroup ();
-            actions.add_action_entries (action_entries, this);
-            insert_action_group ("win", actions);
 
             var settings = AppSettings.get_default ();
             int x = settings.window_x;
@@ -79,80 +126,174 @@ namespace Yishu {
                 resize (w, h);
             }
 
-			var vbox = new Box(Gtk.Orientation.VERTICAL, 0);
-			var stack = new Stack();
-			var swin = new ScrolledWindow(null, null);
+			stack = new Gtk.Stack ();
+			stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
+			swin = new Gtk.ScrolledWindow(null, null);
+			swin.get_style_context ().add_class ("yi-tv");
 
-			welcome = new Granite.Widgets.Welcome(_("No Todo.txt File Open"), _("Open a todo.txt file to start adding tasks"));
-            welcome.append("appointment-new", _("Add task"), _("Create a new todo.txt file with this task in your Home folder"));
-			welcome.append("help-contents", _("What is a todo.txt file?"), _("Learn more about todo.txt files"));
-			no_file = new Granite.Widgets.Welcome(_("No Todo.txt File Found"), _("Add tasks to start this todo.txt file"));
-
-			/* Create toolbar */
-			toolbar = new HeaderBar();
-            this.set_titlebar(toolbar);
-            toolbar.set_show_close_button (true);
-            toolbar.has_subtitle = false;
-            var header_context = toolbar.get_style_context ();
+			/* Create titlebar */
+			titlebar = new Hdy.HeaderBar();
+            titlebar.set_show_close_button (true);
+            titlebar.has_subtitle = false;
+            var header_context = titlebar.get_style_context ();
             header_context.add_class ("yi-titlebar");
+            titlebar.has_subtitle = false;
+            titlebar.title = "Yishu";
+            titlebar.hexpand = true;
+            titlebar.set_size_request (-1,38);
+
+            fauxtitlebar = new Hdy.HeaderBar();
+            fauxtitlebar.set_show_close_button (true);
+            fauxtitlebar.has_subtitle = false;
+            fauxtitlebar.get_style_context ().add_class ("yi-side-titlebar");
+            fauxtitlebar.set_size_request (193,38);
 
 			add_button = new Gtk.Button ();
             add_button.set_image (new Gtk.Image.from_icon_name ("appointment-new-symbolic", Gtk.IconSize.SMALL_TOOLBAR));
             add_button.has_tooltip = true;
             add_button.tooltip_text = (_("Add task…"));
-            add_button.halign = Gtk.Align.END;
-            add_button.valign = Gtk.Align.END;
-            add_button.margin = 12;
+            add_button.visible = true;
 
-            var add_button_context = add_button.get_style_context ();
-            add_button_context.add_class ("yi-addbutton");
+            delete_all_button = new Gtk.Button ();
+            delete_all_button.set_image (new Gtk.Image.from_icon_name ("edit-clear-all-symbolic", Gtk.IconSize.SMALL_TOOLBAR));
+            delete_all_button.has_tooltip = true;
+            delete_all_button.tooltip_text = (_("Clear all tasks"));
+            delete_all_button.get_style_context ().add_class ("destructive-button");
 
-            var overlay = new Gtk.Overlay ();
-            overlay.expand = true;
-
-			var prefs_button = new Gtk.ModelButton ();
-            prefs_button.action_name = ACTION_PREFIX + ACTION_PREFS;
-			prefs_button.text = (_("Preferences"));
-
-			var menu_grid = new Gtk.Grid ();
-            menu_grid.margin = 6;
-            menu_grid.row_spacing = 6;
-            menu_grid.column_spacing = 12;
-            menu_grid.orientation = Gtk.Orientation.VERTICAL;
-            menu_grid.add (prefs_button);
-            menu_grid.show_all ();
-
-            var menu = new Gtk.Popover (null);
-            menu.add (menu_grid);
-
-            var menu_button = new Gtk.MenuButton ();
-            menu_button.set_image (new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR));
+            var menu_button = new Gtk.Button ();
+            menu_button.set_image (new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR));
             menu_button.has_tooltip = true;
             menu_button.tooltip_text = (_("Settings"));
-			menu_button.popover = menu;
 
-			toolbar.pack_end (menu_button);
+            menu_button.clicked.connect (() => {
+                debug ("Prefs button pressed.");
+                preferences_dialog = new Widgets.Preferences (this);
+                preferences_dialog.show_all ();
+
+                if (preferences_dialog != null) {
+                    preferences_dialog.present ();
+                }
+            });
+
+			titlebar.pack_end (menu_button);
+			titlebar.pack_end (delete_all_button);
+			titlebar.pack_end (add_button);
+
+            var normal_icon = new Gtk.Image.from_icon_name ("appointment-new-symbolic", Gtk.IconSize.DND);
+            var normal_label = new Gtk.Label (_("Start by adding some tasks…"));
+            normal_label.halign = Gtk.Align.START;
+            var normal_label_context = normal_label.get_style_context ();
+            normal_label_context.add_class (Granite.STYLE_CLASS_H2_LABEL);
+            normal_label_context.add_class (Gtk.STYLE_CLASS_DIM_LABEL);
+            // Take care to use "\n" where the sentence should break to a new line.
+            var normal_label2 = new Gtk.Label (_("You can configure which Todo.txt file to use in Settings,\nthe default is on Home."));
+            normal_label2.halign = Gtk.Align.START;
+            var normal_label2_context = normal_label2.get_style_context ();
+            normal_label2_context.add_class (Granite.STYLE_CLASS_H4_LABEL);
+            normal_label2_context.add_class (Gtk.STYLE_CLASS_DIM_LABEL);
+
+            var normal_label_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 6);
+            normal_label_box.add (normal_label);
+            normal_label_box.add (normal_label2);
+
+            normal_view = new Gtk.Grid ();
+            normal_view.column_spacing = 12;
+            normal_view.row_spacing = 24;
+            normal_view.expand = true;
+            normal_view.halign = normal_view.valign = Gtk.Align.CENTER;
+            normal_view.attach (normal_icon,0,0,1,1);
+            normal_view.attach (normal_label_box,1,0,1,1);
 
 			tree_view = setup_tree_view();
 			swin.add(tree_view);
-			stack.add(welcome);
+			stack.add(normal_view);
             stack.add(swin);
-            
-            overlay.add_overlay (add_button);
-            overlay.add (stack);
+            stack.get_style_context ().add_class ("yi-stack");
 
+            var vbox = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
 			info_bar_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
-			vbox.pack_start(info_bar_box, false, false, 0);
-			vbox.pack_start(overlay, true, true, 0);
-			add(vbox);
+			vbox.pack_start (info_bar_box, false, false, 0);
+			vbox.pack_start (stack, true, true, 0);
+
+			/* Create sidebar */
+			sidebar = new Granite.Widgets.SourceList();
+            sidebar.hexpand = false;
+            sidebar.margin_top = 4;
+			sidebar.margin_start = sidebar.margin_end = 8;
+            projects_category = new Granite.Widgets.SourceList.ExpandableItem ("");
+            projects_category.markup = _("CATEGORIES");
+            contexts_category = new Granite.Widgets.SourceList.ExpandableItem ("");
+            contexts_category.markup = _("LOCATIONS");
+			projects_category.set_data("item-name", "projects");
+			contexts_category.set_data("item-name", "contexts");
+			sidebar.root.add(projects_category);
+			sidebar.root.add(contexts_category);
+			sidebar.root.expand_all();
+
+			sidebar_no_tags = new Gtk.Label (_("No Tags…"));
+			sidebar_no_tags.halign = Gtk.Align.CENTER;
+			sidebar_no_tags.vexpand = true;
+            var sidebar_no_tags_context = sidebar_no_tags.get_style_context ();
+            sidebar_no_tags_context.add_class (Granite.STYLE_CLASS_H2_LABEL);
+            sidebar_no_tags_context.add_class (Gtk.STYLE_CLASS_DIM_LABEL);
+            sidebar_no_tags.margin = 12;
+            sidebar_no_tags.show_all ();
+
+            var sidebar_header = new Gtk.Label("");
+            sidebar_header.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
+            sidebar_header.halign = Gtk.Align.START;
+            sidebar_header.margin_start = 9;
+            sidebar_header.margin_top = 6;
+            sidebar_header.set_markup (_("TAGS"));
+
+            var sgrid = new Gtk.Grid ();
+			sgrid.get_style_context ().add_class ("yi-column");
+            sgrid.attach (fauxtitlebar, 0, 0, 1, 1);
+            sgrid.attach (sidebar_header, 0, 1, 1, 1);
+            sgrid.attach (sidebar, 0, 2, 1, 1);
+            sgrid.attach (sidebar_no_tags, 0, 2, 1, 1);
+
+            sgrid.show_all ();
+
+            var grid = new Gtk.Grid ();
+            grid.attach (titlebar, 1, 0, 1, 1);
+            grid.attach (vbox, 1, 1, 1, 1);
+            grid.show_all ();
+
+            update ();
+
+            leaflet = new Hdy.Leaflet ();
+            leaflet.add (sgrid);
+            leaflet.add (grid);
+            leaflet.transition_type = Hdy.LeafletTransitionType.UNDER;
+            leaflet.show_all ();
+            leaflet.can_swipe_back = true;
+            leaflet.set_visible_child (grid);
+
+            leaflet.notify["folded"].connect (() => {
+                update ();
+            });
+
+            this.add (leaflet);
 
 			show_all();
 		}
 
-		private void action_prefs () {
-            debug ("Prefs button pressed.");
-			var preferences_dialog = new Widgets.Preferences (this);
-			preferences_dialog.show_all ();
+		public void reset(){
+			projects_category.clear();
+			contexts_category.clear();
+		}
+
+		private void update () {
+            if (leaflet != null && leaflet.get_folded ()) {
+                // On Mobile size, so.... have to have no buttons anywhere.
+                fauxtitlebar.set_decoration_layout (":");
+                titlebar.set_decoration_layout (":");
+            } else {
+                // Else you're on Desktop size, so business as usual.
+                fauxtitlebar.set_decoration_layout ("close:");
+                titlebar.set_decoration_layout (":maximize");
+            }
         }
 
         public override bool delete_event (Gdk.EventAny event) {
@@ -187,23 +328,25 @@ namespace Yishu {
             return false;
         }
 
-		private TreeView setup_tree_view(){
-			TreeView tv = new TreeView();
-			TreeViewColumn col;
+		private Gtk.TreeView setup_tree_view(){
+			tv = new Gtk.TreeView();
+			tv.headers_visible = false;
+			tv.vexpand = true;
+			Gtk.TreeViewColumn col;
 
-			col = new TreeViewColumn.with_attributes(_("Priority"), new Granite.Widgets.CellRendererBadge(), "text", Columns.PRIORITY);
+			col = new Gtk.TreeViewColumn.with_attributes(_("Priority"), new Granite.Widgets.CellRendererBadge(), "text", Columns.PRIORITY);
 			col.set_sort_column_id(Columns.PRIORITY);
 			col.resizable = true;
 			tv.append_column(col);
 
-			col = new TreeViewColumn.with_attributes(_("Task"), new CellRendererText(), "markup", Columns.MARKUP);
+			col = new Gtk.TreeViewColumn.with_attributes(_("Task"), new Gtk.CellRendererText(), "markup", Columns.MARKUP);
 			col.set_sort_column_id(Columns.MARKUP);
 			col.resizable = true;
             col.expand = true;
 			tv.append_column(col);
 
-			cell_renderer_toggle = new CellRendererToggle();
-			col = new TreeViewColumn.with_attributes(_("Done"), cell_renderer_toggle, "active", Columns.DONE);
+			cell_renderer_toggle = new Gtk.CellRendererToggle();
+			col = new Gtk.TreeViewColumn.with_attributes(_("Done"), cell_renderer_toggle, "active", Columns.DONE);
 			col.set_sort_column_id(Columns.DONE);
 			col.resizable = true;
 			tv.append_column(col);

@@ -23,6 +23,7 @@ Please make sure you have these dependencies first before building.
 granite
 gtk+-3.0
 meson
+libhandy-1
 ```
 
 ## Building

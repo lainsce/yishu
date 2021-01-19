@@ -21,14 +21,12 @@
 using Gtk;
 using Yishu;
 namespace Yishu {
-    public class SearchTasks : Gtk.SearchEntry {
+    public class SearchEntry : Gtk.SearchEntry {
         public Gtk.TreeModelFilter filter_model { get; private set; }
         private Gtk.TreeView process_view;
 
-        public SearchTasks (Gtk.TreeView process_view, Gtk.TreeModel model) {
+        public SearchEntry (Gtk.TreeView process_view, Gtk.TreeModel model) {
             this.process_view = process_view;
-            this.placeholder_text = _("Search Process");
-            this.set_tooltip_text (_("Type Process Name or PID"));
             filter_model = new Gtk.TreeModelFilter (model, null);
             connect_signal ();
             filter_model.set_visible_func(filter_func);
@@ -40,8 +38,9 @@ namespace Yishu {
             var settings = AppSettings.get_default ();
             if (settings.save_search) {
                 this.text = settings.saved_search_string;
+            } else {
+                this.text = "";
             }
-            
 
             this.show_all ();
         }
@@ -51,16 +50,13 @@ namespace Yishu {
                 if (this.is_focus) {
                     process_view.collapse_all ();
                 }
-                filter_model.refilter ();
-                if (filter_model.iter_n_children (null) == 1) {
-                    Gtk.TreePath tree_path = new Gtk.TreePath.from_indices (0, 0);
-                    process_view.set_cursor (tree_path, null, false);
-                    process_view.grab_focus ();
 
-                    var settings = AppSettings.get_default ();
-                    if (settings.save_search) {
-                        settings.saved_search_string = this.text;
-                    }
+                filter_model.refilter ();
+
+                this.grab_focus ();
+
+                if (this.text != "") {
+                    this.insert_at_cursor ("");
                 }
             });
         }
@@ -69,17 +65,19 @@ namespace Yishu {
             string name_haystack;
             bool found = false;
             var needle = this.text;
+
             if ( needle.length == 0 ) {
                 return true;
             }
 
-            model.get(iter, Columns.MARKUP, out name_haystack, -1);
+            model.get( iter, Columns.MARKUP, out name_haystack, -1 );
 
             // sometimes name_haystack is null
             if (name_haystack != null) {
                 bool name_found = name_haystack.casefold().contains(needle.casefold()) || false;
                 found = name_found;
             }
+
 
             Gtk.TreeIter child_iter;
             bool child_found = false;
@@ -100,7 +98,7 @@ namespace Yishu {
         // reset filter, grab focus and insert the character
         public void activate_entry (string search_text = "") {
             this.text = "";
-            this.grab_focus ();
+            this.search_changed ();
             this.insert_at_cursor (search_text);
         }
 

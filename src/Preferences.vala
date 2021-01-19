@@ -22,13 +22,13 @@ namespace Yishu.Widgets {
 
         public Preferences (Gtk.Window? parent) {
             Object (
-            border_width: 6,
-            deletable: false,
-            resizable: false,
-            title: _("Preferences"),
-            transient_for: parent,
-            destroy_with_parent: true,
-            window_position: Gtk.WindowPosition.CENTER_ON_PARENT
+                border_width: 6,
+                deletable: false,
+                resizable: false,
+                title: _("Preferences"),
+                transient_for: parent,
+                destroy_with_parent: true,
+                window_position: Gtk.WindowPosition.CENTER_ON_PARENT
             );
         }
 
@@ -114,7 +114,7 @@ namespace Yishu.Widgets {
             var chooser = new Gtk.FileChooserButton (_("Open your file"), Gtk.FileChooserAction.OPEN);
             chooser.hexpand = true;
 
-            var custom_help = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
+            var custom_help = new Gtk.Image.from_icon_name ("dialog-information-symbolic", Gtk.IconSize.BUTTON);
             custom_help.halign = Gtk.Align.START;
             custom_help.hexpand = true;
             custom_help.tooltip_text = _("Enabling custom locations will have you save your file\nin other places not recognized by other clients.");
@@ -127,6 +127,20 @@ namespace Yishu.Widgets {
                 string uri = chooser.get_filename ();
                 settings.todo_txt_file_path = uri;
             });
+
+            if (settings.custom_file_enable == true) {
+                    chooser.sensitive = true;
+                    switch_c.active = true;
+                    list_place.sensitive = false;
+                    label2.sensitive = false;
+            } else {
+                    chooser.sensitive = false;
+                    switch_c.active = false;
+                    list_place.sensitive = true;
+                    label2.sensitive = true;
+                    list_place.set_active(0);
+                    settings.todo_txt_file_path = home;
+            }
 
             switch_c.notify["active"].connect (() => {
                 if (settings.custom_file_enable == true) {
